@@ -1,0 +1,5 @@
+tf_bucket_suffix  = "tf-state"
+environment       = "dev"
+wif_pool_name     = "cicd-github-dev"
+wif_provider_name = "cicd-github-provider-dev"
+cicd_sa_name      = "cicd-wif-tf"
