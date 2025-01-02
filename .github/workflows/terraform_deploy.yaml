@@ -1,0 +1,185 @@
+name: Workload Identity Federation Deploy 
+run-name: "Dataset Infrastructure Deployment - ${{ github.ref_name }} - by @${{ github.actor }}"
+
+on:
+  push:
+    branches:
+      #- test
+      - dev
+      - main
+    paths-ignore:
+      - 'docs/**'
+      - 'base-scripts/**'
+
+concurrency:
+  group: "${{ github.workflow }}"
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+#######################################################################
+# Push Terraform Plan
+#######################################################################
+  terraform_plan:
+    name: Push Terraform Plan
+    runs-on: ubuntu-latest
+    outputs:
+      tgt_project_id: ${{ steps.env_var.outputs.tgt_project_id }}
+      tf_bucket: ${{ steps.env_var.outputs.tf_bucket }}
+      wif_provider: ${{ steps.env_var.outputs.wif_provider }}
+      cicd_sa_name: ${{ steps.env_var.outputs.cicd_sa_name }}
+      tf_prefix: ${{ steps.env_var.outputs.tf_prefix }}
+
+    steps:
+      - name: Checkout repository
+        id: "github_checkout"
+        uses: actions/checkout@v4
+
+      - name: Define and Extract Environment Variables
+        id: env_var
+        run: |
+          case "${{ github.ref_name }}" in
+            "main")
+              environment="prod"
+              env_tfvars="terraform/prod.tfvars"
+              tgt_project_id="${{ vars.TGT_PROJECT_ID_PROD }}"
+              tgt_project_number="${{ vars.TGT_PROJECT_NUMBER_PROD }}"
+              ;;
+            "dev")
+              environment="dev"
+              env_tfvars="terraform/dev.tfvars"
+              tgt_project_id="${{ vars.TGT_PROJECT_ID_DEV }}"
+              tgt_project_number="${{ vars.TGT_PROJECT_NUMBER_DEV }}"
+              ;;
+            "test")
+              environment="test"
+              env_tfvars="terraform/test.tfvars"
+              tgt_project_id="${{ vars.TGT_PROJECT_ID_TEST }}"
+              tgt_project_number="${{ vars.TGT_PROJECT_NUMBER_TEST }}"
+              ;;
+          esac
+          wif_pool_name=$(grep 'wif_pool_name' "$env_tfvars" | awk -F ' = ' '{gsub(/[ "]/, "", $2); print $2}')
+          wif_provider_name=$(grep 'wif_provider_name' "$env_tfvars" | awk -F ' = ' '{gsub(/[ "]/, "", $2); print $2}')
+          tf_bucket_suffix=$(grep 'tf_bucket_suffix' "$env_tfvars" | awk -F ' = ' '{gsub(/[ "]/, "", $2); print $2}')
+          cicd_sa_name=$(grep 'cicd_sa_name' "$env_tfvars" | awk -F ' = ' '{gsub(/[ "]/, "", $2); print $2}')
+          tf_bucket="${tgt_project_id}-${tf_bucket_suffix}"
+          wif_provider="projects/${tgt_project_number}/locations/global/workloadIdentityPools/${wif_pool_name}/providers/${wif_provider_name}"
+          tf_prefix="${{ github.ref_name }}-$(echo ${{ github.sha }} | cut -c 1-7)"
+
+          echo "env_tfvars=$env_tfvars" >> $GITHUB_ENV
+          echo "tgt_project_id=$tgt_project_id" >> $GITHUB_ENV
+          echo "tgt_project_number=$tgt_project_number" >> $GITHUB_ENV
+          echo "tf_bucket=$tf_bucket" >> $GITHUB_ENV
+          echo "wif_provider=$wif_provider" >> $GITHUB_ENV
+          echo "cicd_sa_name=$cicd_sa_name" >> $GITHUB_ENV
+          echo "tf_prefix=$tf_prefix" >> $GITHUB_ENV
+
+          echo "tf_prefix=$tf_prefix" >> $GITHUB_OUTPUT
+          echo "tgt_project_id=$tgt_project_id" >> "$GITHUB_OUTPUT"
+          echo "tf_bucket=$tf_bucket" >> "$GITHUB_OUTPUT"
+          echo "wif_provider=$wif_provider" >> "$GITHUB_OUTPUT"
+          echo "cicd_sa_name=$cicd_sa_name" >> "$GITHUB_OUTPUT"
+          
+          # Print variables for readability and debugging
+          echo "===> ====================================== <==="
+          echo "===> GCP target environment    => $environment"
+          echo "===> GCP target project id     => $tgt_project_id"
+          echo "===> GCP target project number => $tgt_project_number"
+          echo "===> WIF pool name             => $wif_pool_name"
+          echo "===> WIF provider name         => $wif_provider_name"
+          echo "===> Terraform state bucket    => $tf_bucket"
+          echo "===> Workload Identity Provider => $wif_provider"
+          echo "===> Service Account Name => $cicd_sa_name"
+          echo "===> Terraform state file bucket prefix => ${tf_prefix}"
+          echo "===> Repo Branch => ${{ github.ref_name }}"
+          echo "===> Repo Commit => ${{ github.sha }}"
+          echo "===> ====================================== <==="
+
+      - name: Authenticate to Google Cloud
+        id: gcp_auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ env.wif_provider }}
+          service_account: "${{ env.cicd_sa_name }}@${{ env.tgt_project_id }}.iam.gserviceaccount.com"
+
+      - name: Check Terraform Formatting
+        id: terraform_fmt
+        run: terraform fmt -check -recursive -diff
+        continue-on-error: true
+  
+      - name: Lint Terraform Configuration
+        id: terraform_lint
+        run: |
+          curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+          tflint
+
+      - name: Run Terraform Plan
+        id: terraform_plan
+        run: |
+          cd terraform/
+          terraform init -input=false \
+            -backend-config="bucket=${{ env.tf_bucket }}" \
+            -backend-config="prefix=${{ env.environment }}" || exit 1
+
+          echo "===> ====================================== <==="
+          terraform version
+          echo "===> ====================================== <==="
+
+          sudo mkdir -p -m777 ${{ github.workspace }}/tfplanoutput
+          terraform plan \
+            -var "repo_branch=${{ github.ref_name }}" \
+            -var "repo_commit=${{ github.sha }}" \
+            -var "tgt_project_id=${{ env.tgt_project_id }}" \
+            -var "cicd_sa_name=${{ env.cicd_sa_name }}" \
+            -var "wif_pool_name=${{ env.wif_pool_name }}" \
+            -var "wif_provider_name=${{ env.wif_provider_name }}" \
+            -var-file=${{ github.workspace }}/${{ env.env_tfvars }} \
+            -out=${{ github.workspace }}/tfplanoutput/tf-${{ env.tf_prefix }}.plan \
+            -input=false
+            
+      - name: "Save Terraform Plan File to GCS"
+        id: save_terraform_plan
+        run: |
+          echo "### Saving Terraform Plan to GCS ###"
+          gcloud storage cp ${{ github.workspace }}/tfplanoutput/tf-${{ env.tf_prefix }}.plan gs://${{ env.tf_bucket }}/monday-infra/tf-${{ env.tf_prefix }}.plan
+
+#######################################################################
+# Push Terraform Apply
+#######################################################################
+  terraform_apply:
+    name: "Push Terraform Apply"
+    needs: [terraform_plan]
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ needs.terraform_plan.outputs.environment }}
+
+    steps:
+      - name: Checkout repository
+        id: github_checkout
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        id: gcp_auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ needs.terraform_plan.outputs.wif_provider }}
+          service_account: "${{ needs.terraform_plan.outputs.cicd_sa_name }}@${{ needs.terraform_plan.outputs.tgt_project_id }}.iam.gserviceaccount.com"
+
+      - name: Download Terraform Plan from GCS
+        id: download_tf_plan
+        run: |
+          echo "### Downloading Terraform Plan from GCS ###"
+          gcloud storage cp gs://${{ needs.terraform_plan.outputs.tf_bucket }}/datasets-infra/tf-${{ needs.terraform_plan.outputs.tf_prefix }}.plan ${{ github.workspace }}/tfplanoutput/tf-${{ needs.terraform_plan.outputs.tf_prefix }}.plan
+
+      - name: Run Terraform Apply
+        id: tf_apply
+        run: |
+          cd terraform/
+          terraform init -backend-config="bucket=${{ needs.terraform_plan.outputs.tf_bucket }}" \
+            -backend-config="prefix=${{ needs.terraform_plan.outputs.tf_prefix }}"
+          terraform apply -input=false ${{ github.workspace }}/tfplanoutput/tf-${{ needs.terraform_plan.outputs.tf_prefix }}.plan
+        # env:
+        #   TF_LOG: DEBUG
