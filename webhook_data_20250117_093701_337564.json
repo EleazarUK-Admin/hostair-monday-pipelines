@@ -1,0 +1,25 @@
+{
+    "event": {
+        "app": "monday",
+        "type": "update_column_value",
+        "triggerTime": "2025-01-17T15:36:59.940Z",
+        "subscriptionId": 458520033,
+        "isRetry": false,
+        "userId": 70753529,
+        "originalTriggerUuid": null,
+        "boardId": 8230364285,
+        "groupId": "group_title",
+        "pulseId": 8266759560,
+        "pulseName": "pruba8",
+        "columnId": "texto6",
+        "columnType": "text",
+        "columnTitle": "Motivo",
+        "value": {
+            "value": "prueba"
+        },
+        "previousValue": null,
+        "changedAt": 1737128219.5825553,
+        "isTopGroup": true,
+        "triggerUuid": "e95aafa23089339e21493212794bd71b"
+    }
+}

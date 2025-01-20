@@ -1,0 +1,27 @@
+{
+    "event": {
+        "app": "monday",
+        "type": "update_column_value",
+        "triggerTime": "2025-01-17T15:36:51.453Z",
+        "subscriptionId": 458520033,
+        "isRetry": false,
+        "userId": -4,
+        "originalTriggerUuid": null,
+        "boardId": 8230364285,
+        "groupId": "group_title",
+        "pulseId": 8266759560,
+        "pulseName": "Agregar limpieza",
+        "columnId": "enlace_1__1",
+        "columnType": "link",
+        "columnTitle": "📋 Reportes",
+        "value": {
+            "url": "https://wkf.ms/4ea0bmy",
+            "text": "Reportes",
+            "changed_at": "2024-06-07T10:01:01.791Z"
+        },
+        "previousValue": {},
+        "changedAt": 1737128211.0737197,
+        "isTopGroup": true,
+        "triggerUuid": "47d32b773e5777f209e62b3f406d796a"
+    }
+}

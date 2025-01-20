@@ -1,0 +1,30 @@
+{
+    "event": {
+        "app": "monday",
+        "type": "update_column_value",
+        "triggerTime": "2025-01-17T12:58:27.456Z",
+        "subscriptionId": 458520033,
+        "isRetry": true,
+        "userId": 70753529,
+        "originalTriggerUuid": null,
+        "boardId": 8230364285,
+        "groupId": "group_title",
+        "pulseId": 8265239237,
+        "pulseName": "Prueba6",
+        "columnId": "dup__of___reembolso",
+        "columnType": "numeric",
+        "columnTitle": "🛏️ Pago Limpieza",
+        "value": {
+            "value": 45,
+            "unit": {
+                "symbol": "$",
+                "custom_unit": "",
+                "direction": "left"
+            }
+        },
+        "previousValue": null,
+        "changedAt": 1737118583.0892637,
+        "isTopGroup": true,
+        "triggerUuid": "ad7cf8febce76313a2f3d433c072652d"
+    }
+}

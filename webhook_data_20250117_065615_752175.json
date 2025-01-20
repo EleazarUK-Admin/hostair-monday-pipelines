@@ -1,0 +1,20 @@
+{
+    "event": {
+        "app": "monday",
+        "type": "create_pulse",
+        "triggerTime": "2025-01-17T12:56:14.548Z",
+        "subscriptionId": 458519930,
+        "isRetry": false,
+        "userId": 70753529,
+        "originalTriggerUuid": null,
+        "boardId": 8230364285,
+        "pulseId": 8265239237,
+        "pulseName": "Agregar limpieza",
+        "groupId": "group_title",
+        "groupName": "Limpiezas asignadas",
+        "groupColor": "#00c875",
+        "isTopGroup": true,
+        "columnValues": {},
+        "triggerUuid": "9d2f603ff55ea74a3974bfbd37f5c471"
+    }
+}

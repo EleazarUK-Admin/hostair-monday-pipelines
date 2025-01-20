@@ -1,0 +1,31 @@
+{
+    "event": {
+        "app": "monday",
+        "type": "update_column_value",
+        "triggerTime": "2025-01-17T15:56:57.542Z",
+        "subscriptionId": 458520033,
+        "isRetry": false,
+        "userId": 70753529,
+        "originalTriggerUuid": null,
+        "boardId": 8230364285,
+        "groupId": "grupo_nuevo",
+        "pulseId": 8265180921,
+        "pulseName": "Icon 1810 (copy)",
+        "columnId": "person",
+        "columnType": "multiple-person",
+        "columnTitle": "Persona",
+        "value": {
+            "personsAndTeams": [
+                {
+                    "id": 70753529,
+                    "kind": "person"
+                }
+            ],
+            "changed_at": "2025-01-17T15:56:57.234Z"
+        },
+        "previousValue": {},
+        "changedAt": 1737129417.1905344,
+        "isTopGroup": false,
+        "triggerUuid": "78d584746ca118fb723b89bd3512d5f5"
+    }
+}
