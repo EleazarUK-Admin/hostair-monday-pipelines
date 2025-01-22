@@ -1,4 +1,11 @@
+import os
 import json
+from google.cloud import storage
+
+BUCKET_NAME = "limpieza-test"
+GCS_PREFIX_JSON = "llenado/"
+GCS_PREFIX_SQL = "sql_por_procesar/"
+TABLE_FQN = "housekeeping.test_limpieza"
 
 COLUMN_TYPES = {
     "id":"NUMERIC",
@@ -99,35 +106,33 @@ COLUMN_TYPES = {
     "id_de_elemento_mkm572bd": "STRING",
 }
 
-def parse_value(column_id, column_type, raw_value):
+def parse_value(col_id, col_type, raw_value):
     if raw_value is None:
         return None
     try:
         parsed_json = json.loads(raw_value)
     except:
         parsed_json = raw_value
-    if column_type == "BOOL":
+    if col_type == "BOOL":
         if isinstance(parsed_json, dict) and "checked" in parsed_json:
             return bool(parsed_json["checked"])
-        else:
-            return False
-    elif column_type == "DATE":
+        return False
+    elif col_type == "DATE":
         if isinstance(parsed_json, dict) and "date" in parsed_json:
             return parsed_json["date"]
-        else:
-            return None
-    elif column_type == "NUMERIC":
+        return None
+    elif col_type == "NUMERIC":
         try:
             return float(parsed_json)
         except:
             return None
-    elif column_type == "TIMESTAMP":
+    elif col_type == "TIMESTAMP":
         if isinstance(parsed_json, dict):
             date_key = "created_at" if "created_at" in parsed_json else "updated_at"
             if date_key in parsed_json:
                 return parsed_json[date_key]
         return None
-    elif column_type == "TIME":
+    elif col_type == "TIME":
         if isinstance(parsed_json, dict):
             h = parsed_json.get("hour", 0)
             m = parsed_json.get("minute", 0)
@@ -145,46 +150,49 @@ def generar_inserts_sql(json_items, table_fqn):
         row_values = {}
         row_values["id"] = item["id"]
         row_values["name"] = item["name"]
-
         for col_val in item["column_values"]:
-            col_id = col_val["id"]
-            raw_value = col_val["value"]
-            col_type_bq = COLUMN_TYPES.get(col_id, "STRING")
-            parsed = parse_value(col_id, col_type_bq, raw_value)
-            row_values[col_id] = parsed
-        column_list_sql = []
-        values_list_sql = []
-        for col_id in all_columns:
-            column_list_sql.append(f"`{col_id}`")
-            val = row_values.get(col_id, None)
+            cid = col_val["id"]
+            rval = col_val["value"]
+            ctype = COLUMN_TYPES.get(cid, "STRING")
+            parsed = parse_value(cid, ctype, rval)
+            row_values[cid] = parsed
+        cols_sql = []
+        vals_sql = []
+        for cid in all_columns:
+            cols_sql.append(f"`{cid}`")
+            val = row_values.get(cid)
             if val is None:
-                values_list_sql.append("NULL")
+                vals_sql.append("NULL")
             else:
-                col_type = COLUMN_TYPES[col_id]
-                if col_type in ("STRING", "TIME"):
+                ctype = COLUMN_TYPES[cid]
+                if ctype in ("STRING", "TIME", "DATE", "TIMESTAMP"):
                     safe_val = str(val).replace("'", "\\'")
-                    values_list_sql.append(f"'{safe_val}'")
-                elif col_type in ("DATE", "TIMESTAMP"):
-                    safe_val = str(val).replace("'", "\\'")
-                    values_list_sql.append(f"'{safe_val}'")
-                elif col_type == "BOOL":
-                    values_list_sql.append("TRUE" if val else "FALSE")
-                elif col_type == "NUMERIC":
-                    values_list_sql.append(str(val))
+                    vals_sql.append(f"'{safe_val}'")
+                elif ctype == "BOOL":
+                    vals_sql.append("TRUE" if val else "FALSE")
+                elif ctype == "NUMERIC":
+                    vals_sql.append(str(val))
                 else:
                     safe_val = str(val).replace("'", "\\'")
-                    values_list_sql.append(f"'{safe_val}'")
-        col_string = ", ".join(column_list_sql)
-        val_string = ", ".join(values_list_sql)
-        sql = f"INSERT INTO `{table_fqn}` ({col_string}) VALUES ({val_string});"
-        inserts.append(sql)
+                    vals_sql.append(f"'{safe_val}'")
+        col_str = ", ".join(cols_sql)
+        val_str = ", ".join(vals_sql)
+        inserts.append(f"INSERT INTO `{table_fqn}` ({col_str}) VALUES ({val_str});")
     return inserts
 
+def main():
+    client = storage.Client()
+    bucket = client.bucket(BUCKET_NAME)
+    for blob in bucket.list_blobs(prefix=GCS_PREFIX_JSON):
+        if blob.name.endswith(".json"):
+            filename = os.path.basename(blob.name)
+            data_text = blob.download_as_text(encoding="utf-8")
+            monday_data = json.loads(data_text)
+            statements = generar_inserts_sql(monday_data, TABLE_FQN)
+            sql_file_content = "\n".join(statements)
+            base_name = os.path.splitext(filename)[0]
+            sql_blob_name = f"{GCS_PREFIX_SQL}{base_name}.sql"
+            bucket.blob(sql_blob_name).upload_from_string(sql_file_content, content_type="text/plain")
+
 if __name__ == "__main__":
-    with open("chido.json", "r", encoding="utf-8") as f:
-        monday_data = json.load(f)
-    TABLE_FQN = "Prueba.test_limpieza"
-    inserts_sql = generar_inserts_sql(monday_data, TABLE_FQN)
-    with open("inserts.sql", "w", encoding="utf-8") as archivo_sql:
-        for ins in inserts_sql:
-            archivo_sql.write(ins + "\n")
+    main()
