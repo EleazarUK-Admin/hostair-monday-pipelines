@@ -1,0 +1,20 @@
+{
+    "event": {
+        "app": "monday",
+        "type": "create_pulse",
+        "triggerTime": "2025-02-03T17:54:31.783Z",
+        "subscriptionId": 466042903,
+        "isRetry": true,
+        "userId": 70753529,
+        "originalTriggerUuid": null,
+        "boardId": 8303132684,
+        "pulseId": 8389333047,
+        "pulseName": "Agregar 📋",
+        "groupId": "grupo_nuevo25458",
+        "groupName": "Solicitudes nuevas",
+        "groupColor": "#66ccff",
+        "isTopGroup": true,
+        "columnValues": {},
+        "triggerUuid": "7f524fd70efebee76ca44c4e6cb7ca53"
+    }
+}

@@ -1,13 +1,33 @@
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import JSONResponse
-from google.cloud import storage
+from google.cloud import storage, bigquery
 import json
 from datetime import datetime
 import os
 
 app = FastAPI()
 
-BUCKET_NAME = "limpieza-test"
+def get_bucket_for_board(board_id):
+    client = bigquery.Client()
+    query = """
+    SELECT bucket
+    FROM `project_settings.board_settings`
+    WHERE board_id = @board_id
+    LIMIT 1
+    """
+    job_config = bigquery.QueryJobConfig(
+        query_parameters=[
+            bigquery.ScalarQueryParameter("board_id", "INT64", board_id)
+        ]
+    )
+    query_job = client.query(query, job_config=job_config)
+    rows = list(query_job)
+    if not rows:
+        raise HTTPException(status_code=404, detail="boardId no encontrado en board_settings.")
+    bucket = rows[0].bucket
+    if not bucket:
+        raise HTTPException(status_code=400, detail="No se definió bucket para el boardId.")
+    return bucket
 
 def upload_to_bucket(bucket_name, destination_path, data):
     client = storage.Client()
@@ -28,38 +48,28 @@ def move_file_in_bucket(bucket_name, source_path, destination_path):
     source_blob.delete()
     return new_blob.name
 
-@app.post("/webhook/limpiezas/")
+@app.post("/webhook/soporte-operativo/")
 async def webhook_handler(request: Request):
     data = await request.json()
+    if "challenge" in data:
+        return JSONResponse(content={"challenge": data["challenge"]})
+    event = data.get("event")
 
-    if 'challenge' in data:
-        return JSONResponse(content={"challenge": data['challenge']})
-
-    print("Datos recibidos en el webhook:", data)
-
+    board_id = event.get("boardId")
+    if board_id is None:
+        raise HTTPException(status_code=400, detail="boardId no proporcionado en el payload.")
+    bucket_name = get_bucket_for_board(board_id)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
-    filename = f"webhook_limpieza_{timestamp}.json"
-
-    # Ruta final dentro de la carpeta 'por_procesar'
+    filename = f"webhook_{timestamp}.json"
     destination_path = f"por_procesar/{filename}"
-    upload_to_bucket(BUCKET_NAME, destination_path, data)
-
+    upload_to_bucket(bucket_name, destination_path, data)
     return {"status": "success", "filename": filename, "location": "por_procesar"}
 
-@app.post("/move-file/")
-async def move_file(file_name: str, origen: str, destino: str):
-    """
-    file_name: Nombre del archivo JSON (ejemplo: webhook_limpieza_20230101_123456_789012.json)
-    origen: Puede ser 'por_procesar' o 'procesando'
-    destino: Puede ser 'procesando' o 'procesados'
-    """
-    source_path = f"{origen}/{file_name}"
-    destination_path = f"{destino}/{file_name}"
-    new_location = move_file_in_bucket(BUCKET_NAME, source_path, destination_path)
-
-    return {"status": "success", "new_location": new_location}
-
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))
+    port = int(os.environ.get("PORT", 8080))
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=port)
+
+
+#gcloud builds submit --tag gcr.io/hostair-test-data/monday_webhook6 .
+#gcloud run deploy monday-webhook --image=gcr.io/hostair-test-data/monday_webhook6 --platform=managed --allow-unauthenticated

@@ -30,7 +30,7 @@ Estructura de Carpetas
 1. webhook/
 
 Contiene el código de un servicio Cloud Run (llamado limpiezas-webhook) que recibe las llamadas (webhooks) provenientes de Monday.
-Este servicio guarda los archivos .json en el bucket limpieza-test, dentro de la carpeta por_procesar/, con un formato de nombre como webhook_limpieza_YYYYMMDD_HHMMSS_XXXXXX.json.
+Este servicio guarda los archivos .json en el bucket test_monday_soporte_operativo, dentro de la carpeta por_procesar/, con un formato de nombre como webhook_limpieza_YYYYMMDD_HHMMSS_XXXXXX.json.
 
 2. limpiezas_processor/
 
@@ -43,7 +43,7 @@ Mueve el .json original a la carpeta procesando/.
 
 Contiene otro Cloud Run Job que:
 Toma los archivos .sql de la carpeta sql_por_procesar/.
-Ejecuta esos scripts en BigQuery (tabla housekeeping.test_limpieza).
+Ejecuta esos scripts en BigQuery (tabla housekeeping.test_monday_soporte_operativo).
 Si la ejecución es exitosa, mueve el .sql a sql_ejecutados/ y el correspondiente .json de procesando/ a procesados/.
 
 4. Llenado/
@@ -60,7 +60,7 @@ Flujo General
 1. Monday → Webhook
 
 Monday dispara un webhook cuando se crea/actualiza un ítem.
-El servicio en webhook/ (Cloud Run limpiezas-webhook) recibe la notificación y crea un archivo JSON en gs://limpieza-test/por_procesar/.
+El servicio en webhook/ (Cloud Run limpiezas-webhook) recibe la notificación y crea un archivo JSON en gs://test_monday_soporte_operativo/por_procesar/.
 
 2. Procesar JSON a SQL
 
@@ -68,7 +68,7 @@ El Cloud Run Job en limpiezas_processor/ lee los JSON de por_procesar/, genera u
 
 3. Ejecutar SQL en BigQuery
 
-El Cloud Run Job en sql_processor/ toma el .sql de sql_por_procesar/, ejecuta la sentencia INSERT (o la que corresponda) en BigQuery (housekeeping.test_limpieza).
+El Cloud Run Job en sql_processor/ toma el .sql de sql_por_procesar/, ejecuta la sentencia INSERT (o la que corresponda) en BigQuery (housekeeping.test_monday_soporte_operativo).
 Luego mueve el .sql a sql_ejecutados/ y el .json de procesando/ a procesados/.
 
 4. Scripts Manuales de “Llenado”

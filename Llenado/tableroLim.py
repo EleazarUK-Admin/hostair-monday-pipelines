@@ -5,8 +5,8 @@ from google.cloud import storage
 
 API_URL = "https://api.monday.com/v2"
 API_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjE5Njk2MzQyMCwiYWFpIjoxMSwidWlkIjozMzY5MTA2MywiaWFkIjoiMjAyMi0xMS0xOVQwOToxMjoyMS4wMDBaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MTIxMzE3ODcsInJnbiI6InVzZTEifQ.ZdHFWNMZULEp188h9gSnPT8oLSmu3vHE3RMzXru4UwA"
-BOARD_ID = "8230364285"
-BUCKET_NAME = "limpieza-test"
+BOARD_ID = "4460406422"
+BUCKET_NAME = "test_monday_soporte_operativo"
 GCS_PREFIX = "llenado/"
 
 def obtener_items_board(board_id, api_token):

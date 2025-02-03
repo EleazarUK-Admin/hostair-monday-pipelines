@@ -2,10 +2,10 @@ import os
 import json
 from google.cloud import storage
 
-BUCKET_NAME = "limpieza-test"
+BUCKET_NAME = "test_monday_soporte_operativo"
 GCS_PREFIX_JSON = "llenado/"
 GCS_PREFIX_SQL = "sql_por_procesar/"
-TABLE_FQN = "housekeeping.test_limpieza"
+TABLE_FQN = "housekeeping.test_monday_soporte_operativo"
 
 COLUMN_TYPES = {
     "id":"NUMERIC",
