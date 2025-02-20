@@ -1,0 +1,151 @@
+{
+  "id": "6908297780",
+  "name": "🧾 Resoluciones",
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name"
+    },
+    {
+      "id": "subelementos__1",
+      "title": "Subelementos",
+      "type": "subtasks"
+    },
+    {
+      "id": "conectar_tableros__1",
+      "title": "Reservaciones",
+      "type": "board_relation"
+    },
+    {
+      "id": "reflejo_1__1",
+      "title": "Link",
+      "type": "mirror"
+    },
+    {
+      "id": "date",
+      "title": "Check-out",
+      "type": "date"
+    },
+    {
+      "id": "cobrar___1",
+      "title": "Cobrar?",
+      "type": "numbers"
+    },
+    {
+      "id": "texto_largo__1",
+      "title": "Descripción",
+      "type": "long_text"
+    },
+    {
+      "id": "reflejo0__1",
+      "title": "Evidencia",
+      "type": "mirror"
+    },
+    {
+      "id": "label__1",
+      "title": "Clasificación",
+      "type": "status"
+    },
+    {
+      "id": "fecha_1__1",
+      "title": "Programación del cobro",
+      "type": "date"
+    },
+    {
+      "id": "enlace__1",
+      "title": "Link resolución",
+      "type": "link"
+    },
+    {
+      "id": "status",
+      "title": "Estado",
+      "type": "status"
+    },
+    {
+      "id": "reflejo__1",
+      "title": "Código de Reserva",
+      "type": "mirror"
+    },
+    {
+      "id": "conectar_tableros2__1",
+      "title": "Ticket",
+      "type": "board_relation"
+    },
+    {
+      "id": "texto7__1",
+      "title": "Código de reserva",
+      "type": "text"
+    },
+    {
+      "id": "conectar_tableros9__1",
+      "title": "Propiedades",
+      "type": "board_relation"
+    },
+    {
+      "id": "reflejo7__1",
+      "title": "Reflejo",
+      "type": "mirror"
+    },
+    {
+      "id": "conectar_tableros25__1",
+      "title": "☆ Evaluaciones",
+      "type": "board_relation"
+    },
+    {
+      "id": "n_meros7__1",
+      "title": "Monto del cobro",
+      "type": "numbers"
+    },
+    {
+      "id": "f_rmula__1",
+      "title": "Fecha límite",
+      "type": "formula"
+    },
+    {
+      "id": "fecha2__1",
+      "title": "Fecha del cobro",
+      "type": "date"
+    },
+    {
+      "id": "dup__of_fecha_del_cobro__1",
+      "title": "Fecha del seguimiento",
+      "type": "date"
+    },
+    {
+      "id": "archivo3__1",
+      "title": "Evidencias adicionales",
+      "type": "file"
+    },
+    {
+      "id": "texto9__1",
+      "title": "Código de Resolución",
+      "type": "text"
+    },
+    {
+      "id": "n_meros5__1",
+      "title": "Monto pagado",
+      "type": "numbers"
+    },
+    {
+      "id": "reflejo_17__1",
+      "title": "Label",
+      "type": "mirror"
+    },
+    {
+      "id": "registro_de_creaci_n_mkkdqxf2",
+      "title": "Registro de creación",
+      "type": "creation_log"
+    },
+    {
+      "id": "_ltima_actualizaci_n_mkkvfxaz",
+      "title": "Última actualización",
+      "type": "last_updated"
+    },
+    {
+      "id": "archivo_mkm2973p",
+      "title": "Archivo",
+      "type": "file"
+    }
+  ]
+}

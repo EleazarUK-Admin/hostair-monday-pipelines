@@ -1,0 +1,146 @@
+{
+  "id": "3983935560",
+  "name": "📔 Expedientes RH",
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name"
+    },
+    {
+      "id": "nickname1",
+      "title": "Nickname",
+      "type": "text"
+    },
+    {
+      "id": "monday_user_id6",
+      "title": "🌐 Monday User ID",
+      "type": "text"
+    },
+    {
+      "id": "board_relation__1",
+      "title": "💼 Puesto",
+      "type": "board_relation"
+    },
+    {
+      "id": "status_1",
+      "title": "🗂️ Área",
+      "type": "status"
+    },
+    {
+      "id": "date_1",
+      "title": "🗓️ Fecha de ingreso",
+      "type": "date"
+    },
+    {
+      "id": "date_18",
+      "title": "🎂 Cumpleaños",
+      "type": "date"
+    },
+    {
+      "id": "personas__1",
+      "title": "🧑‍💼Reporta a",
+      "type": "people"
+    },
+    {
+      "id": "phone",
+      "title": "📱 Teléfono",
+      "type": "phone"
+    },
+    {
+      "id": "correo_electr_nico",
+      "title": "📧 Correo electrónico",
+      "type": "email"
+    },
+    {
+      "id": "texto9",
+      "title": "Contraseña",
+      "type": "text"
+    },
+    {
+      "id": "label__1",
+      "title": "↔️ Relación de pago",
+      "type": "status"
+    },
+    {
+      "id": "dup__of_modalidad__1",
+      "title": "💵 Modalidad Pago",
+      "type": "status"
+    },
+    {
+      "id": "archivo",
+      "title": "🪪 ID",
+      "type": "file"
+    },
+    {
+      "id": "archivo1",
+      "title": "🧾 CSF",
+      "type": "file"
+    },
+    {
+      "id": "dup__of_csf__1",
+      "title": "🧾 Alta IMSS",
+      "type": "file"
+    },
+    {
+      "id": "texto",
+      "title": "🔢 RFC",
+      "type": "text"
+    },
+    {
+      "id": "texto3",
+      "title": "🔢 CURP",
+      "type": "text"
+    },
+    {
+      "id": "files",
+      "title": "📃 Contrato",
+      "type": "file"
+    },
+    {
+      "id": "numbers",
+      "title": "💵 Salario mensual",
+      "type": "numbers"
+    },
+    {
+      "id": "numeric__1",
+      "title": "💵 Frecuencia de Pago",
+      "type": "numbers"
+    },
+    {
+      "id": "texto_corto__1",
+      "title": "💵 Banco",
+      "type": "text"
+    },
+    {
+      "id": "texto_corto1__1",
+      "title": "💵 CLABE o No. de Tarjeta",
+      "type": "text"
+    },
+    {
+      "id": "status",
+      "title": "🔄 Estado",
+      "type": "status"
+    },
+    {
+      "id": "date_13",
+      "title": "🗓️ Fecha de baja",
+      "type": "date"
+    },
+    {
+      "id": "dup__of_contrato__1",
+      "title": "📄 Carta finiquito",
+      "type": "file"
+    },
+    {
+      "id": "fecha2__1",
+      "title": "Inicio año",
+      "type": "date"
+    },
+    {
+      "id": "___puesto__1",
+      "title": "⚙️ Puesto",
+      "type": "status"
+    }
+  ]
+}

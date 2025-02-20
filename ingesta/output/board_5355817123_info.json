@@ -1,0 +1,101 @@
+{
+  "id": "5355817123",
+  "name": "⚡️ Acciones",
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name"
+    },
+    {
+      "id": "subelementos",
+      "title": "Subelementos",
+      "type": "subtasks"
+    },
+    {
+      "id": "status",
+      "title": "Estado",
+      "type": "status"
+    },
+    {
+      "id": "fecha__1",
+      "title": "Fecha límite",
+      "type": "date"
+    },
+    {
+      "id": "personas__1",
+      "title": "Responsable",
+      "type": "people"
+    },
+    {
+      "id": "texto_largo3__1",
+      "title": "Comentarios de Cierre",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo",
+      "title": "Evidencia de cierre",
+      "type": "file"
+    },
+    {
+      "id": "date",
+      "title": "Fecha de cierre",
+      "type": "date"
+    },
+    {
+      "id": "personas1__1",
+      "title": "Supervisa",
+      "type": "people"
+    },
+    {
+      "id": "conectar_tableros5",
+      "title": "Origen",
+      "type": "board_relation"
+    },
+    {
+      "id": "texto_largo__1",
+      "title": "🔎 Análisis de Causa Raíz",
+      "type": "long_text"
+    },
+    {
+      "id": "long_text__1",
+      "title": "⚡️Acción correctiva",
+      "type": "long_text"
+    },
+    {
+      "id": "estado_1__1",
+      "title": "Equipo",
+      "type": "status"
+    },
+    {
+      "id": "estado_17__1",
+      "title": "🚦Prioridad",
+      "type": "status"
+    },
+    {
+      "id": "fecha1__1",
+      "title": "Enviado a Revisión",
+      "type": "date"
+    },
+    {
+      "id": "workdoc_de_monday__1",
+      "title": "Acta AAH",
+      "type": "doc"
+    },
+    {
+      "id": "estado_178__1",
+      "title": "Fuente",
+      "type": "status"
+    },
+    {
+      "id": "registro_de_creaci_n__1",
+      "title": "⚙️️ Creación",
+      "type": "creation_log"
+    },
+    {
+      "id": "f_rmula__1",
+      "title": "⚙️ Prioridad",
+      "type": "formula"
+    }
+  ]
+}

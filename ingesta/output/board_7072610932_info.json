@@ -1,0 +1,76 @@
+{
+  "id": "7072610932",
+  "name": "🏍️ Agente de soporte en campo",
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name"
+    },
+    {
+      "id": "subelementos__1",
+      "title": "Subelementos",
+      "type": "subtasks"
+    },
+    {
+      "id": "date",
+      "title": "Fecha",
+      "type": "date"
+    },
+    {
+      "id": "n_meros9__1",
+      "title": "Horas",
+      "type": "numbers"
+    },
+    {
+      "id": "horas_extras5__1",
+      "title": "$ Movimiento",
+      "type": "numbers"
+    },
+    {
+      "id": "label__1",
+      "title": "Tipo",
+      "type": "status"
+    },
+    {
+      "id": "horas_extras__1",
+      "title": "Detalle",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo__1",
+      "title": "Documento",
+      "type": "file"
+    },
+    {
+      "id": "personas__1",
+      "title": "Personas",
+      "type": "people"
+    },
+    {
+      "id": "f_rmula__1",
+      "title": "Saldo",
+      "type": "formula"
+    },
+    {
+      "id": "estado__1",
+      "title": "Estado",
+      "type": "status"
+    },
+    {
+      "id": "texto1__1",
+      "title": "Observaciones",
+      "type": "text"
+    },
+    {
+      "id": "f_rmula0__1",
+      "title": "Pago horas extra",
+      "type": "formula"
+    },
+    {
+      "id": "conectar_tableros__1",
+      "title": "Propiedades",
+      "type": "board_relation"
+    }
+  ]
+}
