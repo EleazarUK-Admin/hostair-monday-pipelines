@@ -12,90 +12,62 @@ from google.api_core.exceptions import NotFound, BadRequest
 API_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjE5Njk2MzQyMCwiYWFpIjoxMSwidWlkIjozMzY5MTA2MywiaWFkIjoiMjAyMi0xMS0xOVQwOToxMjoyMS4wMDBaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MTIxMzE3ODcsInJnbiI6InVzZTEifQ.ZdHFWNMZULEp188h9gSnPT8oLSmu3vHE3RMzXru4UwA"
 API_URL = "https://api.monday.com/v2"
 
-# Nuevo board y columna fecha
-BOARD_ID = 5914627798
-COLUMN_ID_FECHA = "creaci_n_de_registro"
+# NUEVO: ID del tablero "Resoluciones"
+BOARD_ID = 6908297780
 
-# Tabla final de destino para MERGE (upsert)
-BIGQUERY_TABLE_ID = "support.soporte_operativo"
+# NUEVO: Columna de fecha
+COLUMN_ID_FECHA = "registro_de_creaci_n_mkkdqxf2"
 
-# Tabla de logs
+# NUEVO: Tabla final de destino para MERGE (upsert)
+BIGQUERY_TABLE_ID = "operations.resoluciones"
+
+# Tabla de logs (puedes cambiarla si lo deseas)
 LOGS_TABLE_ID = "project_settings.logs"
 
-# Fechas y ventana de consulta (cada 2 días)
-START_DATE = datetime.date(2024, 6, 15)
-END_DATE = datetime.date(2027, 1, 1)
-DELTA = datetime.timedelta(days=1)
+hoy = datetime.date.today()
+ayer = hoy - datetime.timedelta(days=2)
 
-# Mapeo de columnas Monday -> Tipos de BigQuesry
-# (ajustado a lo que definiste en tu CREATE TABLE)
+# Fechas y ventana de consulta
+START_DATE = datetime.date(2019, 1, 1)
+END_DATE = datetime.date(2027, 1, 1)
+# Fechas y ventana de consulta
+START_DATE = datetime.date(2019, 1, 1)
+END_DATE = datetime.date(2027, 1, 1)
+DELTA = datetime.timedelta(days=3)  # Procesar de día en día
+
+
+# NUEVO: Mapeo de columnas Monday -> Tipos de BigQuery (según el segundo snippet)
 COLUMN_TYPE_MAP = {
-    "id": "INT 64",
+    "id": "NUMERIC",
     "name": "STRING",
-    "conectar_tableros1__1": "STRING",
-    "personas__1": "STRING",
-    "texto3": "STRING",
-    "archivo": "STRING",
-    "dup__of_estado": "STRING",
-    "status": "STRING",
-    "estado6__1": "STRING",
-    "personas": "STRING",
-    "dup__of___asignado__1": "STRING",
-    "dup__of___link__1": "STRING",
-    "conectar_tableros4": "STRING",
-    "personas_16": "STRING",
-    "creaci_n_de_registro": "TIMESTAMP",
-    "bot_n8__1": "STRING",
-    "fecha1__1": "DATE",
-    "dup__of_prioridad__1": "STRING",
-    "dup__of___clasificaci_n__1": "STRING",
-    "reflejo4__1": "STRING",
-    "dup__of_payout8__1": "STRING",
-    "dup__of_payout__1": "STRING",
-    "reflejo_1": "STRING",
-    "subelementos": "STRING",
-    "texto62": "STRING",
-    "archivo4": "STRING",
-    "clasificaci_n_1": "NUMERIC",
-    "duration": "STRING",
-    "dup__of____total__1": "STRING",
-    "dup__of____soluci_n__1": "STRING",
-    "duration__1": "STRING",
-    "dup__of____en_espera__1": "STRING",
-    "_ltima_actualizaci_n": "TIMESTAMP",
-    "date": "DATE",
-    "texto__1": "STRING",
-    "f_rmula__1": "STRING",
+    "subelementos__1": "STRING",
     "conectar_tableros__1": "STRING",
+    "reflejo_1__1": "STRING",
+    "date": "DATE",
+    "cobrar___1": "NUMERIC",
+    "texto_largo__1": "STRING",
+    "reflejo0__1": "STRING",
+    "label__1": "STRING",
+    "fecha_1__1": "DATE",
+    "enlace__1": "STRING",
+    "status": "STRING",
     "reflejo__1": "STRING",
-    "dup__of_aah_en_turno__1": "STRING",
-    "estado__1": "STRING",
-    "fecha__1": "DATE",
-    "f_rmula1__1": "STRING",
-    "formula__1": "STRING",
-    "formula7__1": "STRING",
-    "formula6__1": "STRING",
-    "formula2__1": "STRING",
-    "f_rmula4__1": "STRING",
-    "texto1__1": "STRING",
-    "n_meros__1": "NUMERIC",
-    "dup__of____tool_connect8__1": "NUMERIC",
-    "dup__of____tool_connect6__1": "STRING",
-    "link_to_resoluciones__1": "STRING",
-    "personas2__1": "STRING",
-    "reflejo6__1": "STRING",
-    "fecha12__1": "DATE",
-    "hora__1": "TIME",
-    "hour__1": "TIME",
-    "hour2__1": "TIME",
-    "date__1": "DATE",
-    "date1__1": "DATE",
-    "date3__1": "DATE",
-    "id__de_elemento__1": "INT64",
-    "conectar_tableros3__1": "STRING",
-    "board_relation__1": "STRING",
-    "board_relation9__1": "STRING",
-    "board_relation_mkmty0nb": "STRING"
+    "conectar_tableros2__1": "STRING",
+    "texto7__1": "STRING",
+    "conectar_tableros9__1": "STRING",
+    "reflejo7__1": "STRING",
+    "conectar_tableros25__1": "STRING",
+    "n_meros7__1": "NUMERIC",
+    "f_rmula__1": "STRING",
+    "fecha2__1": "DATE",
+    "dup__of_fecha_del_cobro__1": "DATE",
+    "archivo3__1": "STRING",
+    "texto9__1": "STRING",
+    "n_meros5__1": "NUMERIC",
+    "reflejo_17__1": "STRING",
+    "registro_de_creaci_n_mkkdqxf2": "TIMESTAMP",
+    "_ltima_actualizaci_n_mkkvfxaz": "TIMESTAMP",
+    "archivo_mkm2973p": "STRING"
 }
 
 
@@ -113,7 +85,8 @@ def try_parse_json_string(s):
         return None
     except (ValueError, TypeError):
         pass
-    # Reemplazar comillas simples
+
+    # Segundo intento, reemplazando comillas
     s_fixed = s.replace("''", '"').replace("'", '"')
     try:
         parsed = json.loads(s_fixed)
@@ -125,12 +98,15 @@ def try_parse_json_string(s):
 
 
 def parse_value_for_bq(value):
-    """Recorre la estructura JSON devuelta por Monday y extrae un valor primitivo (str, num, bool, etc.)."""
+    """
+    Recorre la estructura JSON devuelta por Monday y extrae un valor 
+    primitivo (str, num, bool, etc.).
+    """
     if value is None:
         return None
 
     if isinstance(value, dict):
-        # Manejos especiales (archivos, labels, times, etc.)
+        # Manejo de archivos
         if "files" in value and isinstance(value["files"], list):
             file_info_list = []
             for f in value["files"]:
@@ -149,79 +125,96 @@ def parse_value_for_bq(value):
                     file_info_list.append(str(f))
             return ", ".join(file_info_list)
 
+        # Manejo de status con "label"
         if "label" in value and isinstance(value["label"], dict):
             status_label_text = value["label"].get("text")
             if status_label_text:
                 return status_label_text
             return json.dumps(value["label"], ensure_ascii=False)
 
+        # Texto simple
         if "text" in value:
             return value["text"]
 
+        # Checkbox
         if "checked" in value:
             return value["checked"]
 
+        # Rating
         if "rating" in value and isinstance(value["rating"], (int, float)):
             return value["rating"]
 
+        # Hora
         if "hour" in value and "minute" in value:
             h = value["hour"]
             m = value["minute"]
             return f"{h:02d}:{m:02d}:00"
 
+        # Fecha
         if "date" in value and value["date"]:
             return value["date"]
-
         if "dateTime" in value and value["dateTime"]:
             return value["dateTime"]
 
+        # Rango de fechas
         if "from" in value and "to" in value:
             return f"{value['from']} - {value['to']}"
 
+        # Personas
         if "personsAndTeams" in value and isinstance(value["personsAndTeams"], list):
             ids = [str(p.get("id", "")) for p in value["personsAndTeams"]]
             return ", ".join(ids)
 
+        # Conexión a otros Pulses
         if "linkedPulseIds" in value and isinstance(value["linkedPulseIds"], list):
             linked_ids = [str(x.get("linkedPulseId", "")) for x in value["linkedPulseIds"]]
             return ", ".join(linked_ids)
 
+        # Labels
         if "labels" in value and isinstance(value["labels"], list):
             label_names = [l.get("name", "") for l in value["labels"]]
             return ", ".join(label_names)
 
+        # created_at / updated_at
         if "created_at" in value:
             return value["created_at"]
-
         if "updated_at" in value:
             return value["updated_at"]
 
+        # Botón
         if "button" in value:
             return str(value["button"])
 
+        # URL
         if "url" in value:
             return value["url"]
 
+        # Teléfono
         if "phone" in value:
             return value["phone"]
 
+        # País
         if "countryName" in value:
             return value["countryName"]
 
+        # Color
         if "color" in value and len(value) == 1:
             return value["color"]
 
+        # item_id
         if "item_id" in value:
             return str(value["item_id"])
 
+        # Tiempo transcurrido
         if "running" in value and "duration" in value:
             return str(value["duration"])
 
+        # Múltiples IDs
         if "ids" in value and isinstance(value["ids"], list):
             ids_str = [str(x) for x in value["ids"]]
             return ", ".join(ids_str)
 
-        # A veces "value" es un JSON incrustado
+        # "value" incrustado
         if "value" in value:
             inner_val = value["value"]
             if isinstance(inner_val, (int, float, bool)):
@@ -264,7 +257,7 @@ def parse_value_for_bq(value):
             if "checked" in parsed:
                 return parsed["checked"]
             return json.dumps(parsed, ensure_ascii=False)
-        # Si no es JSON, intentar convertir a número
+        # Si no es JSON, intentar convertir a num
         try:
             if "." in value:
                 return float(value)
@@ -278,7 +271,10 @@ def parse_value_for_bq(value):
 
 
 def parse_monday_column_value(text_val, json_val, bq_type):
-    """Convierte (text, value) de Monday a un tipo BigQuery (STRING, DATE, TIMESTAMP, etc.)."""
+    """
+    Convierte (text, value) de Monday a un tipo BigQuery (STRING, DATE, 
+    TIMESTAMP, etc.) según el mapeo que definimos.
+    """
     parsed_from_json_val = None
     if json_val:
         try:
@@ -293,6 +289,7 @@ def parse_monday_column_value(text_val, json_val, bq_type):
     else:
         raw_val = parse_value_for_bq(text_val)
 
+    # Convertir el valor a su tipo final
     if bq_type == "STRING":
         return "" if raw_val is None else str(raw_val)
 
@@ -300,15 +297,21 @@ def parse_monday_column_value(text_val, json_val, bq_type):
         return None
 
     if bq_type == "BOOL":
-        # Ejemplo (no tienes bool en tu esquema)
+        # Ejemplo de conversión a boolean
         if isinstance(raw_val, bool):
             return raw_val
         val_str = str(raw_val).lower().strip()
         return val_str in ("true", "checked", "1", "sí", "yes", "verdadero")
 
-    if bq_type == "NUMERIC":
+    if bq_type in ("NUMERIC", "FLOAT64"):
         try:
             return float(raw_val)
+        except:
+            return None
+
+    if bq_type in ("INTEGER", "INT64", "NUMERIC"):
+        try:
+            return int(float(raw_val))
         except:
             return None
 
@@ -335,7 +338,7 @@ def parse_monday_column_value(text_val, json_val, bq_type):
         except:
             return None
 
-    # Por defecto, lo convertimos a string
+    # Por defecto, retornar string
     return str(raw_val)
 
 
@@ -380,8 +383,8 @@ def build_monday_query(start_str, end_str):
 
 def fetch_items_from_monday(start_date, end_date):
     """
-    Llama a la API de Monday para traer items creados entre start_date y end_date
-    (CREATED_AT), usando la columna COLUMN_ID_FECHA con 'between'.
+    Llama a la API de Monday con el query GraphQL para traer items
+    creados entre `start_date` y `end_date` (inclusive).
     """
     start_str = start_date.strftime("%Y-%m-%d")
     end_str = end_date.strftime("%Y-%m-%d")
@@ -390,7 +393,6 @@ def fetch_items_from_monday(start_date, end_date):
     headers = {"Authorization": API_TOKEN, "Content-Type": "application/json"}
     response = requests.post(API_URL, json={"query": query}, headers=headers)
     data = response.json()
-
     if "errors" in data:
         raise Exception(f"Error al consultar items: {data['errors']}")
 
@@ -403,23 +405,27 @@ def fetch_items_from_monday(start_date, end_date):
 
 
 def transform_items_to_rows(items):
-    """Convierte la lista de items de Monday a filas aptas para BigQuery, según COLUMN_TYPE_MAP."""
+    """
+    Convierte la lista de items de Monday (dicts con id, name, column_values)
+    a filas aptas para BigQuery según COLUMN_TYPE_MAP.
+    """
     rows = []
     for item in items:
         row = {}
-        # Convertir ID a float/num si la tenemos
+        # id
         if item["id"]:
+            # Convertimos a float (o int) si la columna es NUMERIC
             try:
-                row["id"] = int(item["id"])
+                row["id"] = float(item["id"])
             except:
                 row["id"] = None
         else:
             row["id"] = None
 
-        # Nombre
+        # name
         row["name"] = item.get("name", "") or ""
 
-        # Columnas personalizadas
+        # columns
         for col_val in item.get("column_values", []):
             col_id = col_val["id"]
             text_val = col_val["text"]
@@ -433,7 +439,7 @@ def transform_items_to_rows(items):
 
 
 def to_json_serializable(row):
-    """Convierte date/datetime/time a string ISO antes de insert_rows_json."""
+    """Convierte date/datetime/time a strings ISO para insert_rows_json (staging)."""
     new_row = {}
     for k, v in row.items():
         if isinstance(v, datetime.datetime):
@@ -466,33 +472,47 @@ def upsert_rows_into_bq(rows):
     """
     Realiza un MERGE (upsert) en la tabla final usando una tabla
     temporal en dataset "temp_dataset". Retorna (num_inserted, num_updated).
+    Incluye reintentos ante error de concurrencia.
     """
     if not rows:
         print("No hay filas que upsertar en este lote.")
         return (0, 0)
 
     client = bigquery.Client()
+
+    # Asegurarse de que exista un dataset temporal para staging
     dataset_id = f"{client.project}.temp_dataset"
     ensure_dataset_exists(dataset_id)
 
+    # Crear la tabla temporal con un nombre único
     temp_table_id = f"{dataset_id}.tmp_{uuid.uuid4().hex}"
 
-    # Construir el esquema según COLUMN_TYPE_MAP + id y name
+    # Generar el esquema en base a COLUMN_TYPE_MAP + (id, name)
     schema = []
     # id
     schema.append(bigquery.SchemaField("id", "INT64"))
     # name
     schema.append(bigquery.SchemaField("name", "STRING"))
 
+    # Para el resto de columnas definidas en el mapa
     for col_id, bq_type in COLUMN_TYPE_MAP.items():
+        # Evitar duplicar "id" y "name" que ya pusimos manualmente
         if col_id not in ("id", "name"):
-            schema.append(bigquery.SchemaField(col_id, bq_type))
+            # Convertimos la notación "NUMERIC"/"FLOAT64" a la nomenclatura BQ
+            # (NUMERIC es un tipo BQ, si necesitas escala/precisión podrías personalizar).
+            if bq_type == "NUMERIC":
+                bq_type_final = "NUMERIC"
+            elif bq_type == "FLOAT64":
+                bq_type_final = "FLOAT"
+            else:
+                bq_type_final = bq_type
+            schema.append(bigquery.SchemaField(col_id, bq_type_final))
 
     table = bigquery.Table(temp_table_id, schema=schema)
     table = client.create_table(table)
     print(f"Tabla temporal creada: {temp_table_id}")
 
-    # Insertar filas en la tabla temporal
+    # Insertar las filas en la tabla temporal
     rows_serializable = [to_json_serializable(r) for r in rows]
     errors = client.insert_rows_json(temp_table_id, rows_serializable)
     if errors:
@@ -500,7 +520,7 @@ def upsert_rows_into_bq(rows):
         return (0, 0)
     print(f"Se insertaron {len(rows_serializable)} filas en la tabla temporal.")
 
-    # Construir SQL MERGE
+    # Construir SQL para MERGE
     all_columns = [f"`{field.name}`" for field in schema]
     update_assignments = []
     for field in schema:
@@ -528,7 +548,7 @@ def upsert_rows_into_bq(rows):
     for attempt in range(max_retries):
         try:
             merge_job = client.query(merge_sql)
-            merge_job.result()  # Esperar a que termine
+            merge_job.result()  # Esperar a que termine el query
 
             dml_stats = merge_job.dml_stats
             if dml_stats:
@@ -538,6 +558,7 @@ def upsert_rows_into_bq(rows):
             break
 
         except BadRequest as e:
+            # Manejo de reintento si hay conflictos de concurrencia
             if "Could not serialize access to table" in str(e):
                 if attempt < max_retries - 1:
                     wait_time = 2 ** attempt + random.random()
@@ -549,7 +570,7 @@ def upsert_rows_into_bq(rows):
             else:
                 raise
 
-    # Eliminar la tabla temporal
+    # Borrar tabla temporal
     client.delete_table(temp_table_id, not_found_ok=True)
     print(f"Tabla temporal eliminada: {temp_table_id}")
 
@@ -562,7 +583,7 @@ def upsert_rows_into_bq(rows):
 def insert_log_record(database_name, process_name, records_created, records_updated,
                       execution_time, status, primero, ultimo):
     """
-    Inserta un registro en la tabla project_settings.logs con la información de ejecución.
+    Inserta un registro en la tabla project_settings.logs, con la info de ejecución.
     """
     client = bigquery.Client()
     query = f"""
@@ -605,13 +626,13 @@ def main():
     start_time_global = time.time()
     current_date = START_DATE
 
-    # Recorrer en intervalos de 2 días
+    # Procesar en intervalos de 1 día => fetch day by day
     while current_date <= END_DATE:
         end_chunk = current_date
         if end_chunk > END_DATE:
             end_chunk = END_DATE
 
-        print(f"Consultando items creados entre {current_date} y {end_chunk} (CREATED_AT)...")
+        print(f"Consultando items creados entre {current_date} y {end_chunk} ...")
         items = fetch_items_from_monday(current_date, end_chunk)
         print(f"   Se encontraron {len(items)} items.")
 
@@ -624,10 +645,10 @@ def main():
 
     total_time = time.time() - start_time_global
 
-    # Insertar log en la tabla de logs
+    # Insertar log en project_settings.logs
     insert_log_record(
-        database_name="support",
-        process_name="soporte_operativo_ingesta",
+        database_name="resoluciones",
+        process_name="ingesta_historica_resoluciones",      # Ajusta si quieres otro nombre
         records_created=overall_inserted + overall_updated,
         records_updated=overall_updated,
         execution_time=total_time,
@@ -637,7 +658,7 @@ def main():
     )
 
     print("\nProceso completado con éxito.")
-    print(f"Filas totales insertadas: {overall_inserted}, actualizadas: {overall_updated}.\n")
+    print(f"Filas totales insertadas (nuevas): {overall_inserted}, actualizadas: {overall_updated}.\n")
 
 
 if __name__ == "__main__":

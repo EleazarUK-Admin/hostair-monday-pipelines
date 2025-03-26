@@ -3,7 +3,7 @@ import json
 import os
 
 API_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjE5Njk2MzQyMCwiYWFpIjoxMSwidWlkIjozMzY5MTA2MywiaWFkIjoiMjAyMi0xMS0xOVQwOToxMjoyMS4wMDBaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MTIxMzE3ODcsInJnbiI6InVzZTEifQ.ZdHFWNMZULEp188h9gSnPT8oLSmu3vHE3RMzXru4UwA"
-BOARD_ID = 6908297780
+BOARD_ID = 4460406422
 API_URL = "https://api.monday.com/v2"
 
 query = """
@@ -79,7 +79,7 @@ type_map = {
     "location": "STRING"
 }
 
-table_name = "operations.resoluciones"
+table_name = "operations.expedientes_rh"
 create_stmt = f"CREATE TABLE `{table_name}` (\n"
 for col in columns:
     col_id = col["id"]

@@ -21,11 +21,17 @@ BIGQUERY_TABLE_ID = "support.soporte_operativo"
 
 # Tabla de logs
 LOGS_TABLE_ID = "project_settings.logs"
+hoy = datetime.date.today()
+ayer = hoy - datetime.timedelta(days=2)
 
-# Fechas y ventana de consulta (cada 2 días)
-START_DATE = datetime.date(2024, 6, 15)
+# Fechas y ventana de consulta
+START_DATE = datetime.date(2019, 1, 1)
 END_DATE = datetime.date(2027, 1, 1)
-DELTA = datetime.timedelta(days=1)
+# Fechas y ventana de consulta
+START_DATE = datetime.date(2019, 1, 1)
+END_DATE = datetime.date(2027, 1, 1)
+DELTA = datetime.timedelta(days=3)  # Procesar de día en día
+
 
 # Mapeo de columnas Monday -> Tipos de BigQuesry
 # (ajustado a lo que definiste en tu CREATE TABLE)
@@ -627,7 +633,7 @@ def main():
     # Insertar log en la tabla de logs
     insert_log_record(
         database_name="support",
-        process_name="soporte_operativo_ingesta",
+        process_name="ingesta_historica_soporte_operativo",      # Ajusta si quieres otro nombre
         records_created=overall_inserted + overall_updated,
         records_updated=overall_updated,
         execution_time=total_time,

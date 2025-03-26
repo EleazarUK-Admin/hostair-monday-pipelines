@@ -1,0 +1,331 @@
+{
+  "id": "5914627798",
+  "name": "🗳️ Soporte Operativo",
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name"
+    },
+    {
+      "id": "conectar_tableros1__1",
+      "title": "🌐 Propiedades",
+      "type": "board_relation"
+    },
+    {
+      "id": "personas__1",
+      "title": "🌐 Solicitante",
+      "type": "people"
+    },
+    {
+      "id": "texto3",
+      "title": "📋 Descripción",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo",
+      "title": "📋 Archivos",
+      "type": "file"
+    },
+    {
+      "id": "dup__of_estado",
+      "title": "🌐 Prioridad",
+      "type": "status"
+    },
+    {
+      "id": "status",
+      "title": "🌐 Estado",
+      "type": "status"
+    },
+    {
+      "id": "estado6__1",
+      "title": "🌐 Equipo asignado",
+      "type": "status"
+    },
+    {
+      "id": "personas",
+      "title": "🌐 Asignado",
+      "type": "people"
+    },
+    {
+      "id": "dup__of___asignado__1",
+      "title": "🗳️ Co- Asignado",
+      "type": "people"
+    },
+    {
+      "id": "dup__of___link__1",
+      "title": "🌐 PL",
+      "type": "mirror"
+    },
+    {
+      "id": "conectar_tableros4",
+      "title": "🌐 Reservaciones",
+      "type": "board_relation"
+    },
+    {
+      "id": "personas_16",
+      "title": "📋 Notificar",
+      "type": "people"
+    },
+    {
+      "id": "creaci_n_de_registro",
+      "title": "🌐 Creación",
+      "type": "creation_log"
+    },
+    {
+      "id": "bot_n8__1",
+      "title": "🗳️ Enviar a Mantenimiento",
+      "type": "button"
+    },
+    {
+      "id": "fecha1__1",
+      "title": "🗳️ Fecha Programación",
+      "type": "date"
+    },
+    {
+      "id": "dup__of_prioridad__1",
+      "title": "🌐 Categoria",
+      "type": "status"
+    },
+    {
+      "id": "dup__of___clasificaci_n__1",
+      "title": "🌐 Fuente",
+      "type": "status"
+    },
+    {
+      "id": "reflejo4__1",
+      "title": "🌐 Payout",
+      "type": "mirror"
+    },
+    {
+      "id": "dup__of_payout8__1",
+      "title": "🌐 Precio por noche",
+      "type": "mirror"
+    },
+    {
+      "id": "dup__of_payout__1",
+      "title": "🌐 Noches",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo_1",
+      "title": "🌐 Link",
+      "type": "mirror"
+    },
+    {
+      "id": "subelementos",
+      "title": "Subelementos",
+      "type": "subtasks"
+    },
+    {
+      "id": "texto62",
+      "title": "🗳️ Descripción del trabajo realizado",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo4",
+      "title": "🗳️ Evidencia de cierre",
+      "type": "file"
+    },
+    {
+      "id": "clasificaci_n_1",
+      "title": "Evaluación",
+      "type": "rating"
+    },
+    {
+      "id": "duration",
+      "title": "⏱️ Respuesta",
+      "type": "time_tracking"
+    },
+    {
+      "id": "dup__of____total__1",
+      "title": "⏱️ Programación",
+      "type": "time_tracking"
+    },
+    {
+      "id": "dup__of____soluci_n__1",
+      "title": "⏱️ En espera",
+      "type": "time_tracking"
+    },
+    {
+      "id": "duration__1",
+      "title": "⏱️ Resolución",
+      "type": "time_tracking"
+    },
+    {
+      "id": "dup__of____en_espera__1",
+      "title": "⏱️ Total",
+      "type": "time_tracking"
+    },
+    {
+      "id": "_ltima_actualizaci_n",
+      "title": "⚙️ Última actualización",
+      "type": "last_updated"
+    },
+    {
+      "id": "date",
+      "title": "🌐 Fecha de cierre",
+      "type": "date"
+    },
+    {
+      "id": "texto__1",
+      "title": "⚙️ Nombre del solicitante",
+      "type": "text"
+    },
+    {
+      "id": "f_rmula__1",
+      "title": "🌐 Solicita",
+      "type": "formula"
+    },
+    {
+      "id": "conectar_tableros__1",
+      "title": "⚙️ Conexión para AAH en turno",
+      "type": "board_relation"
+    },
+    {
+      "id": "reflejo__1",
+      "title": "🌐 AAH en turno",
+      "type": "mirror"
+    },
+    {
+      "id": "dup__of_aah_en_turno__1",
+      "title": "⚙️ AAH en turno Estado",
+      "type": "mirror"
+    },
+    {
+      "id": "estado__1",
+      "title": "⚙️ AAH Reflex",
+      "type": "status"
+    },
+    {
+      "id": "fecha__1",
+      "title": "🌐 Fecha de realización",
+      "type": "date"
+    },
+    {
+      "id": "f_rmula1__1",
+      "title": "⚙️ Antigüedad en horas",
+      "type": "formula"
+    },
+    {
+      "id": "formula__1",
+      "title": "⚙️ Resolución en horas",
+      "type": "formula"
+    },
+    {
+      "id": "formula7__1",
+      "title": "⚙️ Programación en horas",
+      "type": "formula"
+    },
+    {
+      "id": "formula6__1",
+      "title": "⚙️ Total en horas",
+      "type": "formula"
+    },
+    {
+      "id": "formula2__1",
+      "title": "⚙️ Respuesta inicial en horas",
+      "type": "formula"
+    },
+    {
+      "id": "f_rmula4__1",
+      "title": "⚙️ Programado o Resuelto en Horas",
+      "type": "formula"
+    },
+    {
+      "id": "texto1__1",
+      "title": "🌐 Reservation Code",
+      "type": "text"
+    },
+    {
+      "id": "n_meros__1",
+      "title": "⚙️ Tool Connect",
+      "type": "numbers"
+    },
+    {
+      "id": "dup__of____tool_connect8__1",
+      "title": "⚙️ Tool Envia Manto.",
+      "type": "numbers"
+    },
+    {
+      "id": "dup__of____tool_connect6__1",
+      "title": "⚙️ En turno",
+      "type": "text"
+    },
+    {
+      "id": "link_to_resoluciones__1",
+      "title": "🌐 Resoluciones",
+      "type": "board_relation"
+    },
+    {
+      "id": "personas2__1",
+      "title": "🌐 Supervisión",
+      "type": "people"
+    },
+    {
+      "id": "reflejo6__1",
+      "title": "🌐 Label Con.",
+      "type": "mirror"
+    },
+    {
+      "id": "fecha12__1",
+      "title": "⚙️ Timestamp Recibidos",
+      "type": "date"
+    },
+    {
+      "id": "hora__1",
+      "title": "⚙️🕣 Timestamp Recibidos",
+      "type": "hour"
+    },
+    {
+      "id": "hour__1",
+      "title": "⚙️🕣 Timestamp Programado",
+      "type": "hour"
+    },
+    {
+      "id": "hour2__1",
+      "title": "⚙️🕣 Timestamp Realizado",
+      "type": "hour"
+    },
+    {
+      "id": "date__1",
+      "title": "⚙️ Timestamp Programado",
+      "type": "date"
+    },
+    {
+      "id": "date1__1",
+      "title": "⚙️ Timestamp Realizado",
+      "type": "date"
+    },
+    {
+      "id": "date3__1",
+      "title": "⚙️ Timestamp Cerrado",
+      "type": "date"
+    },
+    {
+      "id": "id__de_elemento__1",
+      "title": "⚙️ Id. de elemento",
+      "type": "item_id"
+    },
+    {
+      "id": "conectar_tableros3__1",
+      "title": "🔧 Mantenimiento",
+      "type": "board_relation"
+    },
+    {
+      "id": "board_relation__1",
+      "title": "Control de Artículos para Huéspedes",
+      "type": "board_relation"
+    },
+    {
+      "id": "board_relation9__1",
+      "title": "link to Compras de Blancos",
+      "type": "board_relation"
+    },
+    {
+      "id": "board_relation_mkmty0nb",
+      "title": "link to 🛏️ Reservaciones",
+      "type": "board_relation"
+    }
+  ]
+}

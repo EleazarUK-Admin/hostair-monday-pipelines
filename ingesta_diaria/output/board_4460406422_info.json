@@ -1,0 +1,481 @@
+{
+  "id": "4460406422",
+  "name": "🫧 Limpiezas",
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name"
+    },
+    {
+      "id": "subelementos",
+      "title": "Subelementos",
+      "type": "subtasks"
+    },
+    {
+      "id": "fecha_1",
+      "title": "🗓️ Fecha",
+      "type": "date"
+    },
+    {
+      "id": "person",
+      "title": "Persona",
+      "type": "people"
+    },
+    {
+      "id": "estado_14",
+      "title": "⏰ Programación",
+      "type": "status"
+    },
+    {
+      "id": "bot_n6",
+      "title": "Supervisión",
+      "type": "button"
+    },
+    {
+      "id": "reflejo197",
+      "title": "Supervisado",
+      "type": "mirror"
+    },
+    {
+      "id": "color60",
+      "title": "🚦Estado",
+      "type": "status"
+    },
+    {
+      "id": "estado5",
+      "title": "🧳Huésped ya salió",
+      "type": "status"
+    },
+    {
+      "id": "archivo61",
+      "title": "🧳 Foto de que no ha salido",
+      "type": "file"
+    },
+    {
+      "id": "texto03",
+      "title": "Código de Reserva",
+      "type": "text"
+    },
+    {
+      "id": "enlace_1__1",
+      "title": "📋 Reportes",
+      "type": "link"
+    },
+    {
+      "id": "file8",
+      "title": "🧳 Artículos olvidados",
+      "type": "file"
+    },
+    {
+      "id": "archivo6",
+      "title": "🧾 Recibos",
+      "type": "file"
+    },
+    {
+      "id": "verificar78",
+      "title": "✅ Revisión de artículos importantes",
+      "type": "checkbox"
+    },
+    {
+      "id": "verificar7",
+      "title": "✅ Pisos limpios y lavados",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean",
+      "title": "✅ Superficies limpias y lavadas",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean5",
+      "title": "✅ Botes de basura con bolsa y vacíos",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean0",
+      "title": "✅ Cortinas abiertas (si aplica)",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean3",
+      "title": "✅ Se regaron las plantas a las que les hace falta agua",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean33",
+      "title": "✅ La plancha, secadora de pelo, calentadores y ventiladores están en su lugar",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean2",
+      "title": "✅ Camas tendidas correctamente",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean1",
+      "title": "✅ No hay manchas ni pelos en sábanas, almohadas o fundas",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean4",
+      "title": "✅ Dos toallas por cama",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean9",
+      "title": "✅ Shampoo y jabón de cuerpo en la regadera",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean6",
+      "title": "✅ Jabón de manos en el tocador",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean8",
+      "title": "✅ Al menos 3 rollos de papel en el baño",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean59",
+      "title": "✅ Hay un tapete de baño",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean94",
+      "title": "✅ Hay toalla de manos en cada baño",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean7",
+      "title": "✅ Regadera limpia y no hay pelos en la coladera",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean34",
+      "title": "✅ Refrigerador y congelador vacíos y limpios",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean20",
+      "title": "✅ Platos y vasos limpios y guardados",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean30",
+      "title": "✅ Cafetera, microondas y licuadora limpios por dentro y por fuera",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean79",
+      "title": "✅ El filtro de agua está relleno (en caso de haber)",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean95",
+      "title": "✅ Hay café, azúcar, aceite, sal y pimienta.",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean85",
+      "title": "✅ Mesa del comedor recogida (solo con adornos)",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean65",
+      "title": "✅ Controles de la TV están en la mesa de centro de la sala.",
+      "type": "checkbox"
+    },
+    {
+      "id": "boolean29",
+      "title": "✅ En caso de haber: El balcón / terraza está barrido y limpio",
+      "type": "checkbox"
+    },
+    {
+      "id": "archivo__1",
+      "title": "🤳🏻 Fotos de la Limpieza",
+      "type": "file"
+    },
+    {
+      "id": "conectar_tableros1",
+      "title": "🖼️ Estándares de Presentación",
+      "type": "board_relation"
+    },
+    {
+      "id": "n_meros9",
+      "title": "🗓️ Noches",
+      "type": "numbers"
+    },
+    {
+      "id": "dup__of_noches",
+      "title": "👥 Huéspedes",
+      "type": "numbers"
+    },
+    {
+      "id": "board_relation",
+      "title": "Reservaciones",
+      "type": "board_relation"
+    },
+    {
+      "id": "reflejo1",
+      "title": "Entrada hoy",
+      "type": "mirror"
+    },
+    {
+      "id": "conectar_tableros7",
+      "title": "Reportes de mantenimiento por personal de limpieza",
+      "type": "board_relation"
+    },
+    {
+      "id": "f_rmula5",
+      "title": "🗓️ Día de la semana",
+      "type": "formula"
+    },
+    {
+      "id": "n_meros1",
+      "title": "🧺 $ Lavandería",
+      "type": "numbers"
+    },
+    {
+      "id": "dup__of_recibo2",
+      "title": "🧺 Recibo Lavandería",
+      "type": "file"
+    },
+    {
+      "id": "label",
+      "title": "🎫 Rembolsos",
+      "type": "status"
+    },
+    {
+      "id": "n_meros0",
+      "title": "🎫 $ Reembolso",
+      "type": "numbers"
+    },
+    {
+      "id": "texto_largo7",
+      "title": "🎫 Descripción reembolso",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo74",
+      "title": "🎫 Recibo Reembolso",
+      "type": "file"
+    },
+    {
+      "id": "dup__of___reembolso",
+      "title": "🛏️ Pago Limpieza",
+      "type": "numbers"
+    },
+    {
+      "id": "dup__of_extras9",
+      "title": "🛌 Pago Ajustado Domingos",
+      "type": "formula"
+    },
+    {
+      "id": "f_rmula0",
+      "title": "💰 Pago Total",
+      "type": "formula"
+    },
+    {
+      "id": "board_relation9",
+      "title": "Información general",
+      "type": "board_relation"
+    },
+    {
+      "id": "reflejo45",
+      "title": "Acceso al departamento",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo97",
+      "title": "Acceso edificio",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo839",
+      "title": "Basurero",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo26",
+      "title": "Ubicación Basurero",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo48",
+      "title": "Instrucciones Almacén Interno",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo855",
+      "title": "Almacén Interno",
+      "type": "mirror"
+    },
+    {
+      "id": "f_rmula1",
+      "title": "Extras",
+      "type": "formula"
+    },
+    {
+      "id": "n_meros4",
+      "title": "Checkout ID",
+      "type": "numbers"
+    },
+    {
+      "id": "dup__of_checkout_id9",
+      "title": "Checkout ID text",
+      "type": "text"
+    },
+    {
+      "id": "text__1",
+      "title": "Checkin ID text",
+      "type": "text"
+    },
+    {
+      "id": "texto02",
+      "title": "Código Reserva de reserva siguiente",
+      "type": "text"
+    },
+    {
+      "id": "estado_17",
+      "title": "Reserva siguiente encontrada",
+      "type": "status"
+    },
+    {
+      "id": "conectar_tableros__1",
+      "title": "☆ Evaluaciones",
+      "type": "board_relation"
+    },
+    {
+      "id": "reflejo_18__1",
+      "title": "Calificación Limpieza",
+      "type": "mirror"
+    },
+    {
+      "id": "lookup__1",
+      "title": "Evaluación del huépsed",
+      "type": "mirror"
+    },
+    {
+      "id": "lookup8__1",
+      "title": "Comentarios Privados",
+      "type": "mirror"
+    },
+    {
+      "id": "lookup6__1",
+      "title": "Comentarios Limpieza",
+      "type": "mirror"
+    },
+    {
+      "id": "estado_15",
+      "title": "Revisión por coordinador",
+      "type": "status"
+    },
+    {
+      "id": "estado_10",
+      "title": "Prioridad Mantenimiento",
+      "type": "status"
+    },
+    {
+      "id": "bot_n7",
+      "title": "Enviar a mantenimiento",
+      "type": "button"
+    },
+    {
+      "id": "estado_1993",
+      "title": "Enviado a manto.",
+      "type": "status"
+    },
+    {
+      "id": "fecha_12",
+      "title": "Fecha mantenimiento",
+      "type": "date"
+    },
+    {
+      "id": "pulse_log",
+      "title": "Creación de registro",
+      "type": "creation_log"
+    },
+    {
+      "id": "pulse_updated",
+      "title": "Última actualización",
+      "type": "last_updated"
+    },
+    {
+      "id": "texto6",
+      "title": "Motivo",
+      "type": "text"
+    },
+    {
+      "id": "bot_n2",
+      "title": "Clear propiedades",
+      "type": "button"
+    },
+    {
+      "id": "personas",
+      "title": "Proveedor",
+      "type": "people"
+    },
+    {
+      "id": "link_to_agenda_vero",
+      "title": "link to Agenda Vero",
+      "type": "board_relation"
+    },
+    {
+      "id": "board_relation26",
+      "title": "Link",
+      "type": "board_relation"
+    },
+    {
+      "id": "hora",
+      "title": "Hora de inicio",
+      "type": "hour"
+    },
+    {
+      "id": "hour",
+      "title": "Hora de finalización",
+      "type": "hour"
+    },
+    {
+      "id": "f_rmula9",
+      "title": "Duración",
+      "type": "formula"
+    },
+    {
+      "id": "men__desplegable5",
+      "title": "Zona",
+      "type": "dropdown"
+    },
+    {
+      "id": "enlace__1",
+      "title": "Enlace",
+      "type": "link"
+    },
+    {
+      "id": "board_relation__1",
+      "title": "link to Early check-in por asignar",
+      "type": "board_relation"
+    },
+    {
+      "id": "reflejo__1",
+      "title": "Reflejo",
+      "type": "mirror"
+    },
+    {
+      "id": "n_meros__1",
+      "title": "No. de Refresh",
+      "type": "numbers"
+    },
+    {
+      "id": "label_1__1",
+      "title": "🏷️ Label",
+      "type": "status"
+    },
+    {
+      "id": "id_de_elemento_mkm572bd",
+      "title": "ID de elemento",
+      "type": "item_id"
+    }
+  ]
+}

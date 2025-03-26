@@ -3,107 +3,75 @@ import json
 import datetime
 import time
 import uuid
-import random
 
 from google.cloud import bigquery
-from google.api_core.exceptions import NotFound, BadRequest
+from google.api_core.exceptions import NotFound
 
-# --- Parámetros y constantes ---
+##############################
+# PARÁMETROS PRINCIPALES
+##############################
 API_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjE5Njk2MzQyMCwiYWFpIjoxMSwidWlkIjozMzY5MTA2MywiaWFkIjoiMjAyMi0xMS0xOVQwOToxMjoyMS4wMDBaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MTIxMzE3ODcsInJnbiI6InVzZTEifQ.ZdHFWNMZULEp188h9gSnPT8oLSmu3vHE3RMzXru4UwA"
 API_URL = "https://api.monday.com/v2"
 
-# Nuevo board y columna fecha
-BOARD_ID = 5914627798
-COLUMN_ID_FECHA = "creaci_n_de_registro"
+# ID de Board y columna de fecha
+BOARD_ID = 3983935560
+COLUMN_ID_FECHA = "date_1"
 
-# Tabla final de destino para MERGE (upsert)
-BIGQUERY_TABLE_ID = "support.soporte_operativo"
+# Tabla final de destino (donde haremos MERGE)
+BIGQUERY_TABLE_ID = "operations.expedientes_rh"
 
-# Tabla de logs
+# Tabla de logs donde insertar la auditoría
 LOGS_TABLE_ID = "project_settings.logs"
-
-# Fechas y ventana de consulta (cada 2 días)
-START_DATE = datetime.date(2024, 6, 15)
+hoy = datetime.date.today()
+ayer = hoy - datetime.timedelta(days=2)
+# START_DATE = datetime.date(2020, 1, 1)
+# END_DATE = datetime.date(2027, 1, 1)
+# Fechas y ventana de consulta
+START_DATE = datetime.date(2019, 1, 1)
 END_DATE = datetime.date(2027, 1, 1)
-DELTA = datetime.timedelta(days=1)
+# Fechas y ventana de consulta
+START_DATE = datetime.date(2019, 1, 1)
+END_DATE = datetime.date(2027, 1, 1)
+DELTA = datetime.timedelta(days=3)  # Procesar de día en día
 
-# Mapeo de columnas Monday -> Tipos de BigQuesry
-# (ajustado a lo que definiste en tu CREATE TABLE)
+# Mapeo de columnas Monday -> Tipos de BigQuery
 COLUMN_TYPE_MAP = {
-    "id": "INT 64",
+    "id": "INT64",
     "name": "STRING",
-    "conectar_tableros1__1": "STRING",
-    "personas__1": "STRING",
-    "texto3": "STRING",
-    "archivo": "STRING",
-    "dup__of_estado": "STRING",
-    "status": "STRING",
-    "estado6__1": "STRING",
-    "personas": "STRING",
-    "dup__of___asignado__1": "STRING",
-    "dup__of___link__1": "STRING",
-    "conectar_tableros4": "STRING",
-    "personas_16": "STRING",
-    "creaci_n_de_registro": "TIMESTAMP",
-    "bot_n8__1": "STRING",
-    "fecha1__1": "DATE",
-    "dup__of_prioridad__1": "STRING",
-    "dup__of___clasificaci_n__1": "STRING",
-    "reflejo4__1": "STRING",
-    "dup__of_payout8__1": "STRING",
-    "dup__of_payout__1": "STRING",
-    "reflejo_1": "STRING",
-    "subelementos": "STRING",
-    "texto62": "STRING",
-    "archivo4": "STRING",
-    "clasificaci_n_1": "NUMERIC",
-    "duration": "STRING",
-    "dup__of____total__1": "STRING",
-    "dup__of____soluci_n__1": "STRING",
-    "duration__1": "STRING",
-    "dup__of____en_espera__1": "STRING",
-    "_ltima_actualizaci_n": "TIMESTAMP",
-    "date": "DATE",
-    "texto__1": "STRING",
-    "f_rmula__1": "STRING",
-    "conectar_tableros__1": "STRING",
-    "reflejo__1": "STRING",
-    "dup__of_aah_en_turno__1": "STRING",
-    "estado__1": "STRING",
-    "fecha__1": "DATE",
-    "f_rmula1__1": "STRING",
-    "formula__1": "STRING",
-    "formula7__1": "STRING",
-    "formula6__1": "STRING",
-    "formula2__1": "STRING",
-    "f_rmula4__1": "STRING",
-    "texto1__1": "STRING",
-    "n_meros__1": "NUMERIC",
-    "dup__of____tool_connect8__1": "NUMERIC",
-    "dup__of____tool_connect6__1": "STRING",
-    "link_to_resoluciones__1": "STRING",
-    "personas2__1": "STRING",
-    "reflejo6__1": "STRING",
-    "fecha12__1": "DATE",
-    "hora__1": "TIME",
-    "hour__1": "TIME",
-    "hour2__1": "TIME",
-    "date__1": "DATE",
-    "date1__1": "DATE",
-    "date3__1": "DATE",
-    "id__de_elemento__1": "INT64",
-    "conectar_tableros3__1": "STRING",
+    "nickname1": "STRING",
+    "monday_user_id6": "STRING",
     "board_relation__1": "STRING",
-    "board_relation9__1": "STRING",
-    "board_relation_mkmty0nb": "STRING"
+    "status_1": "STRING",
+    "date_1": "DATE",
+    "date_18": "DATE",
+    "personas__1": "STRING",
+    "phone": "STRING",
+    "correo_electr_nico": "STRING",
+    "texto9": "STRING",
+    "label__1": "STRING",
+    "dup__of_modalidad__1": "STRING",
+    "archivo": "STRING",
+    "archivo1": "STRING",
+    "dup__of_csf__1": "STRING",
+    "texto": "STRING",
+    "texto3": "STRING",
+    "files": "STRING",
+    "numbers": "FLOAT64",
+    "numeric__1": "FLOAT64",
+    "texto_corto__1": "STRING",
+    "texto_corto1__1": "STRING",
+    "status": "STRING",
+    "date_13": "DATE",
+    "dup__of_contrato__1": "STRING",
+    "fecha2__1": "DATE",
+    "___puesto__1": "STRING"
 }
 
+##############################
+# FUNCIONES DE PARSEO
+##############################
 
-# --------------------------------------------------
-#                 Funciones de parseo
-# --------------------------------------------------
 def try_parse_json_string(s):
-    """Intenta parsear un string como JSON y retorna un dict si es posible."""
     if not isinstance(s, str):
         return None
     try:
@@ -113,7 +81,7 @@ def try_parse_json_string(s):
         return None
     except (ValueError, TypeError):
         pass
-    # Reemplazar comillas simples
+
     s_fixed = s.replace("''", '"').replace("'", '"')
     try:
         parsed = json.loads(s_fixed)
@@ -123,14 +91,13 @@ def try_parse_json_string(s):
     except (ValueError, TypeError):
         return None
 
-
 def parse_value_for_bq(value):
-    """Recorre la estructura JSON devuelta por Monday y extrae un valor primitivo (str, num, bool, etc.)."""
+    """Convierte el contenido de una columna de Monday en un valor compatible con BigQuery."""
     if value is None:
         return None
 
     if isinstance(value, dict):
-        # Manejos especiales (archivos, labels, times, etc.)
+        # Manejo de varias estructuras internas (archivos, labels, etc.)
         if "files" in value and isinstance(value["files"], list):
             file_info_list = []
             for f in value["files"]:
@@ -179,7 +146,7 @@ def parse_value_for_bq(value):
             return f"{value['from']} - {value['to']}"
 
         if "personsAndTeams" in value and isinstance(value["personsAndTeams"], list):
-            ids = [str(p.get("id", "")) for p in value["personsAndTeams"]]
+            ids = [str(person.get("id", "")) for person in value["personsAndTeams"]]
             return ", ".join(ids)
 
         if "linkedPulseIds" in value and isinstance(value["linkedPulseIds"], list):
@@ -221,11 +188,11 @@ def parse_value_for_bq(value):
             ids_str = [str(x) for x in value["ids"]]
             return ", ".join(ids_str)
 
-        # A veces "value" es un JSON incrustado
         if "value" in value:
             inner_val = value["value"]
             if isinstance(inner_val, (int, float, bool)):
                 return inner_val
+
             parsed_dict = try_parse_json_string(inner_val)
             if parsed_dict:
                 if "text" in parsed_dict:
@@ -243,15 +210,14 @@ def parse_value_for_bq(value):
             else:
                 return str(inner_val)
 
-        # Por defecto, retornar su representación JSON
+        # Por defecto, si no coincidió nada especial, retornar JSON
         return json.dumps(value, ensure_ascii=False)
 
-    # Si es un primitivo (int, float, bool, str)
+    # Manejo si value es un tipo primitivo
     if isinstance(value, (int, float, bool)):
         return value
 
     if isinstance(value, str):
-        # Intentar parsear como JSON
         parsed = try_parse_json_string(value)
         if isinstance(parsed, dict):
             if "text" in parsed:
@@ -264,7 +230,8 @@ def parse_value_for_bq(value):
             if "checked" in parsed:
                 return parsed["checked"]
             return json.dumps(parsed, ensure_ascii=False)
-        # Si no es JSON, intentar convertir a número
+
+        # Intentar convertir a numérico
         try:
             if "." in value:
                 return float(value)
@@ -272,27 +239,34 @@ def parse_value_for_bq(value):
                 return int(value)
         except (ValueError, TypeError):
             pass
+
         return value
 
     return str(value)
 
-
 def parse_monday_column_value(text_val, json_val, bq_type):
-    """Convierte (text, value) de Monday a un tipo BigQuery (STRING, DATE, TIMESTAMP, etc.)."""
+    """Dado el text y value de Monday, parsearlo al tipo correcto de BigQuery."""
     parsed_from_json_val = None
     if json_val:
         try:
             as_dict = json.loads(json_val)
-            if isinstance(as_dict, dict) and "index" not in as_dict:
-                parsed_from_json_val = parse_value_for_bq(as_dict)
+            if isinstance(as_dict, dict):
+                if "index" in as_dict:
+                    # Estructura especial sin info
+                    parsed_from_json_val = None
+                else:
+                    parsed_from_json_val = parse_value_for_bq(as_dict)
         except:
             pass
 
-    if parsed_from_json_val:
-        raw_val = parsed_from_json_val
+    if not parsed_from_json_val:
+        parsed_from_text = parse_value_for_bq(text_val)
     else:
-        raw_val = parse_value_for_bq(text_val)
+        parsed_from_text = None
 
+    raw_val = parsed_from_json_val if parsed_from_json_val else parsed_from_text
+
+    # Convertir a su tipo BigQuery
     if bq_type == "STRING":
         return "" if raw_val is None else str(raw_val)
 
@@ -300,15 +274,20 @@ def parse_monday_column_value(text_val, json_val, bq_type):
         return None
 
     if bq_type == "BOOL":
-        # Ejemplo (no tienes bool en tu esquema)
         if isinstance(raw_val, bool):
             return raw_val
         val_str = str(raw_val).lower().strip()
-        return val_str in ("true", "checked", "1", "sí", "yes", "verdadero")
+        return val_str in ("true", "checked", "1", "sí", "yes")
 
-    if bq_type == "NUMERIC":
+    if bq_type in ("NUMERIC", "FLOAT64"):
         try:
             return float(raw_val)
+        except:
+            return None
+
+    if bq_type in ("INT64", "INTEGER"):
+        try:
+            return int(float(raw_val))
         except:
             return None
 
@@ -324,7 +303,7 @@ def parse_monday_column_value(text_val, json_val, bq_type):
         for fmt in ["%H:%M:%S", "%H:%M"]:
             try:
                 return datetime.datetime.strptime(val_str, fmt).time()
-            except ValueError:
+            except:
                 pass
         return None
 
@@ -335,29 +314,27 @@ def parse_monday_column_value(text_val, json_val, bq_type):
         except:
             return None
 
-    # Por defecto, lo convertimos a string
+    # Por defecto, retornar string
     return str(raw_val)
 
+##############################
+# CONSULTA A MONDAY (por rango)
+##############################
 
-# --------------------------------------------------
-#       Construcción del query (CREATED_AT)
-# --------------------------------------------------
 def build_monday_query(start_str, end_str):
     """
-    Genera un query GraphQL para filtrar por la columna `COLUMN_ID_FECHA`,
-    con compare_attribute='CREATED_AT' y operator='between'.
+    Construye la query GraphQL para obtener items cuyo valor en date_1
+    esté entre start_str y end_str (formato YYYY-MM-DD).
     """
     query = f"""
     query {{
       boards(ids: {BOARD_ID}) {{
         items_page(
-          limit: 500
           query_params: {{
             rules: [{{
               column_id: "{COLUMN_ID_FECHA}",
-              operator: between,
               compare_value: ["{start_str}", "{end_str}"],
-              compare_attribute: "CREATED_AT"
+              operator: between
             }}]
           }}
         ) {{
@@ -377,16 +354,15 @@ def build_monday_query(start_str, end_str):
     """
     return query
 
-
 def fetch_items_from_monday(start_date, end_date):
     """
-    Llama a la API de Monday para traer items creados entre start_date y end_date
-    (CREATED_AT), usando la columna COLUMN_ID_FECHA con 'between'.
+    Hace la consulta a Monday usando `between` para date_1 
+    en el rango [start_date, end_date].
     """
     start_str = start_date.strftime("%Y-%m-%d")
     end_str = end_date.strftime("%Y-%m-%d")
-
     query = build_monday_query(start_str, end_str)
+
     headers = {"Authorization": API_TOKEN, "Content-Type": "application/json"}
     response = requests.post(API_URL, json={"query": query}, headers=headers)
     data = response.json()
@@ -399,41 +375,42 @@ def fetch_items_from_monday(start_date, end_date):
         return []
 
     items_page_data = boards_data[0].get("items_page", {})
-    return items_page_data.get("items", [])
-
+    items_list = items_page_data.get("items", [])
+    return items_list
 
 def transform_items_to_rows(items):
-    """Convierte la lista de items de Monday a filas aptas para BigQuery, según COLUMN_TYPE_MAP."""
+    """
+    Convierte los items de Monday a filas (dict) con los campos
+    y tipos correctos (según COLUMN_TYPE_MAP).
+    """
     rows = []
     for item in items:
         row = {}
-        # Convertir ID a float/num si la tenemos
-        if item["id"]:
-            try:
-                row["id"] = int(item["id"])
-            except:
-                row["id"] = None
-        else:
-            row["id"] = None
-
-        # Nombre
+        # Convertir id y name
+        # Notar que en tu map "id" es INT64
+        row["id"] = int(item["id"]) if item["id"] else None
         row["name"] = item.get("name", "") or ""
 
-        # Columnas personalizadas
+        # Columnas definidas en COLUMN_TYPE_MAP
         for col_val in item.get("column_values", []):
             col_id = col_val["id"]
             text_val = col_val["text"]
             json_val = col_val["value"]
+
             if col_id in COLUMN_TYPE_MAP:
                 bq_type = COLUMN_TYPE_MAP[col_id]
-                row[col_id] = parse_monday_column_value(text_val, json_val, bq_type)
+                # (Si tuvieras columnas especiales, puedes ajustarlo)
+                parsed_val = parse_monday_column_value(text_val, json_val, bq_type)
+                row[col_id] = parsed_val
 
         rows.append(row)
     return rows
 
-
 def to_json_serializable(row):
-    """Convierte date/datetime/time a string ISO antes de insert_rows_json."""
+    """
+    Convierte objetos datetime/date/time a string ISO, 
+    para usar insert_rows_json sin problemas.
+    """
     new_row = {}
     for k, v in row.items():
         if isinstance(v, datetime.datetime):
@@ -446,44 +423,51 @@ def to_json_serializable(row):
             new_row[k] = v
     return new_row
 
+##############################
+# LÓGICA DE MERGE (UPsert)
+##############################
 
-# --------------------------------------------------
-#  Crear dataset temporal y MERGE (upsert)
-# --------------------------------------------------
 def ensure_dataset_exists(dataset_id):
-    """Verifica si el dataset existe en BigQuery; de lo contrario, lo crea."""
+    """
+    Verifica si un dataset existe en BigQuery; de lo contrario, lo crea.
+    dataset_id debe ser "project_id.dataset_name".
+    """
     client = bigquery.Client()
     dataset_ref = bigquery.Dataset(dataset_id)
     try:
-        client.get_dataset(dataset_ref)
+        client.get_dataset(dataset_ref)  # Intenta obtener el dataset
         print(f"El dataset '{dataset_id}' ya existe.")
     except NotFound:
+        # Si no existe, crearlo
         client.create_dataset(dataset_ref)
         print(f"Se ha creado el dataset '{dataset_id}' correctamente.")
 
-
 def upsert_rows_into_bq(rows):
     """
-    Realiza un MERGE (upsert) en la tabla final usando una tabla
-    temporal en dataset "temp_dataset". Retorna (num_inserted, num_updated).
+    Realiza el upsert en BigQuery usando una tabla de staging temporal y MERGE.
+    Devuelve (num_inserted, num_updated).
     """
     if not rows:
         print("No hay filas que upsertar en este lote.")
         return (0, 0)
 
     client = bigquery.Client()
+
+    # Nombre del dataset temporal (cámbialo si quieres otro)
     dataset_id = f"{client.project}.temp_dataset"
     ensure_dataset_exists(dataset_id)
 
+    # Crear una tabla temporal única
     temp_table_id = f"{dataset_id}.tmp_{uuid.uuid4().hex}"
 
-    # Construir el esquema según COLUMN_TYPE_MAP + id y name
+    # Construir esquema con base en COLUMN_TYPE_MAP + las columnas "id" y "name"
     schema = []
     # id
     schema.append(bigquery.SchemaField("id", "INT64"))
     # name
     schema.append(bigquery.SchemaField("name", "STRING"))
 
+    # Resto de columnas (excluyendo id/name para no duplicar)
     for col_id, bq_type in COLUMN_TYPE_MAP.items():
         if col_id not in ("id", "name"):
             schema.append(bigquery.SchemaField(col_id, bq_type))
@@ -492,15 +476,16 @@ def upsert_rows_into_bq(rows):
     table = client.create_table(table)
     print(f"Tabla temporal creada: {temp_table_id}")
 
-    # Insertar filas en la tabla temporal
+    # Insertar las filas en la tabla de staging
     rows_serializable = [to_json_serializable(r) for r in rows]
     errors = client.insert_rows_json(temp_table_id, rows_serializable)
     if errors:
         print("Errores al insertar en staging:", errors)
         return (0, 0)
+
     print(f"Se insertaron {len(rows_serializable)} filas en la tabla temporal.")
 
-    # Construir SQL MERGE
+    # Construir MERGE
     all_columns = [f"`{field.name}`" for field in schema]
     update_assignments = []
     for field in schema:
@@ -521,50 +506,39 @@ def upsert_rows_into_bq(rows):
       VALUES ({insert_values})
     """
 
-    # Ejecutar el MERGE con reintentos en caso de concurrencia
-    max_retries = 3
-    num_inserted = 0
-    num_updated = 0
-    for attempt in range(max_retries):
-        try:
-            merge_job = client.query(merge_sql)
-            merge_job.result()  # Esperar a que termine
+    # Ejecutar el MERGE
+    merge_job = client.query(merge_sql)
+    merge_job.result()  # Esperar a que termine
 
-            dml_stats = merge_job.dml_stats
-            if dml_stats:
-                num_inserted = dml_stats.inserted_row_count
-                num_updated = dml_stats.updated_row_count
-            print(f"MERGE completado -> Filas insertadas: {num_inserted}, Filas actualizadas: {num_updated}")
-            break
+    # Obtener métricas de DML (inserted/updated)
+    dml_stats = merge_job.dml_stats
+    if dml_stats:
+        num_inserted = dml_stats.inserted_row_count
+        num_updated = dml_stats.updated_row_count
+    else:
+        num_inserted = 0
+        num_updated = 0
 
-        except BadRequest as e:
-            if "Could not serialize access to table" in str(e):
-                if attempt < max_retries - 1:
-                    wait_time = 2 ** attempt + random.random()
-                    print(f"Conflicto de concurrencia. Reintentando en {wait_time:.2f}s (intento {attempt+1}/{max_retries})...")
-                    time.sleep(wait_time)
-                else:
-                    print("Se alcanzó el máximo de reintentos. Abortando MERGE.")
-                    raise
-            else:
-                raise
+    print(f"MERGE completado -> Filas insertadas: {num_inserted}, Filas actualizadas: {num_updated}")
 
-    # Eliminar la tabla temporal
+    # Borrar tabla temporal
     client.delete_table(temp_table_id, not_found_ok=True)
     print(f"Tabla temporal eliminada: {temp_table_id}")
 
     return (num_inserted, num_updated)
 
+##############################
+# LOGS
+##############################
 
-# --------------------------------------------------
-#   Insertar LOG al terminar la ingesta
-# --------------------------------------------------
 def insert_log_record(database_name, process_name, records_created, records_updated,
                       execution_time, status, primero, ultimo):
     """
-    Inserta un registro en la tabla project_settings.logs con la información de ejecución.
+    Inserta un registro en la tabla project_settings.logs, 
+    con los campos que necesites.
     """
     client = bigquery.Client()
+
     query = f"""
     INSERT INTO `{LOGS_TABLE_ID}` (
       log_timestamp,
@@ -593,41 +567,45 @@ def insert_log_record(database_name, process_name, records_created, records_upda
     job.result()
     print("Registro de log insertado correctamente en project_settings.logs.")
 
+##############################
+# MAIN
+##############################
 
-# --------------------------------------------------
-#                 Función principal
-# --------------------------------------------------
 def main():
-    print(f"Iniciando proceso desde {START_DATE} hasta {END_DATE} (incremento de {DELTA.days} día/s)\n")
+    print(f"Procesando datos desde {START_DATE} hasta {END_DATE}, en intervalos de {DELTA.days} días...")
     overall_inserted = 0
     overall_updated = 0
-
     start_time_global = time.time()
-    current_date = START_DATE
 
-    # Recorrer en intervalos de 2 días
+    current_date = START_DATE
     while current_date <= END_DATE:
-        end_chunk = current_date
+        # Definir fin de este chunk (2 días - 1)
+        end_chunk = current_date + DELTA - datetime.timedelta(days=1)
         if end_chunk > END_DATE:
             end_chunk = END_DATE
 
-        print(f"Consultando items creados entre {current_date} y {end_chunk} (CREATED_AT)...")
+        print(f"\nObteniendo items del {current_date} al {end_chunk}...")
         items = fetch_items_from_monday(current_date, end_chunk)
-        print(f"   Se encontraron {len(items)} items.")
-
+        print(f"   Se encontraron {len(items)} items en ese rango.")
         rows = transform_items_to_rows(items)
+
+        # Upsert en BQ
         num_inserted, num_updated = upsert_rows_into_bq(rows)
         overall_inserted += num_inserted
         overall_updated += num_updated
 
+        # Avanzar al siguiente rango
         current_date += DELTA
 
-    total_time = time.time() - start_time_global
+    end_time_global = time.time()
+    total_time = end_time_global - start_time_global
 
-    # Insertar log en la tabla de logs
+    # Al final, insertar log en project_settings.logs
+    # records_created = insertadas + actualizadas
+    # records_updated = total actualizadas
     insert_log_record(
-        database_name="support",
-        process_name="soporte_operativo_ingesta",
+        database_name="expedientes_rh",   # o el nombre que gustes
+        process_name="ingesta_historica_expedientes_rh",      # Ajusta si quieres otro nombre
         records_created=overall_inserted + overall_updated,
         records_updated=overall_updated,
         execution_time=total_time,
@@ -637,8 +615,6 @@ def main():
     )
 
     print("\nProceso completado con éxito.")
-    print(f"Filas totales insertadas: {overall_inserted}, actualizadas: {overall_updated}.\n")
-
 
 if __name__ == "__main__":
     main()

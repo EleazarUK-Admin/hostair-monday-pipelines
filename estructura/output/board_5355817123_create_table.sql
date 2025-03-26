@@ -1,0 +1,21 @@
+CREATE TABLE `operations.acciones` (
+  `name` STRING,
+  `subelementos` STRING,
+  `status` STRING,
+  `fecha__1` DATE,
+  `personas__1` STRING,
+  `texto_largo3__1` STRING,
+  `archivo` STRING,
+  `date` DATE,
+  `personas1__1` STRING,
+  `conectar_tableros5` STRING,
+  `texto_largo__1` STRING,
+  `long_text__1` STRING,
+  `estado_1__1` STRING,
+  `estado_17__1` STRING,
+  `fecha1__1` DATE,
+  `workdoc_de_monday__1` STRING,
+  `estado_178__1` STRING,
+  `registro_de_creaci_n__1` TIMESTAMP,
+  `f_rmula__1` STRING
+);

@@ -1,0 +1,101 @@
+{
+  "id": "3169137106",
+  "name": "🛒 Compras y Pagos",
+  "columns": [
+    {
+      "id": "name",
+      "title": "Nombre",
+      "type": "name"
+    },
+    {
+      "id": "subitems",
+      "title": "Subelementos",
+      "type": "subtasks"
+    },
+    {
+      "id": "long_text",
+      "title": "Motivo",
+      "type": "long_text"
+    },
+    {
+      "id": "conectar_tableros85",
+      "title": "Proveedores",
+      "type": "board_relation"
+    },
+    {
+      "id": "reflejo9",
+      "title": "Datos Bancarios",
+      "type": "mirror"
+    },
+    {
+      "id": "conectar_tableros8",
+      "title": "Departamento",
+      "type": "board_relation"
+    },
+    {
+      "id": "file",
+      "title": "Archivos",
+      "type": "file"
+    },
+    {
+      "id": "label",
+      "title": "Tipo de compra",
+      "type": "status"
+    },
+    {
+      "id": "dup__of_costo_aproximado",
+      "title": "Costo final",
+      "type": "numbers"
+    },
+    {
+      "id": "files",
+      "title": "Factura",
+      "type": "file"
+    },
+    {
+      "id": "m_todo_de_pago",
+      "title": "Método de Pago",
+      "type": "status"
+    },
+    {
+      "id": "f_rmula",
+      "title": "Concepto de pago",
+      "type": "formula"
+    },
+    {
+      "id": "archivo",
+      "title": "Comprobante de pago",
+      "type": "file"
+    },
+    {
+      "id": "status",
+      "title": "Estado",
+      "type": "status"
+    },
+    {
+      "id": "date",
+      "title": "Fecha de pago",
+      "type": "date"
+    },
+    {
+      "id": "creation_log",
+      "title": "Creado",
+      "type": "creation_log"
+    },
+    {
+      "id": "pulse_updated",
+      "title": "Última actualización",
+      "type": "last_updated"
+    },
+    {
+      "id": "link_to_agenda_mike",
+      "title": "link to Agenda Mike",
+      "type": "board_relation"
+    },
+    {
+      "id": "men__desplegable__1",
+      "title": "Tarjeta",
+      "type": "dropdown"
+    }
+  ]
+}

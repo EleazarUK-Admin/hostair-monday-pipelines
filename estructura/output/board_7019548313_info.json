@@ -1,0 +1,91 @@
+{
+  "id": "7019548313",
+  "name": "⚠️ Anuncios Penalizados",
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name"
+    },
+    {
+      "id": "subelementos_mkkqhsz7",
+      "title": "Subelementos",
+      "type": "subtasks"
+    },
+    {
+      "id": "date",
+      "title": "🗓️ Fecha del aviso",
+      "type": "date"
+    },
+    {
+      "id": "status",
+      "title": "🚫 Penalizáción",
+      "type": "status"
+    },
+    {
+      "id": "estado_1__1",
+      "title": "🚦Estado",
+      "type": "status"
+    },
+    {
+      "id": "dup__of_fecha_del_aviso__1",
+      "title": "🗓️ Reactivación",
+      "type": "date"
+    },
+    {
+      "id": "texto_largo__1",
+      "title": "⭐️ Evaluaciones",
+      "type": "long_text"
+    },
+    {
+      "id": "dup__of_evaluaciones8__1",
+      "title": "✍🏻 Acciones Correctivas",
+      "type": "long_text"
+    },
+    {
+      "id": "bot_n__1",
+      "title": "Apleación",
+      "type": "button"
+    },
+    {
+      "id": "long_text__1",
+      "title": "📨 Apelación",
+      "type": "long_text"
+    },
+    {
+      "id": "dup__of_apelaci_n__1",
+      "title": "📩 Correo",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo__1",
+      "title": "📸 Evidencias",
+      "type": "file"
+    },
+    {
+      "id": "conectar_tableros__1",
+      "title": "🏢 Propiedades",
+      "type": "board_relation"
+    },
+    {
+      "id": "n_meros__1",
+      "title": "Enviar tool",
+      "type": "numbers"
+    },
+    {
+      "id": "link_to____acciones_mkkq4aj1",
+      "title": "link to ⚡️ Acciones",
+      "type": "board_relation"
+    },
+    {
+      "id": "workdoc_de_monday_mkm016kp",
+      "title": "🔍 Análisis Causa Raíz",
+      "type": "doc"
+    },
+    {
+      "id": "n_meros_mkmvp9n4",
+      "title": "Números",
+      "type": "numbers"
+    }
+  ]
+}

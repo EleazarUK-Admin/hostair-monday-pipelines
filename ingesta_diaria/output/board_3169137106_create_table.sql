@@ -1,0 +1,21 @@
+CREATE TABLE `operations.compras_pagos` (
+  `name` STRING,
+  `subitems` STRING,
+  `long_text` STRING,
+  `conectar_tableros85` STRING,
+  `reflejo9` STRING,
+  `conectar_tableros8` STRING,
+  `file` STRING,
+  `label` STRING,
+  `dup__of_costo_aproximado` FLOAT64,
+  `files` STRING,
+  `m_todo_de_pago` STRING,
+  `f_rmula` STRING,
+  `archivo` STRING,
+  `status` STRING,
+  `date` DATE,
+  `creation_log` TIMESTAMP,
+  `pulse_updated` TIMESTAMP,
+  `link_to_agenda_mike` STRING,
+  `men__desplegable__1` STRING
+);

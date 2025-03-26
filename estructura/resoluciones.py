@@ -1,19 +1,75 @@
-import os
+import requests
 import json
-from datetime import datetime
-from google.cloud import storage, bigquery
+import datetime
+from google.cloud import bigquery
 
+# -------------------------------------------------------------
+# CONFIGURACIONES GLOBALES
+# -------------------------------------------------------------
+API_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjE5Njk2MzQyMCwiYWFpIjoxMSwidWlkIjozMzY5MTA2MywiaWFkIjoiMjAyMi0xMS0xOVQwOToxMjoyMS4wMDBaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MTIxMzE3ODcsInJnbiI6InVzZTEifQ.ZdHFWNMZULEp188h9gSnPT8oLSmu3vHE3RMzXru4UwA"
+API_URL   = "https://api.monday.com/v2"
+
+BOARD_ID           = 6908297780
+COLUMN_ID_FECHA    = "registro_de_creaci_n_mkkdqxf2"  # Filtraremos por esta columna tipo TIMESTAMP
+BIGQUERY_TABLE_ID  = "operations.resoluciones"
+
+# Ajusta el rango de fechas según requieras
+START_DATE = datetime.date(2024, 1, 1)
+END_DATE   = datetime.date(2027, 1, 1)
+
+# Incremento de 1 día para iterar
+DELTA = datetime.timedelta(days=1)
+
+
+# --------------------------------------------------------------------
+# MAPEO DE COLUMNAS A TIPOS DE BIGQUERY
+# (basado en CREATE TABLE operations.resoluciones)
+# --------------------------------------------------------------------
+COLUMN_TYPE_MAP = {
+    "id": "NUMERIC",
+    "name": "STRING",
+    "subelementos__1": "STRING",
+    "conectar_tableros__1": "STRING",
+    "reflejo_1__1": "STRING",
+    "date": "DATE",
+    "cobrar___1": "NUMERIC",
+    "texto_largo__1": "STRING",
+    "reflejo0__1": "STRING",
+    "label__1": "STRING",
+    "fecha_1__1": "DATE",
+    "enlace__1": "STRING",
+    "status": "STRING",
+    "reflejo__1": "STRING",
+    "conectar_tableros2__1": "STRING",
+    "texto7__1": "STRING",
+    "conectar_tableros9__1": "STRING",
+    "reflejo7__1": "STRING",
+    "conectar_tableros25__1": "STRING",
+    "n_meros7__1": "NUMERIC",
+    "f_rmula__1": "STRING",
+    "fecha2__1": "DATE",
+    "dup__of_fecha_del_cobro__1": "DATE",
+    "archivo3__1": "STRING",
+    "texto9__1": "STRING",
+    "n_meros5__1": "NUMERIC",
+    "reflejo_17__1": "STRING",
+    "registro_de_creaci_n_mkkdqxf2": "TIMESTAMP",
+    "_ltima_actualizaci_n_mkkvfxaz": "TIMESTAMP",
+    "archivo_mkm2973p": "STRING"
+}
+
+# --------------------------------------------------------------------
+# FUNCIONES AUXILIARES DE PARSEO ROBUSTO
+# --------------------------------------------------------------------
 def try_parse_json_string(s):
     """
-    Intenta convertir una cadena a JSON de forma robusta.
-    1) Primer intento con json.loads(s).
-    2) Si falla, hace un replace de comillas simples a dobles y vuelve a intentar.
-    Retorna un dict si lo logra parsear, de lo contrario None.
+    Intenta parsear una cadena como JSON.
+    Devuelve el diccionario resultante o None si falla.
     """
     if not isinstance(s, str):
         return None
-    
-    # 1) Intento normal
+
+    # 1) Intento parseo normal
     try:
         parsed = json.loads(s)
         if isinstance(parsed, dict):
@@ -22,8 +78,7 @@ def try_parse_json_string(s):
     except (ValueError, TypeError):
         pass
 
-    # 2) Reemplazar comillas simples por dobles (hack para JSON malformado).
-    #    Ajustar según tu caso, ya que puede romper strings que contengan comillas simples reales.
+    # 2) Reemplazar comillas simples por dobles
     s_fixed = s.replace("''", '"').replace("'", '"')
     try:
         parsed = json.loads(s_fixed)
@@ -320,280 +375,220 @@ def parse_value_for_bq(value):
     return str(value)
 
 
-def escape_sql_string(s):
-    if not isinstance(s, str):
-        s = str(s)
-    escaped = s.replace("'", "''")
-    return f"'{escaped}'"
-
-
-def generate_insert_sql(pulse_id, pulse_name, column_values, table_fqn):
+def parse_monday_column_value(text_val, json_val, bq_type):
     """
-    Genera un INSERT con las columnas: id, name, y las keys de column_values.
+    Usa parse_value_for_bq para extraer la 'información importante'
+    y luego la convierte al tipo de dato correspondiente en BigQuery.
     """
-    cols = ["id", "name"] + list(column_values.keys())
-    vals = [str(pulse_id)]
+    parsed_from_json_val = None
 
-    # Manejo de name
-    if pulse_name is None:
-        vals.append("NULL")
-    else:
-        vals.append(escape_sql_string(pulse_name))
-
-    # Manejo de cada columna
-    for c in column_values:
-        parsed_val = parse_value_for_bq(column_values[c])
-        if parsed_val is None:
-            vals.append("NULL")
-        elif isinstance(parsed_val, (int, float, bool)):
-            vals.append(str(parsed_val))
-        else:
-            vals.append(escape_sql_string(parsed_val))
-
-    col_string = ", ".join(f"`{c}`" for c in cols)
-    val_string = ", ".join(vals)
-    return f"INSERT INTO `{table_fqn}` ({col_string}) VALUES ({val_string});"
-
-
-def generate_update_sql(pulse_id, column_id, new_value, table_fqn):
-    """
-    Genera un UPDATE SET column_id = new_value WHERE id = pulse_id
-    """
-    parsed_val = parse_value_for_bq(new_value)
-    if parsed_val is None:
-        set_expr = "NULL"
-    elif isinstance(parsed_val, (int, float, bool)):
-        set_expr = str(parsed_val)
-    else:
-        set_expr = escape_sql_string(parsed_val)
-    return f"UPDATE `{table_fqn}` SET `{column_id}` = {set_expr} WHERE `id` = {pulse_id};"
-
-
-def generate_delete_sql(pulse_id, table_fqn):
-    """
-    Genera un DELETE FROM table_fqn WHERE id = pulse_id
-    """
-    return f"DELETE FROM `{table_fqn}` WHERE `id` = {pulse_id};"
-
-
-def get_board_settings(board_id):
-    """
-    Obtiene de BigQuery la configuración de un board:
-    - bucket
-    - dataset
-    - table
-    Ajusta el nombre del proyecto y dataset de settings según tu caso.
-    """
-    client = bigquery.Client()
-    query = """
-    SELECT bucket, dataset, `table`
-    FROM `project_settings.board_settings`  -- Ajusta el FQN real
-    WHERE board_id = @board_id
-    LIMIT 1
-    """
-    job_config = bigquery.QueryJobConfig(
-        query_parameters=[bigquery.ScalarQueryParameter("board_id", "INT64", board_id)]
-    )
-    query_job = client.query(query, job_config=job_config)
-    rows = list(query_job)
-    if not rows:
-        raise Exception("Configuración no encontrada para board_id")
-    row = rows[0]
-    return {"bucket": row.bucket, "dataset": row.dataset, "table": row.table}
-
-
-def get_bucket(bucket_name):
-    client = storage.Client()
-    return client.bucket(bucket_name)
-
-
-def download_json(blob):
-    content = blob.download_as_text(encoding="utf-8")
-    return json.loads(content)
-
-
-def upload_file_to_bucket(bucket_name, destination_path, content):
-    bucket = get_bucket(bucket_name)
-    blob = bucket.blob(destination_path)
-    blob.upload_from_string(content, content_type="text/plain")
-
-
-def move_blob(blob, new_prefix):
-    """
-    Mueve el blob a la carpeta (prefijo) new_prefix, manteniendo el mismo filename.
-    """
-    filename = os.path.basename(blob.name)
-    destination_name = f"{new_prefix}/{filename}"
-    new_blob = blob.bucket.rename_blob(blob, destination_name)
-    return new_blob.name
-
-
-def process_webhook_json(data, table_fqn):
-    """
-    Interpreta el JSON del webhook y genera la sentencia SQL correspondiente.
-    Además, si el board_id es 4460406422, se inyecta:
-      - En create_pulse: se agrega el campo "pulse_log" con la fecha/hora actual (si no existe).
-      - En update_column_value: se agrega el campo "pulse_updated" con la fecha/hora actual (si no existe).
-    """
-    e = data.get("event", {})
-    # Extraer board_id desde el payload
-    board_id = e.get("boardId") or data.get("boardId")
-    t = e.get("type", "")
-
-    if t == "create_pulse":
-        pid = e.get("pulseId")
-        pname = e.get("pulseName")
-        cv = e.get("columnValues", {})
-        # Si el board_id es 4460406422, agregar pulse_log si no viene en el webhook
-        if board_id == 4460406422:
-                cv["pulse_log"] = {"value": datetime.utcnow().isoformat()}
-                
-        #compras_pagos
-        elif board_id == 3169137106:
-                cv["creation_log"] = {"value": datetime.utcnow().isoformat()}
-        #Resoluciones
-        elif board_id == 6908297780:
-                cv["registro_de_creaci_n_mkkdqxf2"] = {"value": datetime.utcnow().isoformat()}
-                
-        #Acciones
-        elif board_id == 5355817123:
-                cv["creation_log"] = {"value": datetime.utcnow().isoformat()}
-        #Solicitudes mantenimiento
-        elif board_id == 2663242816:
-                cv["creaci_n_de_registro"] = {"value": datetime.utcnow().isoformat()}
-        #Soporte operativo
-        elif board_id == 5914627798:
-                cv["creaci_n_de_registro"] = {"value": datetime.utcnow().isoformat()}
-         #caja chica
-        elif board_id == 7269476761:
-                pass
-
-        return generate_insert_sql(pid, pname, cv, table_fqn)
-
-    elif t == "update_column_value":
-        pid = e.get("pulseId")
-        cid = e.get("columnId")
-        nv = e.get("value", {})
-        sql_statements = []
-        # Genera la actualización para la columna indicada
-        sql_statements.append(generate_update_sql(pid, cid, nv, table_fqn))
-        # Si es el board 4460406422, se agrega un update extra para pulse_updated
-        if board_id == 4460406422:
-            pulse_updated_value = {"value": datetime.utcnow().isoformat()}
-            sql_statements.append(generate_update_sql(pid, "pulse_updated", pulse_updated_value, table_fqn))
-
-        #compras_pagos
-        elif board_id == 3169137106:
-            pulse_updated_value = {"value": datetime.utcnow().isoformat()}
-            sql_statements.append(generate_update_sql(pid, "pulse_updated", pulse_updated_value, table_fqn))
-        #Resoluciones
-        elif board_id == 6908297780:
-            pulse_updated_value = {"value": datetime.utcnow().isoformat()}
-            sql_statements.append(generate_update_sql(pid, "_ltima_actualizaci_n_mkkvfxaz", pulse_updated_value, table_fqn))   
-        #Acciones
-        elif board_id == 5355817123:
-            pulse_updated_value = {"value": datetime.utcnow().isoformat()}
-            sql_statements.append(generate_update_sql(pid, "pulse_updated", pulse_updated_value, table_fqn))       
-        #Solicitudes mantenimiento 
-        elif board_id == 2663242816:
-            pulse_updated_value = {"value": datetime.utcnow().isoformat()}
-            sql_statements.append(generate_update_sql(pid, "_ltima_actualizaci_n", pulse_updated_value, table_fqn))   
-        #Soporte operativo
-        elif board_id == 5914627798:
-            pulse_updated_value = {"value": datetime.utcnow().isoformat()}
-            sql_statements.append(generate_update_sql(pid, "_ltima_actualizaci_n", pulse_updated_value, table_fqn))   
-        #caja chica
-        elif board_id == 7269476761:
+    if json_val:
+        try:
+            as_dict = json.loads(json_val)
+            if isinstance(as_dict, dict):
+                parsed_from_json_val = parse_value_for_bq(as_dict)
+        except:
             pass
 
-        return "\n".join(sql_statements)
+    if parsed_from_json_val is None or parsed_from_json_val == "":
+        parsed_from_text = parse_value_for_bq(text_val)
+    else:
+        parsed_from_text = None
+
+    raw_val = parsed_from_json_val if parsed_from_json_val else parsed_from_text
+
+    # Ajustes según el tipo BigQuery
+    if bq_type == "STRING":
+        return str(raw_val) if raw_val is not None else ""
+
+    if raw_val is None:
+        return None
+
+    if bq_type == "BOOL":
+        if isinstance(raw_val, bool):
+            return raw_val
+        val_str = str(raw_val).lower().strip()
+        return val_str in ("true", "checked", "1", "sí", "yes", "verdadero")
+
+    if bq_type == "NUMERIC":
+        try:
+            return float(raw_val)
+        except:
+            return None
+
+    if bq_type == "DATE":
+        val_str = str(raw_val)
+        try:
+            return datetime.datetime.strptime(val_str, "%Y-%m-%d").date()
+        except:
+            return None
+
+    if bq_type == "TIME":
+        val_str = str(raw_val)
+        fmts = ["%H:%M:%S", "%H:%M"]
+        for f in fmts:
+            try:
+                return datetime.datetime.strptime(val_str, f).time()
+            except ValueError:
+                pass
+        return None
+
+    if bq_type == "TIMESTAMP":
+        val_str = str(raw_val).replace("Z", "+00:00")
+        try:
+            return datetime.datetime.fromisoformat(val_str)
+        except:
+            return None
+
+    # Si no coincide con un tipo específico, devolver string
+    return str(raw_val)
+
+# --------------------------------------------------------------------
+# LÓGICA PARA EXTRAER ITEMS DE MONDAY Y SUBIR A BIGQUERY
+# --------------------------------------------------------------------
+def build_monday_query(start_str, end_str):
+    """
+    Filtra por fecha EXACT 'start_str' en la columna COLUMN_ID_FECHA.
+    La API con 'items_page' y 'query_params' no soporta directamente rangos,
+    así que hacemos una consulta EXACT para cada día.
+    """
+    query = f"""
+    query {{
+      boards(ids: {BOARD_ID}) {{
+        items_page(
+          query_params: {{
+            rules: [{{
+              column_id: "{COLUMN_ID_FECHA}",
+              compare_value: ["EXACT", "{start_str}"],
+              operator: any_of,
+              compare_attribute: "CREATED_AT"
+            }}]
+          }}
+        ) {{
+          items {{
+            id
+            name
+            created_at
+            column_values {{
+              id
+              text
+              value
+            }}
+          }}
+        }}
+      }}
+    }}
+    """
+    return query
+
+
+def fetch_items_from_monday(date_to_fetch):
+    """
+    Consulta todos los items de Monday que tengan CREATED_AT == date_to_fetch (EXACT).
+    """
+    day_str = date_to_fetch.strftime("%Y-%m-%d")
+    query   = build_monday_query(day_str, day_str)
+
+    headers = {
+        "Authorization": API_TOKEN,
+        "Content-Type": "application/json"
+    }
+    response = requests.post(API_URL, json={"query": query}, headers=headers)
     
+    data = response.json()
+    if "errors" in data:
+        raise Exception(f"Error al consultar items: {data['errors']}")
+    
+    boards_data = data.get("data", {}).get("boards", [])
+    if not boards_data:
+        return []
+    items_page_data = boards_data[0].get("items_page", {})
+    items_list      = items_page_data.get("items", [])
+    
+    return items_list
+
+
+def transform_items_to_rows(items):
+    """
+    Transforma la lista de items de Monday (con column_values)
+    en filas (diccionarios) que BigQuery pueda insertar.
+    """
+    rows = []
+    for item in items:
+        row = {}
         
+        # id
+        row["id"] = float(item["id"]) if item["id"] else None
+        
+        # name
+        row["name"] = item.get("name", "") or ""
 
-    elif t == "delete_pulse":
-        pid = e.get("itemId")
-        return generate_delete_sql(pid, table_fqn)
+        # Recorremos las column_values
+        for col_val in item.get("column_values", []):
+            col_id   = col_val["id"]
+            text_val = col_val["text"]
+            json_val = col_val["value"]
+            
+            if col_id in COLUMN_TYPE_MAP:
+                bq_type    = COLUMN_TYPE_MAP[col_id]
+                parsed_val = parse_monday_column_value(text_val, json_val, bq_type)
+                row[col_id] = parsed_val
+        
+        rows.append(row)
+    return rows
 
-    elif t == "update_name":
-        pid = e.get("pulseId")
-        nv = e.get("value", {}).get("name")
-        return generate_update_sql(pid, "name", nv, table_fqn)
 
-    return None
-
-def process_blob_in_por_procesar(blob):
+def to_json_serializable(row):
     """
-    Descarga el JSON del blob, determina el board_id,
-    obtiene settings y genera el SQL en caso de ser válido,
-    para luego mover el blob a 'procesando/'.
+    Convierte date/time/datetime a string ISO-8601
+    para que insert_rows_json no falle al serializar.
     """
-    data = download_json(blob)
-    board_id = None
-
-    # Buscamos boardId en el payload
-    if "event" in data and "boardId" in data["event"]:
-        board_id = data["event"]["boardId"]
-    elif "boardId" in data:
-        board_id = data["boardId"]
-
-    if board_id is None:
-        raise Exception("boardId no encontrado en el JSON")
-
-    # Obtenemos configuración (bucket, dataset, table, etc.)
-    settings = get_board_settings(board_id)
-    table_fqn = f"{settings['dataset']}.{settings['table']}"
-
-    # Generamos SQL
-    stmt = process_webhook_json(data, table_fqn)
-    if stmt:
-        base_name = os.path.splitext(os.path.basename(blob.name))[0]
-        sql_name = f"{base_name}.sql"
-        destination_sql_path = f"sql_por_procesar/{sql_name}"
-        # Subimos el .sql al bucket
-        upload_file_to_bucket(settings["bucket"], destination_sql_path, stmt)
-
-    # Movemos el blob a "procesando/"
-    move_blob(blob, "procesando")
+    new_row = {}
+    for key, value in row.items():
+        if isinstance(value, datetime.datetime):
+            new_row[key] = value.isoformat()
+        elif isinstance(value, datetime.date):
+            new_row[key] = value.isoformat()
+        elif isinstance(value, datetime.time):
+            new_row[key] = value.isoformat()
+        else:
+            new_row[key] = value
+    return new_row
 
 
-def get_processing_buckets():
+def insert_rows_into_bq(rows):
     """
-    Consulta en BigQuery los buckets que se usan en la config.
-    Ajusta el FQN de la tabla 'board_settings' según tu caso.
+    Inserta (append) las filas en la tabla operations.resoluciones.
     """
+    if not rows:
+        print("No hay filas para insertar en este lote.")
+        return
+    
+    rows_serializable = [to_json_serializable(r) for r in rows]
+    
     client = bigquery.Client()
-    query = """
-    SELECT DISTINCT bucket
-    FROM `project_settings.board_settings`
-    WHERE bucket IS NOT NULL
-    """
-    query_job = client.query(query)
-    return [row.bucket for row in query_job]
+    errors = client.insert_rows_json(BIGQUERY_TABLE_ID, rows_serializable)
+    if errors:
+        print("Errores al insertar en BigQuery:", errors)
+    else:
+        print(f"Se han insertado {len(rows_serializable)} filas en {BIGQUERY_TABLE_ID}.")
 
 
 def main():
-    sc = storage.Client()
-    try:
-        for bucket_name in get_processing_buckets():
-            try:
-                print(f"Procesando bucket: {bucket_name}")
-                bucket = sc.bucket(bucket_name)
-                # Listamos blobs en la carpeta 'por_procesar/'
-                blobs = bucket.list_blobs(prefix="por_procesar/")
-                for blob in blobs:
-
-                    if blob.name.endswith(".json"):
-                    
-                        print(f"Procesando blob: {blob}")
-
-                        process_blob_in_por_procesar(blob)
-            except:
-                print("Se paró")
-    except:
-        print("No jaló")
-                
+    print(f"Iniciando proceso desde {START_DATE} hasta {END_DATE}, día a día...\n")
+    current_date = START_DATE
+    
+    while current_date <= END_DATE:
+        print(f"Consultando items del {current_date} (EXACT CREATED_AT)...")
+        items = fetch_items_from_monday(current_date)
+        
+        print(f"   Se encontraron {len(items)} items para esa fecha.")
+        
+        rows = transform_items_to_rows(items)
+        insert_rows_into_bq(rows)
+        
+        current_date += DELTA
 
 
 if __name__ == "__main__":
-    while True:
-        main()
+    main()
