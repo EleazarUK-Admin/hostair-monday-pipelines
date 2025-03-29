@@ -7,7 +7,7 @@ import calendar
 
 @functions_framework.http
 def process_event(request):
-    # Parsear el payload recibido
+    # Parsear el payload recibidos 4
     try:
         payload = request.get_json()
     except Exception as e:
