@@ -7,7 +7,7 @@ import calendar
 
 @functions_framework.http
 def process_event(request):
-    # Parsear el payload recibidos 4
+    # Parsear el payload recibidos 421345245
     try:
         payload = request.get_json()
     except Exception as e:
@@ -25,7 +25,7 @@ def process_event(request):
     except Exception:
         date_str = "no-date"
 
-    # Guardar el payload en Storage para evitar duplicados
+    # Guardar el payload en Storage para evitar duplicados JAJAAJ
     try:
         storage_client = storage.Client()
         bucket = storage_client.get_bucket("reservation-transactions-recorder")
