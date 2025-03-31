@@ -12,7 +12,7 @@ from google.api_core.exceptions import NotFound, BadRequest
 API_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjE5Njk2MzQyMCwiYWFpIjoxMSwidWlkIjozMzY5MTA2MywiaWFkIjoiMjAyMi0xMS0xOVQwOToxMjoyMS4wMDBaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MTIxMzE3ODcsInJnbiI6InVzZTEifQ.ZdHFWNMZULEp188h9gSnPT8oLSmu3vHE3RMzXru4UwA"
 API_URL = "https://api.monday.com/v2"
 BOARD_ID = 2663242816  # ID de tu tablero Monday
-COLUMN_ID_FECHA = "creaci_n_de_registro"  # columna, pero usaremos compare_attribute: CREATED_AT
+COLUMN_ID_FECHA = "__last_updated__"  # columna, pero usaremos compare_attribute: CREATED_AT
     
 # Tabla final de destino para MERGE (upsert)
 BIGQUERY_TABLE_ID = "maintenance.solicitudes_mantenimiento"
@@ -20,15 +20,15 @@ BIGQUERY_TABLE_ID = "maintenance.solicitudes_mantenimiento"
 # Tabla de logs
 LOGS_TABLE_ID = "project_settings.logs"
 hoy = datetime.date.today()
-ayer = hoy - datetime.timedelta(days=2)
+ayer = hoy - datetime.timedelta(days=4)
 
 # Fechas y ventana de consulta
 START_DATE = datetime.date(2019, 1, 1)
 END_DATE = datetime.date(2027, 1, 1)
 # Fechas y ventana de consulta
-START_DATE = datetime.date(2019, 1, 1)
-END_DATE = datetime.date(2027, 1, 1)
-DELTA = datetime.timedelta(days=3)  # Procesar de día en día
+START_DATE = ayer
+END_DATE = hoy
+DELTA = datetime.timedelta(days=4)  # Procesar de día en día
 
 # Mapeo de columnas Monday -> Tipos de BigQuery
 COLUMN_TYPE_MAP = {
@@ -354,13 +354,13 @@ def build_monday_query(start_str, end_str):
     query {{
       boards(ids: {BOARD_ID}) {{
         items_page(
-          limit: 100
+          limit: 500
           query_params: {{
             rules: [{{
               column_id: "{COLUMN_ID_FECHA}",
-              operator: between,
-              compare_value: ["{start_str}", "{end_str}"],
-              compare_attribute: "CREATED_AT"
+              operator: any_of,
+              compare_value: ["YESTERDAY"],
+              compare_attribute: "UPDATED_AT"
             }}]
           }}
         ) {{
@@ -637,7 +637,7 @@ def main():
     # Insertar log en project_settings.logs
     insert_log_record(
         database_name="maintenance",
-        process_name="ingesta_historica_maintenance",      # Ajusta si quieres otro nombre
+        process_name="ingesta_diaria_maintenance",      # Ajusta si quieres otro nombre
         records_created=overall_inserted + overall_updated,
         records_updated=overall_updated,
         execution_time=total_time,

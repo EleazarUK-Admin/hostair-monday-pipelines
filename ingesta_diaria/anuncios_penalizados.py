@@ -17,7 +17,7 @@ API_URL = "https://api.monday.com/v2"
 BOARD_ID = 7019548313
 
 # Columna para filtrar por fecha en Monday.
-COLUMN_ID_FECHA = "date"
+COLUMN_ID_FECHA = "__last_updated__"
 
 # Tabla final (donde se hará el MERGE).
 BIGQUERY_TABLE_ID = "operations.anuncios_penalizados"
@@ -25,15 +25,15 @@ BIGQUERY_TABLE_ID = "operations.anuncios_penalizados"
 # Tabla de logs (asegúrate de que exista con las mismas columnas definidas).
 LOGS_TABLE_ID = "project_settings.logs"
 hoy = datetime.date.today()
-ayer = hoy - datetime.timedelta(days=2)
+ayer = hoy - datetime.timedelta(days=4)
 
 # Fechas y ventana de consulta
-START_DATE = datetime.date(2024, 7, 8)
+START_DATE = datetime.date(2019, 1, 1)
 END_DATE = datetime.date(2027, 1, 1)
 # Fechas y ventana de consulta
-START_DATE = datetime.date(2024, 7, 8)
-END_DATE = datetime.date(2027, 1, 1)
-DELTA = datetime.timedelta(days=3)  # Procesar de día en día
+START_DATE = ayer
+END_DATE = hoy
+DELTA = datetime.timedelta(days=4)  # Procesar de día en día
 
 # Mapeo de columnas Monday -> Tipos de BigQuery
 COLUMN_TYPE_MAP = {
@@ -312,11 +312,10 @@ def parse_monday_column_value(text_val, json_val, bq_type):
 #################################
 # CONSULTA A MONDAY
 #################################
-
 def build_monday_query(start_str, end_str):
     """
-    Construye la consulta GraphQL para filtrar items según la fecha
-    en la columna 'date' entre start_str y end_str (YYYY-MM-DD).
+    Genera un query GraphQL para filtrar por la columna `COLUMN_ID_FECHA`,
+    con compare_attribute='CREATED_AT' y operator='between'.
     """
     query = f"""
     query {{
@@ -326,8 +325,9 @@ def build_monday_query(start_str, end_str):
           query_params: {{
             rules: [{{
               column_id: "{COLUMN_ID_FECHA}",
-              compare_value: ["{start_str}", "{end_str}"],
-              operator: between
+              operator: any_of,
+              compare_value: ["YESTERDAY"],
+              compare_attribute: "UPDATED_AT"
             }}]
           }}
         ) {{
@@ -598,7 +598,7 @@ def main():
     # Al final, insertar log
     insert_log_record(
         database_name="anuncios_penalizados",
-        process_name="ingesta_historica_anuncios_penalizados",      # Ajusta si quieres otro nombre
+        process_name="ingesta_diaria_anuncios_penalizados",      # Ajusta si quieres otro nombre
         records_created=overall_inserted + overall_updated,
         records_updated=overall_updated,
         execution_time=total_time,

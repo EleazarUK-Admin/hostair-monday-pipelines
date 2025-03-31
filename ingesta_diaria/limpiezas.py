@@ -10,7 +10,7 @@ from google.api_core.exceptions import NotFound
 API_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjE5Njk2MzQyMCwiYWFpIjoxMSwidWlkIjozMzY5MTA2MywiaWFkIjoiMjAyMi0xMS0xOVQwOToxMjoyMS4wMDBaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MTIxMzE3ODcsInJnbiI6InVzZTEifQ.ZdHFWNMZULEp188h9gSnPT8oLSmu3vHE3RMzXru4UwA"
 API_URL = "https://api.monday.com/v2"
 BOARD_ID = 4460406422
-COLUMN_ID_FECHA = "fecha_1"
+COLUMN_ID_FECHA = "__last_updated__"
 
 # Tabla final de destino (donde haremos MERGE).
 BIGQUERY_TABLE_ID = "housekeeping.prod_monday_limpiezas"
@@ -18,15 +18,15 @@ BIGQUERY_TABLE_ID = "housekeeping.prod_monday_limpiezas"
 # Tabla de logs
 LOGS_TABLE_ID = "project_settings.logs"
 hoy = datetime.date.today()
-ayer = hoy - datetime.timedelta(days=2)
+ayer = hoy - datetime.timedelta(days=4)
 
 # Fechas y ventana de consulta
 START_DATE = datetime.date(2019, 1, 1)
 END_DATE = datetime.date(2027, 1, 1)
 # Fechas y ventana de consulta
-START_DATE = datetime.date(2019, 1, 1)
-END_DATE = datetime.date(2027, 1, 1)
-DELTA = datetime.timedelta(days=3)  # Procesar de día en día
+START_DATE = ayer
+END_DATE = hoy
+DELTA = datetime.timedelta(days=4)  # Procesar de día en día
 
 # Mapeo de columnas Monday -> Tipos de BigQuery
 COLUMN_TYPE_MAP = {
@@ -348,19 +348,20 @@ def parse_monday_column_value(text_val, json_val, bq_type):
 
 def build_monday_query(start_str, end_str):
     """
-    Construye la consulta GraphQL para filtrar items según la fecha
-    (columna 'fecha_1') entre start_str y end_str (formato YYYY-MM-DD).
+    Genera un query GraphQL para filtrar por la columna `COLUMN_ID_FECHA`,
+    con compare_attribute='CREATED_AT' y operator='between'.
     """
     query = f"""
     query {{
       boards(ids: {BOARD_ID}) {{
         items_page(
-        limit:500
+          limit: 500
           query_params: {{
             rules: [{{
               column_id: "{COLUMN_ID_FECHA}",
-              compare_value: ["{start_str}", "{end_str}"],
-              operator: between
+              operator: any_of,
+              compare_value: ["YESTERDAY"],
+              compare_attribute: "UPDATED_AT"
             }}]
           }}
         ) {{
@@ -604,7 +605,7 @@ def main():
     # records_updated = total updated
     insert_log_record(
         database_name="limpiezas",
-        process_name="ingesta_historica_limpiezas",      # Ajusta si quieres otro nombre
+        process_name="ingesta_diaria_limpiezas",      # Ajusta si quieres otro nombre
         records_created=overall_inserted + overall_updated,
         records_updated=overall_updated,
         execution_time=total_time,

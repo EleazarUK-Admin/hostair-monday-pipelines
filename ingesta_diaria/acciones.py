@@ -18,7 +18,7 @@ API_URL = "https://api.monday.com/v2"
 BOARD_ID = 5355817123
 
 # Nombre de la columna que usaremos para filtrar. En tu caso "registro_de_creaci_n__1"
-COLUMN_ID_FECHA = "registro_de_creaci_n__1"
+COLUMN_ID_FECHA = "__last_updated__"
 
 # Tabla final de destino (donde haremos MERGE)
 BIGQUERY_TABLE_ID = "operations.acciones"
@@ -26,15 +26,15 @@ BIGQUERY_TABLE_ID = "operations.acciones"
 # Tabla de logs (asegúrate de crearla o cambiar el nombre si hace falta)
 LOGS_TABLE_ID = "project_settings.logs"
 hoy = datetime.date.today()
-ayer = hoy - datetime.timedelta(days=2)
+ayer = hoy - datetime.timedelta(days=4)
 
 # Fechas y ventana de consulta
 START_DATE = datetime.date(2019, 1, 1)
 END_DATE = datetime.date(2027, 1, 1)
 # Fechas y ventana de consulta
-START_DATE = datetime.date(2019, 1, 1)
-END_DATE = datetime.date(2027, 1, 1)
-DELTA = datetime.timedelta(days=1)  # Procesar de día en día
+START_DATE = ayer
+END_DATE = hoy
+DELTA = datetime.timedelta(days=4)  # Procesar de día en día
 
 
 # Mapeo de columnas (tu COLUMN_TYPE_MAP)
@@ -338,9 +338,8 @@ def parse_monday_column_value(text_val, json_val, bq_type):
 
 def build_monday_query(start_str, end_str):
     """
-    Genera un query GraphQL para filtrar items con compare_attribute='CREATED_AT',
-    y operator='between' en la columna `COLUMN_ID_FECHA`.
-    Filtrará items cuyo created_at esté entre start_str y end_str.
+    Genera un query GraphQL para filtrar por la columna `COLUMN_ID_FECHA`,
+    con compare_attribute='CREATED_AT' y operator='between'.
     """
     query = f"""
     query {{
@@ -350,9 +349,9 @@ def build_monday_query(start_str, end_str):
           query_params: {{
             rules: [{{
               column_id: "{COLUMN_ID_FECHA}",
-              operator: between,
-              compare_value: ["{start_str}", "{end_str}"],
-              compare_attribute: "CREATED_AT"
+              operator: any_of,
+              compare_value: ["YESTERDAY"],
+              compare_attribute: "UPDATED_AT"
             }}]
           }}
         ) {{
@@ -615,7 +614,7 @@ def main():
     # 4) Registrar en logs
     insert_log_record(
         database_name="acciones",           # Ajusta según tu naming
-        process_name="ingesta_historica_acciones",      # Ajusta si quieres otro nombre
+        process_name="ingesta_diaria_acciones",      # Ajusta si quieres otro nombre
         records_created=overall_inserted + overall_updated,
         records_updated=overall_updated,
         execution_time=total_time,

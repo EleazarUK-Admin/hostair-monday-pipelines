@@ -15,7 +15,7 @@ API_URL = "https://api.monday.com/v2"
 
 # ID de Board y columna de fecha
 BOARD_ID = 3983935560
-COLUMN_ID_FECHA = "date_1"
+COLUMN_ID_FECHA = "__last_updated__"
 
 # Tabla final de destino (donde haremos MERGE)
 BIGQUERY_TABLE_ID = "operations.expedientes_rh"
@@ -23,16 +23,15 @@ BIGQUERY_TABLE_ID = "operations.expedientes_rh"
 # Tabla de logs donde insertar la auditoría
 LOGS_TABLE_ID = "project_settings.logs"
 hoy = datetime.date.today()
-ayer = hoy - datetime.timedelta(days=2)
-# START_DATE = datetime.date(2020, 1, 1)
-# END_DATE = datetime.date(2027, 1, 1)
+ayer = hoy - datetime.timedelta(days=4)
+
 # Fechas y ventana de consulta
 START_DATE = datetime.date(2019, 1, 1)
 END_DATE = datetime.date(2027, 1, 1)
 # Fechas y ventana de consulta
-START_DATE = datetime.date(2019, 1, 1)
-END_DATE = datetime.date(2027, 1, 1)
-DELTA = datetime.timedelta(days=3)  # Procesar de día en día
+START_DATE = ayer
+END_DATE = hoy
+DELTA = datetime.timedelta(days=4)  # Procesar de día en día
 
 # Mapeo de columnas Monday -> Tipos de BigQuery
 COLUMN_TYPE_MAP = {
@@ -323,18 +322,20 @@ def parse_monday_column_value(text_val, json_val, bq_type):
 
 def build_monday_query(start_str, end_str):
     """
-    Construye la query GraphQL para obtener items cuyo valor en date_1
-    esté entre start_str y end_str (formato YYYY-MM-DD).
+    Genera un query GraphQL para filtrar por la columna `COLUMN_ID_FECHA`,
+    con compare_attribute='CREATED_AT' y operator='between'.
     """
     query = f"""
     query {{
       boards(ids: {BOARD_ID}) {{
         items_page(
+          limit: 500
           query_params: {{
             rules: [{{
               column_id: "{COLUMN_ID_FECHA}",
-              compare_value: ["{start_str}", "{end_str}"],
-              operator: between
+              operator: any_of,
+              compare_value: ["YESTERDAY"],
+              compare_attribute: "UPDATED_AT"
             }}]
           }}
         ) {{
@@ -605,7 +606,7 @@ def main():
     # records_updated = total actualizadas
     insert_log_record(
         database_name="expedientes_rh",   # o el nombre que gustes
-        process_name="ingesta_historica_expedientes_rh",      # Ajusta si quieres otro nombre
+        process_name="ingesta_diaria_expedientes_rh",      # Ajusta si quieres otro nombre
         records_created=overall_inserted + overall_updated,
         records_updated=overall_updated,
         execution_time=total_time,
