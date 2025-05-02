@@ -1,0 +1,201 @@
+{
+  "id": "4045551102",
+  "name": "🏢 Servicios",
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name"
+    },
+    {
+      "id": "texto",
+      "title": "Internet: Compañía",
+      "type": "text"
+    },
+    {
+      "id": "archivo5",
+      "title": "Internet: Foto recibo",
+      "type": "file"
+    },
+    {
+      "id": "texto04",
+      "title": "Internet: A nombre de",
+      "type": "text"
+    },
+    {
+      "id": "texto85",
+      "title": "Internet: Quién paga",
+      "type": "text"
+    },
+    {
+      "id": "texto7",
+      "title": "Internet: Cuenta",
+      "type": "text"
+    },
+    {
+      "id": "archivo2",
+      "title": "QR",
+      "type": "file"
+    },
+    {
+      "id": "texto9",
+      "title": "Internet: Velocidad",
+      "type": "text"
+    },
+    {
+      "id": "texto1",
+      "title": "Internet: Nombre WiFi",
+      "type": "text"
+    },
+    {
+      "id": "texto0",
+      "title": "Internet: Contraseña",
+      "type": "text"
+    },
+    {
+      "id": "texto4",
+      "title": "Nombre Repetidor",
+      "type": "text"
+    },
+    {
+      "id": "texto2",
+      "title": "Clave repetidor",
+      "type": "text"
+    },
+    {
+      "id": "long_text1__1",
+      "title": "Fecha de pago - Internet",
+      "type": "long_text"
+    },
+    {
+      "id": "texto12",
+      "title": "Netflix",
+      "type": "text"
+    },
+    {
+      "id": "texto8",
+      "title": "Gas: Compañía",
+      "type": "text"
+    },
+    {
+      "id": "texto5",
+      "title": "Gas: No. Cuenta",
+      "type": "text"
+    },
+    {
+      "id": "texto18",
+      "title": "Gas: Paga",
+      "type": "text"
+    },
+    {
+      "id": "texto27",
+      "title": "Gas: Método de pago",
+      "type": "text"
+    },
+    {
+      "id": "archivo_1__1",
+      "title": "Gas: Foto recibo",
+      "type": "file"
+    },
+    {
+      "id": "texto_mkmy84yn",
+      "title": "Fecha de pago gas",
+      "type": "text"
+    },
+    {
+      "id": "texto6",
+      "title": "CFE: No. de servicio",
+      "type": "text"
+    },
+    {
+      "id": "texto89",
+      "title": "CFE: A nombre de",
+      "type": "text"
+    },
+    {
+      "id": "text4",
+      "title": "CFE: Quién paga",
+      "type": "text"
+    },
+    {
+      "id": "texto817",
+      "title": "CFE: Estado",
+      "type": "text"
+    },
+    {
+      "id": "archivo",
+      "title": "Foto CFE",
+      "type": "file"
+    },
+    {
+      "id": "fecha_de_pago___cfe__1",
+      "title": "Fecha de pago - CFE",
+      "type": "text"
+    },
+    {
+      "id": "texto81",
+      "title": "Agua: No. de cuenta",
+      "type": "text"
+    },
+    {
+      "id": "texto19",
+      "title": "Agua: Paga",
+      "type": "text"
+    },
+    {
+      "id": "archivo6",
+      "title": "Foto Recibo Agua",
+      "type": "file"
+    },
+    {
+      "id": "fecha_de_pago___agua__1",
+      "title": "Fecha de pago - Agua",
+      "type": "text"
+    },
+    {
+      "id": "texto__1",
+      "title": "Cuenta Predial",
+      "type": "text"
+    },
+    {
+      "id": "texto9__1",
+      "title": "Fecha de Pago - Predial",
+      "type": "text"
+    },
+    {
+      "id": "estado",
+      "title": "Estado",
+      "type": "status"
+    },
+    {
+      "id": "board_relation3",
+      "title": "Link to Fichas - Propiedades",
+      "type": "board_relation"
+    },
+    {
+      "id": "reflejo__1",
+      "title": "Reflejo",
+      "type": "mirror"
+    },
+    {
+      "id": "estado_1__1",
+      "title": "Estado 1",
+      "type": "status"
+    },
+    {
+      "id": "pulse_id_mkqaxmpc",
+      "title": "ID de elemento",
+      "type": "item_id"
+    },
+    {
+      "id": "pulse_log_mkqar56e",
+      "title": "Registro de creación",
+      "type": "creation_log"
+    },
+    {
+      "id": "pulse_updated_mkqa74hg",
+      "title": "Última actualización",
+      "type": "last_updated"
+    }
+  ]
+}

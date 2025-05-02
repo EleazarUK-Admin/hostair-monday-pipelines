@@ -7,18 +7,27 @@ API_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjE5Njk2MzQyMCwiYWFpIjoxMSwidWlkIjozMz
 API_URL = "https://api.monday.com/v2"
 
 # Lista con la información de cada board que quieres procesar.
+# table_info = [
+#     {"board_id": 3169137106, "board_name": "compras_pagos", "table": "compras_pagos"},
+#     {"board_id": 7269476761, "board_name": "caja_chica_chilpancingo", "table": "caja_chica_chilpancingo"},
+#     {"board_id": 7072610932, "board_name": "agente_soporte_campo", "table": "agente_soporte_campo"},
+#     {"board_id": 5914627798, "board_name": "soporte_operativo", "table": "soporte_operativo"},
+#     {"board_id": 5355817123, "board_name": "acciones", "table": "acciones"},
+#     {"board_id": 7019548313, "board_name": "anuncios_penalizados", "table": "anuncios_penalizados"},
+#     {"board_id": 6908297780, "board_name": "resoluciones", "table": "resoluciones"},
+#     {"board_id": 2663242816, "board_name": "solicitudes_mantenimiento", "table": "solicitudes_mantenimiento"},
+#     {"board_id": 4460406422, "board_name": "Limpiezas", "table": "prod_monday_limpiezas"}
+# ]
 table_info = [
-    {"board_id": 3169137106, "board_name": "compras_pagos", "table": "compras_pagos"},
-    {"board_id": 7269476761, "board_name": "caja_chica_chilpancingo", "table": "caja_chica_chilpancingo"},
-    {"board_id": 7072610932, "board_name": "agente_soporte_campo", "table": "agente_soporte_campo"},
-    {"board_id": 5914627798, "board_name": "soporte_operativo", "table": "soporte_operativo"},
-    {"board_id": 5355817123, "board_name": "acciones", "table": "acciones"},
-    {"board_id": 7019548313, "board_name": "anuncios_penalizados", "table": "anuncios_penalizados"},
-    {"board_id": 6908297780, "board_name": "resoluciones", "table": "resoluciones"},
-    {"board_id": 2663242816, "board_name": "solicitudes_mantenimiento", "table": "solicitudes_mantenimiento"},
-    {"board_id": 4460406422, "board_name": "Limpiezas", "table": "prod_monday_limpiezas"}
+    {"board_id": 3270960828, "board_name": "monday_properties_main", "table": "properties.monday_properties_main"},
+    {"board_id": 4045465610, "board_name": "monday_properties_general_information", "table": "properties.monday_properties_general_information"},
+    {"board_id": 4045377615, "board_name": "monday_properties_equipment", "table": "properties.monday_properties_equipment"},
+    {"board_id": 4045430146, "board_name": "monday_properties_amenities", "table": "properties.monday_properties_amenities"},
+    {"board_id": 4045413655, "board_name": "monday_properties_accesories", "table": "properties.monday_properties_accesories"},
+    {"board_id": 4045551102, "board_name": "monday_properties_services", "table": "properties.monday_properties_services"},
+    {"board_id": 4045514460, "board_name": "monday_properties_presentation_standars", "table": "properties.monday_properties_presentation_standars"},
+    {"board_id": 6311489730, "board_name": "monday_properties_checkin_guide", "table": "properties.monday_properties_checkin_guide"},
 ]
-
 # Mapeo de tipos Monday -> tipos BigQuery
 type_map = {
     "text": "STRING",
@@ -64,18 +73,7 @@ type_map = {
 }
 
 def get_board_columns(board_id):
-    """
-    Consulta la API de Monday para obtener la info del board (id, name, columns).
-    Devuelve un diccionario con la estructura:
-    {
-      "id": <board_id>,
-      "name": <nombre board>,
-      "columns": [
-          {"id": <col_id>, "title": <col_title>, "type": <col_type>},
-          ...
-      ]
-    }
-    """
+  
     query = """
     query ($boardIds: [ID!]!) {
       boards (ids: $boardIds) {
@@ -126,7 +124,7 @@ def generate_create_table_sql(table_name, columns):
 
 def main():
     # Crea la carpeta de salida
-    os.makedirs("output", exist_ok=True)
+    os.makedirs("output2", exist_ok=True)
 
     # Creamos un único Workbook de Excel
     wb = openpyxl.Workbook()
@@ -160,7 +158,7 @@ def main():
         create_table_sql = generate_create_table_sql(full_table_name, columns)
 
         # d) Guardar el .sql
-        sql_path = os.path.join("output", f"board_{board_id}_create_table.sql")
+        sql_path = os.path.join("output2", f"board_{board_id}_create_table.sql")
         with open(sql_path, "w", encoding="utf-8") as sf:
             sf.write(create_table_sql)
         print("Script SQL guardado en:", sql_path)
@@ -184,7 +182,7 @@ def main():
         print(f"Hoja de Excel creada para board {board_id} - {board_name}")
 
     # Al terminar el ciclo, guardamos el workbook con todas las hojas
-    excel_path = os.path.join("output", "boards_columns.xlsx")
+    excel_path = os.path.join("output2", "boards_columns.xlsx")
     wb.save(excel_path)
     print("\nExcel con hojas separadas guardado en:", excel_path)
 

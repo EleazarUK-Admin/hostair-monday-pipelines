@@ -35,7 +35,7 @@ BIGQUERY_TABLE_ID = "operations.resoluciones"
 # Tabla de logs (puedes cambiarla si lo deseas)
 LOGS_TABLE_ID = "project_settings.logs"
 hoy = datetime.date.today()
-ayer = hoy - datetime.timedelta(days=4)
+ayer = hoy - datetime.timedelta(days=1)
 
 # Fechas y ventana de consulta
 START_DATE = datetime.date(2019, 1, 1)
@@ -43,7 +43,7 @@ END_DATE = datetime.date(2027, 1, 1)
 # Fechas y ventana de consulta
 START_DATE = ayer
 END_DATE = hoy
-DELTA = datetime.timedelta(days=4)  # Procesar de día en día
+DELTA = datetime.timedelta(days=1)  # Procesar de día en día
 
 # NUEVO: Mapeo de columnas Monday -> Tipos de BigQuery
 COLUMN_TYPE_MAP = {
@@ -462,7 +462,7 @@ def upsert_rows_into_bq(rows):
         ensure_dataset_exists(dataset_id)
         temp_table_id = f"{dataset_id}.tmp_{uuid.uuid4().hex}"
         schema = []
-        schema.append(bigquery.SchemaField("id", "NUMERIC"))
+        schema.append(bigquery.SchemaField("id", "INT64"))
         schema.append(bigquery.SchemaField("name", "STRING"))
         for col_id, bq_type in COLUMN_TYPE_MAP.items():
             if col_id not in ("id", "name"):

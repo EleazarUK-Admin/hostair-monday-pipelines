@@ -1,0 +1,436 @@
+{
+  "id": "3270960828",
+  "name": "🏢 Propiedades",
+  "columns": [
+    {
+      "id": "name",
+      "title": "Nombre",
+      "type": "name"
+    },
+    {
+      "id": "subelementos",
+      "title": "Subelementos",
+      "type": "subtasks"
+    },
+    {
+      "id": "status",
+      "title": "🌐 Estado",
+      "type": "status"
+    },
+    {
+      "id": "reflejo_mkmeqnsy",
+      "title": "Reflejo",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo172",
+      "title": "📋 Notas importantes",
+      "type": "mirror"
+    },
+    {
+      "id": "enlace5",
+      "title": "🔗 Check-in Guide Link",
+      "type": "link"
+    },
+    {
+      "id": "enlace",
+      "title": "🔗 Link Airbnb",
+      "type": "link"
+    },
+    {
+      "id": "personas0",
+      "title": "🫧 Personal de limpieza",
+      "type": "people"
+    },
+    {
+      "id": "multiple_person__1",
+      "title": "🔧 Personal de mantenimiento",
+      "type": "people"
+    },
+    {
+      "id": "multiple_person3__1",
+      "title": "🗳️ Personal de Soporte",
+      "type": "people"
+    },
+    {
+      "id": "personas__1",
+      "title": "🔍 Supervisor",
+      "type": "people"
+    },
+    {
+      "id": "personas6__1",
+      "title": "👁️ Visibilidad",
+      "type": "people"
+    },
+    {
+      "id": "dup__of____visibilidad_mkm7s2wb",
+      "title": "👩🏼‍✈️Vigilancia / Administración",
+      "type": "people"
+    },
+    {
+      "id": "numeric1",
+      "title": "👩🏼‍✈️ Vigilancia User ID",
+      "type": "numbers"
+    },
+    {
+      "id": "reflejo70",
+      "title": "💁 Cliente",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo68",
+      "title": "🗺️ Dirección",
+      "type": "mirror"
+    },
+    {
+      "id": "men__desplegable8",
+      "title": "📲 Método de registro",
+      "type": "dropdown"
+    },
+    {
+      "id": "reflejo9",
+      "title": "🔑 Acceso depto.",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo54",
+      "title": "🔑 Acceso edificio",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo130",
+      "title": "🗑️ Ubicación Basurero",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo058",
+      "title": "📕 Reglamentos del edificio",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo94",
+      "title": "🗑️ Basurero",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo39",
+      "title": "🚘 Estacionamiento",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo23",
+      "title": "🚘 Estacionamiento Foto",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo06",
+      "title": "🛜 WiFi",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo03",
+      "title": "🛜 Contraseña",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo08",
+      "title": "🛜 Velocidad",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo102",
+      "title": "🛜  Compañía",
+      "type": "mirror"
+    },
+    {
+      "id": "conectar_tableros32",
+      "title": "🏢 Información general",
+      "type": "board_relation"
+    },
+    {
+      "id": "conectar_tableros1",
+      "title": "🏢 Equipos y dispositivos",
+      "type": "board_relation"
+    },
+    {
+      "id": "conectar_tableros25",
+      "title": "🏢 Amenidades",
+      "type": "board_relation"
+    },
+    {
+      "id": "conectar_tableros34",
+      "title": "🏢 Blancos y accesorios",
+      "type": "board_relation"
+    },
+    {
+      "id": "conectar_tableros29",
+      "title": "🏢 Servicios",
+      "type": "board_relation"
+    },
+    {
+      "id": "conectar_tableros4",
+      "title": "🏢 Estándares de Presentación",
+      "type": "board_relation"
+    },
+    {
+      "id": "conectar_tableros__1",
+      "title": "🏢 Check-in guide",
+      "type": "board_relation"
+    },
+    {
+      "id": "board_relation__1",
+      "title": "🏢 Grupos de WhatsApp",
+      "type": "board_relation"
+    },
+    {
+      "id": "link_to_avisos__1",
+      "title": "📰  Avisos",
+      "type": "board_relation"
+    },
+    {
+      "id": "board_relation8",
+      "title": "💁 Propiedad de Clientes",
+      "type": "board_relation"
+    },
+    {
+      "id": "dup__of_paquete6",
+      "title": "📄Modalidad",
+      "type": "mirror"
+    },
+    {
+      "id": "cuenta_airbnb__1",
+      "title": "🚫 Cuenta Airbnb",
+      "type": "dropdown"
+    },
+    {
+      "id": "dup__of_modalidad__1",
+      "title": "🌐 Cuenta Airbnb",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo49",
+      "title": "👩🏼‍✈️Administrador",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo0",
+      "title": "👩🏼‍✈️ Contacto Administrador",
+      "type": "mirror"
+    },
+    {
+      "id": "estado_13",
+      "title": "✅ Anuncio en Airbnb",
+      "type": "status"
+    },
+    {
+      "id": "color",
+      "title": "✅ Descuentos",
+      "type": "status"
+    },
+    {
+      "id": "dup__of___descuentos_Mjj4RSaV",
+      "title": "✅ Clau = Anfitriona principal",
+      "type": "status"
+    },
+    {
+      "id": "color_mkkt3gem",
+      "title": "✅ Rodrigo co-host",
+      "type": "status"
+    },
+    {
+      "id": "color3",
+      "title": "✅ Mensajes Hospitable",
+      "type": "status"
+    },
+    {
+      "id": "reflejo4",
+      "title": "✅ Equipos y dispositivos",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo17",
+      "title": "✅ Estándares de presentación",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo5",
+      "title": "✅ Información General",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo2",
+      "title": "✅ Servicios",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo_19",
+      "title": "✅ Blancos y Accesorios",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo36",
+      "title": "✅ Amenidades",
+      "type": "mirror"
+    },
+    {
+      "id": "texto2",
+      "title": "📋 Nombre Corto",
+      "type": "text"
+    },
+    {
+      "id": "texto86",
+      "title": "📋 Nombre en Airbnb",
+      "type": "text"
+    },
+    {
+      "id": "texto02",
+      "title": "📋 (En) Nombre Airbnb",
+      "type": "text"
+    },
+    {
+      "id": "id_propiedad",
+      "title": "📋 Airbnb ID propiedad",
+      "type": "text"
+    },
+    {
+      "id": "mike___hosp_id",
+      "title": "📋 Hosp ID",
+      "type": "numbers"
+    },
+    {
+      "id": "__hosp_uuid_Mjj5oqhN",
+      "title": "📋 Hosp UUID",
+      "type": "text"
+    },
+    {
+      "id": "texto09",
+      "title": "📋 CalendarID",
+      "type": "text"
+    },
+    {
+      "id": "f_rmula3",
+      "title": "🌐 Tabulador Limpieza",
+      "type": "formula"
+    },
+    {
+      "id": "n_meros29",
+      "title": "📋 Tarifa Limpieza Huépsed",
+      "type": "numbers"
+    },
+    {
+      "id": "n_meros2",
+      "title": "💵 Pago Personal de Limpieza",
+      "type": "numbers"
+    },
+    {
+      "id": "n_meros",
+      "title": "🌐 Tabulador $ por noche",
+      "type": "numbers"
+    },
+    {
+      "id": "n_meros90",
+      "title": "📋 Precio por noche real",
+      "type": "numbers"
+    },
+    {
+      "id": "formula",
+      "title": "🌐 Tabulador Fin de semana",
+      "type": "formula"
+    },
+    {
+      "id": "numeric2",
+      "title": "📋 Precio por fin de semana real",
+      "type": "numbers"
+    },
+    {
+      "id": "men__desplegable7",
+      "title": "🗺️ Zona",
+      "type": "dropdown"
+    },
+    {
+      "id": "ciudad__1",
+      "title": "🌎 Ciudad",
+      "type": "dropdown"
+    },
+    {
+      "id": "label__1",
+      "title": "🏷️ Label",
+      "type": "status"
+    },
+    {
+      "id": "estado_1__1",
+      "title": "📷 Fotos Profesionales",
+      "type": "status"
+    },
+    {
+      "id": "board_relation5",
+      "title": "🔍 Supervisión de limpiezas",
+      "type": "board_relation"
+    },
+    {
+      "id": "reflejo51",
+      "title": "🗓️ Fecha última supervisión",
+      "type": "mirror"
+    },
+    {
+      "id": "lookup9",
+      "title": "🔍 Superv. últimos 3 meses",
+      "type": "mirror"
+    },
+    {
+      "id": "monday_doc_v2__1",
+      "title": "monday Doc v2",
+      "type": "direct_doc"
+    },
+    {
+      "id": "reflejo_Mjj2eJgI",
+      "title": "⚙️ No. Recámaras",
+      "type": "mirror"
+    },
+    {
+      "id": "board_relation_mkmv5m8g",
+      "title": "⚠️ Penalizaciones",
+      "type": "board_relation"
+    },
+    {
+      "id": "reflejo_1_mkmvhsv9",
+      "title": "⚠️ Penalización",
+      "type": "mirror"
+    },
+    {
+      "id": "dup__of____penalizaci_n_mkmv2e47",
+      "title": "⚠️ Fecha Penalización",
+      "type": "mirror"
+    },
+    {
+      "id": "registro_de_creaci_n_mkmbre94",
+      "title": "Registro de creación",
+      "type": "creation_log"
+    },
+    {
+      "id": "_ltima_actualizaci_n",
+      "title": "Última actualización",
+      "type": "last_updated"
+    },
+    {
+      "id": "casilla_de_verificaci_n_mkmwkqrg",
+      "title": "En proceso de Duplicar",
+      "type": "checkbox"
+    },
+    {
+      "id": "link_to___calendario_mkmxvdet",
+      "title": "link to 🏢 Calendario",
+      "type": "board_relation"
+    },
+    {
+      "id": "id_de_elemento_mkn314vp",
+      "title": "ID de elemento",
+      "type": "item_id"
+    },
+    {
+      "id": "board_relation_mkpvk69p",
+      "title": "link to Reportes Inspecciones",
+      "type": "board_relation"
+    }
+  ]
+}

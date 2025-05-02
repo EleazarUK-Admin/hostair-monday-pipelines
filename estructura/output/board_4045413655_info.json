@@ -1,0 +1,141 @@
+{
+  "id": "4045413655",
+  "name": "🏢 Blancos y accesorios",
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name"
+    },
+    {
+      "id": "subelementos",
+      "title": "Subelementos",
+      "type": "subtasks"
+    },
+    {
+      "id": "texto",
+      "title": "Juegos de sábanas",
+      "type": "text"
+    },
+    {
+      "id": "archivo",
+      "title": "Fotos: Juego de sábanas",
+      "type": "file"
+    },
+    {
+      "id": "texto2",
+      "title": "Almoahadas",
+      "type": "text"
+    },
+    {
+      "id": "archivo6",
+      "title": "Fotos: Almohadas",
+      "type": "file"
+    },
+    {
+      "id": "texto1",
+      "title": "Edredones",
+      "type": "text"
+    },
+    {
+      "id": "archivo2",
+      "title": "Fotos: Edredones",
+      "type": "file"
+    },
+    {
+      "id": "texto7",
+      "title": "Fundas de edredón",
+      "type": "text"
+    },
+    {
+      "id": "archivo1",
+      "title": "Fotos: Fundas de edredón",
+      "type": "file"
+    },
+    {
+      "id": "texto5",
+      "title": "Frazadas, cobijas o cobertores",
+      "type": "text"
+    },
+    {
+      "id": "archivo7",
+      "title": "Fotos: Frazadas, cobijas o cobertores",
+      "type": "file"
+    },
+    {
+      "id": "texto58",
+      "title": "Accesorios extra camas",
+      "type": "text"
+    },
+    {
+      "id": "archivo8",
+      "title": "Fotos: Accesorios extra camas",
+      "type": "file"
+    },
+    {
+      "id": "texto16",
+      "title": "Toallas de cuerpo completo",
+      "type": "text"
+    },
+    {
+      "id": "archivo27",
+      "title": "Fotos: Toallas de cuerpo",
+      "type": "file"
+    },
+    {
+      "id": "texto3",
+      "title": "Toallas de mano y faciales",
+      "type": "text"
+    },
+    {
+      "id": "archivo5",
+      "title": "Fotos: Toallas de mano y faciales",
+      "type": "file"
+    },
+    {
+      "id": "texto8",
+      "title": "Tapetes de baño",
+      "type": "text"
+    },
+    {
+      "id": "archivo53",
+      "title": "Foto: Tapetes de baño",
+      "type": "file"
+    },
+    {
+      "id": "archivo28",
+      "title": "Foto de elementos de decoración importantes",
+      "type": "file"
+    },
+    {
+      "id": "archivo61",
+      "title": "Foto de cocina (Vajilla, batería, vasos, acc. para cocinar)",
+      "type": "file"
+    },
+    {
+      "id": "estado",
+      "title": "Estado",
+      "type": "status"
+    },
+    {
+      "id": "board_relation2",
+      "title": "link to Fichas - Propiedades",
+      "type": "board_relation"
+    },
+    {
+      "id": "pulse_id_mkqa46c6",
+      "title": "ID de elemento",
+      "type": "item_id"
+    },
+    {
+      "id": "pulse_log_mkqaft81",
+      "title": "Registro de creación",
+      "type": "creation_log"
+    },
+    {
+      "id": "pulse_updated_mkqak8dq",
+      "title": "Última actualización",
+      "type": "last_updated"
+    }
+  ]
+}

@@ -10,6 +10,6 @@ CMD ["python", "main.py"]
 
 
 # gcloud builds submit --tag gcr.io/hostair-test-data/ingesta_monday:latest
-# gcloud run jobs update ingesta-monday-job --image gcr.io/hostair-test-data/ingesta_monday:latest --region us-central1
+# gcloud run jobs create ingesta-monday-job --image gcr.io/hostair-test-data/ingesta_monday:latest --region us-central1
 # gcloud run jobs execute ingesta-monday-job --region us-central1
 

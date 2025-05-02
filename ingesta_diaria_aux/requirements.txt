@@ -1,0 +1,4 @@
+requests
+google-cloud-bigquery
+google-api-core
+google-cloud-logging

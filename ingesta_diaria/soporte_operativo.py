@@ -33,7 +33,7 @@ BIGQUERY_TABLE_ID = "support.soporte_operativo"
 # Tabla de logs
 LOGS_TABLE_ID = "project_settings.logs"
 hoy = datetime.date.today()
-ayer = hoy - datetime.timedelta(days=4)
+ayer = hoy - datetime.timedelta(days=1)
 
 # Fechas y ventana de consulta
 START_DATE = datetime.date(2019, 1, 1)
@@ -41,7 +41,7 @@ END_DATE = datetime.date(2027, 1, 1)
 # Fechas y ventana de consulta
 START_DATE = ayer
 END_DATE = hoy
-DELTA = datetime.timedelta(days=4)  # Procesar de día en día
+DELTA = datetime.timedelta(days=1)  # Procesar de día en día
 
 # Mapeo de columnas Monday -> Tipos de BigQuesry
 # (ajustado a lo que definiste en tu CREATE TABLE)

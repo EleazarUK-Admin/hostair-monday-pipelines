@@ -1,0 +1,91 @@
+{
+  "id": "4045514460",
+  "name": "🏢 Estándares de Presentación",
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name"
+    },
+    {
+      "id": "subelementos",
+      "title": "Subelementos",
+      "type": "subtasks"
+    },
+    {
+      "id": "archivo",
+      "title": "Recámaras",
+      "type": "file"
+    },
+    {
+      "id": "archivo4",
+      "title": "Sala",
+      "type": "file"
+    },
+    {
+      "id": "archivo6",
+      "title": "Comedor",
+      "type": "file"
+    },
+    {
+      "id": "archivo1",
+      "title": "Cocina",
+      "type": "file"
+    },
+    {
+      "id": "archivo8",
+      "title": "Baños",
+      "type": "file"
+    },
+    {
+      "id": "archivo5",
+      "title": "Decoración adicional",
+      "type": "file"
+    },
+    {
+      "id": "archivo7",
+      "title": "Elementos importantes",
+      "type": "file"
+    },
+    {
+      "id": "archivo47",
+      "title": "Balcón / Terraza",
+      "type": "file"
+    },
+    {
+      "id": "archivo_mkn5as9y",
+      "title": "Amenidades",
+      "type": "file"
+    },
+    {
+      "id": "archivo_mkn5dvpr",
+      "title": "todas las fotos",
+      "type": "file"
+    },
+    {
+      "id": "status",
+      "title": "Estado - Mandar a subir el anuncio a Airbnb",
+      "type": "status"
+    },
+    {
+      "id": "link_to_propiedades",
+      "title": "link to Propiedades",
+      "type": "board_relation"
+    },
+    {
+      "id": "pulse_id_mkqaj08g",
+      "title": "ID de elemento",
+      "type": "item_id"
+    },
+    {
+      "id": "pulse_log_mkqa9355",
+      "title": "Registro de creación",
+      "type": "creation_log"
+    },
+    {
+      "id": "pulse_updated_mkqa8r0v",
+      "title": "Última actualización",
+      "type": "last_updated"
+    }
+  ]
+}

@@ -1,0 +1,211 @@
+{
+  "id": "4045430146",
+  "name": "🏢 Amenidades",
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name"
+    },
+    {
+      "id": "estado_1",
+      "title": "Estacionamiento",
+      "type": "status"
+    },
+    {
+      "id": "texto_largo",
+      "title": "Instrucciones y ubicación: Estacionamiento",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo",
+      "title": "Fotos: Estacionamiento",
+      "type": "file"
+    },
+    {
+      "id": "color",
+      "title": "Rooftop / Terraza",
+      "type": "status"
+    },
+    {
+      "id": "texto_largo7",
+      "title": "Acceso, instrucciones y horarios: Rooftop...",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo5",
+      "title": "Fotos: Rooftop...",
+      "type": "file"
+    },
+    {
+      "id": "color0",
+      "title": "Gimnasio",
+      "type": "status"
+    },
+    {
+      "id": "texto_largo2",
+      "title": "Instrucciones, acceso y horarios: Gimnasio",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo8",
+      "title": "Fotos: Gimnasio",
+      "type": "file"
+    },
+    {
+      "id": "dup__of_gimnasio",
+      "title": "Alberca",
+      "type": "status"
+    },
+    {
+      "id": "texto_largo0",
+      "title": "Instrucciones, acceso y horarios: Alberca",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo0",
+      "title": "Fotos: Alberca",
+      "type": "file"
+    },
+    {
+      "id": "dup__of_alberca",
+      "title": "Business Center",
+      "type": "status"
+    },
+    {
+      "id": "texto_largo8",
+      "title": "Instrucciones, acceso y horarios: Business Center / Sala Lounge",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo9",
+      "title": "Fotos: Business center / Sala Lounge",
+      "type": "file"
+    },
+    {
+      "id": "color4",
+      "title": "Jacuzzi",
+      "type": "status"
+    },
+    {
+      "id": "texto_largo24",
+      "title": "Instrucciones, acceso y horarios: Jacuzzi",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo50",
+      "title": "Fotos: Jacuzzi",
+      "type": "file"
+    },
+    {
+      "id": "dup__of_jacuzzi",
+      "title": "Cine",
+      "type": "status"
+    },
+    {
+      "id": "texto_largo1",
+      "title": "Instrucciones, acceso y horarios: Sala de Cine",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo83",
+      "title": "Fotos: Sala de Cine",
+      "type": "file"
+    },
+    {
+      "id": "dup__of_cine",
+      "title": "Juegos para niños",
+      "type": "status"
+    },
+    {
+      "id": "texto_largo5",
+      "title": "Instrucciones, acceso y horarios: Juegos para niños",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo04",
+      "title": "Fotos: Juegos para niños",
+      "type": "file"
+    },
+    {
+      "id": "color02",
+      "title": "Bodega",
+      "type": "status"
+    },
+    {
+      "id": "texto_largo94",
+      "title": "Ubicación y acceso: Bodega",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo69",
+      "title": "Fotos: Bodega",
+      "type": "file"
+    },
+    {
+      "id": "boolean7",
+      "title": "Lavandería",
+      "type": "checkbox"
+    },
+    {
+      "id": "dup__of_bodega",
+      "title": "Lavandería",
+      "type": "status"
+    },
+    {
+      "id": "texto_largo4",
+      "title": "Instrucciones acceso y horarios: Lavandería",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo3",
+      "title": "Fotos: Lavandería",
+      "type": "file"
+    },
+    {
+      "id": "dup__of_lavander_a",
+      "title": "Otras amenidades",
+      "type": "status"
+    },
+    {
+      "id": "texto",
+      "title": "Nombre",
+      "type": "text"
+    },
+    {
+      "id": "texto_largo9",
+      "title": "Instrucciones, acceso y horarios: Otras amenidades",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo98",
+      "title": "Fotos: Otras amenidades",
+      "type": "file"
+    },
+    {
+      "id": "estado",
+      "title": "Estado",
+      "type": "status"
+    },
+    {
+      "id": "board_relation9",
+      "title": "Link to Fichas - Propiedades",
+      "type": "board_relation"
+    },
+    {
+      "id": "pulse_id_mkqaswrw",
+      "title": "ID de elemento",
+      "type": "item_id"
+    },
+    {
+      "id": "pulse_log_mkqamgd4",
+      "title": "Registro de creación",
+      "type": "creation_log"
+    },
+    {
+      "id": "pulse_updated_mkqaj0pe",
+      "title": "Última actualización",
+      "type": "last_updated"
+    }
+  ]
+}

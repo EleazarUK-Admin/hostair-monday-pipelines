@@ -1,0 +1,271 @@
+{
+  "id": "2663242816",
+  "name": "🔧 Solicitudes de Mantenimiento",
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name"
+    },
+    {
+      "id": "conectar_tableros",
+      "title": "📋 Propiedad",
+      "type": "board_relation"
+    },
+    {
+      "id": "texto3",
+      "title": "📋 Descripción",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo",
+      "title": "📋 Archivos",
+      "type": "file"
+    },
+    {
+      "id": "estado_1__1",
+      "title": "📋 Programación",
+      "type": "status"
+    },
+    {
+      "id": "fecha_1__1",
+      "title": "📋 Fecha",
+      "type": "date"
+    },
+    {
+      "id": "date",
+      "title": "🔧 Fecha y hora",
+      "type": "date"
+    },
+    {
+      "id": "texto__1",
+      "title": "📋 Horario",
+      "type": "text"
+    },
+    {
+      "id": "personas_16",
+      "title": "📋 Notificar a:",
+      "type": "people"
+    },
+    {
+      "id": "f_rmula__1",
+      "title": "🌐 Solicita",
+      "type": "formula"
+    },
+    {
+      "id": "estado_14__1",
+      "title": "🌐 Prioridad",
+      "type": "status"
+    },
+    {
+      "id": "estado_11__1",
+      "title": "🌐 Estado",
+      "type": "status"
+    },
+    {
+      "id": "bot_n__1",
+      "title": "🔧 Recepción",
+      "type": "button"
+    },
+    {
+      "id": "n_meros39",
+      "title": "🔧 Orden del día",
+      "type": "numbers"
+    },
+    {
+      "id": "lookup",
+      "title": "Acceso edificio",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo41",
+      "title": "Acceso al Depto.",
+      "type": "mirror"
+    },
+    {
+      "id": "dup__of___recepci_n1__1",
+      "title": "🔧 Iniciar",
+      "type": "button"
+    },
+    {
+      "id": "dup__of___iniciar__1",
+      "title": "🔧 Realizado",
+      "type": "button"
+    },
+    {
+      "id": "texto62",
+      "title": "🔧 Descripción del trabajo realizado",
+      "type": "long_text"
+    },
+    {
+      "id": "long_text",
+      "title": "🔧 Observaciones internas",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo4",
+      "title": "🔧 Evidencia de cierre",
+      "type": "file"
+    },
+    {
+      "id": "n_meros8",
+      "title": "🔧 Costos extra",
+      "type": "numbers"
+    },
+    {
+      "id": "personas",
+      "title": "🔧 Asignado",
+      "type": "people"
+    },
+    {
+      "id": "men__desplegable1",
+      "title": "🔧 Clasificación",
+      "type": "dropdown"
+    },
+    {
+      "id": "subelementos",
+      "title": "Subelementos",
+      "type": "subtasks"
+    },
+    {
+      "id": "hora",
+      "title": "🔧 Hora Inicio",
+      "type": "hour"
+    },
+    {
+      "id": "hora9",
+      "title": "🔧 Hora Final",
+      "type": "hour"
+    },
+    {
+      "id": "f_rmula2",
+      "title": "🌐 Duración",
+      "type": "formula"
+    },
+    {
+      "id": "clasificaci_n_1",
+      "title": "📋 Evaluación a mantenimiento",
+      "type": "rating"
+    },
+    {
+      "id": "texto_largo",
+      "title": "📋 Comentarios de la evaluación a mantenimiento",
+      "type": "long_text"
+    },
+    {
+      "id": "conectar_tableros3",
+      "title": "📋 Reincidencia",
+      "type": "board_relation"
+    },
+    {
+      "id": "reflejo3",
+      "title": "🌐  Fecha de reincidencia",
+      "type": "mirror"
+    },
+    {
+      "id": "clasificaci_n_16",
+      "title": "🔧 Evaluación del solicitante",
+      "type": "rating"
+    },
+    {
+      "id": "texto_largo8",
+      "title": "🔧 Comentarios de la evaluación al solicitante",
+      "type": "long_text"
+    },
+    {
+      "id": "duration",
+      "title": "⏱️ Respuesta Inicial",
+      "type": "time_tracking"
+    },
+    {
+      "id": "duration__1",
+      "title": "⏱️ Programación",
+      "type": "time_tracking"
+    },
+    {
+      "id": "dup__of____programaci_n__1",
+      "title": "⏱️ En Espera",
+      "type": "time_tracking"
+    },
+    {
+      "id": "dup__of____en_espera__1",
+      "title": "⏱️ Total",
+      "type": "time_tracking"
+    },
+    {
+      "id": "personas_153",
+      "title": "⚙️ Solicita",
+      "type": "people"
+    },
+    {
+      "id": "creaci_n_de_registro",
+      "title": "⚙️ Creación",
+      "type": "creation_log"
+    },
+    {
+      "id": "registro_de_creaci_n__1",
+      "title": "⚙️ Registro de creación",
+      "type": "creation_log"
+    },
+    {
+      "id": "_ltima_actualizaci_n",
+      "title": "⚙️ Actualización",
+      "type": "last_updated"
+    },
+    {
+      "id": "estado__1",
+      "title": "🌐 Fuente",
+      "type": "status"
+    },
+    {
+      "id": "id__de_elemento__1",
+      "title": "🌐 Folio",
+      "type": "item_id"
+    },
+    {
+      "id": "texto9__1",
+      "title": "🌐 Código de Reserva",
+      "type": "text"
+    },
+    {
+      "id": "bot_n5__1",
+      "title": "Enviar a Soporte",
+      "type": "button"
+    },
+    {
+      "id": "link_to_resoluciones__1",
+      "title": "link to Resoluciones",
+      "type": "board_relation"
+    },
+    {
+      "id": "reflejo__1",
+      "title": "Label",
+      "type": "mirror"
+    },
+    {
+      "id": "n_meros__1",
+      "title": "🌐 Depto. Asigando Zap",
+      "type": "numbers"
+    },
+    {
+      "id": "fecha__1",
+      "title": "⚙️ Fecha de realización",
+      "type": "date"
+    },
+    {
+      "id": "estado0__1",
+      "title": "📋 Tipo de Mantenimiento",
+      "type": "status"
+    },
+    {
+      "id": "id_de_elemento_mkm1dy3m",
+      "title": "ID de elemento",
+      "type": "item_id"
+    },
+    {
+      "id": "board_relation_mkmtvwj8",
+      "title": "link to 🛏️ Reservaciones",
+      "type": "board_relation"
+    }
+  ]
+}

@@ -1,0 +1,361 @@
+{
+  "id": "6311489730",
+  "name": "🏢 Check-in guide",
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name"
+    },
+    {
+      "id": "subelementos__1",
+      "title": "Subelementos",
+      "type": "subtasks"
+    },
+    {
+      "id": "archivo97__1",
+      "title": "Fotos Check in Airbnb",
+      "type": "file"
+    },
+    {
+      "id": "archivo",
+      "title": "Paso 1 - Foto",
+      "type": "file"
+    },
+    {
+      "id": "texto_largo__1",
+      "title": "Paso 1 - Español",
+      "type": "long_text"
+    },
+    {
+      "id": "long_text__1",
+      "title": "Paso 1 - Inglés",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo__1",
+      "title": "Paso 2 - Foto",
+      "type": "file"
+    },
+    {
+      "id": "long_text2__1",
+      "title": "Paso 2 - Español",
+      "type": "long_text"
+    },
+    {
+      "id": "long_text0__1",
+      "title": "Paso 2 - Inglés",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo3__1",
+      "title": "Paso 3 - Foto",
+      "type": "file"
+    },
+    {
+      "id": "dup__of_paso_2___ingl_s__1",
+      "title": "Paso 3 - Español",
+      "type": "long_text"
+    },
+    {
+      "id": "long_text3__1",
+      "title": "Paso 3 - Inglés",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo5__1",
+      "title": "Paso 4 - Foto",
+      "type": "file"
+    },
+    {
+      "id": "long_text1__1",
+      "title": "Paso 4 - Español",
+      "type": "long_text"
+    },
+    {
+      "id": "dup__of_paso_3___ingl_s__1",
+      "title": "Paso 4 - Inglés",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo7__1",
+      "title": "Paso 5 - Foto",
+      "type": "file"
+    },
+    {
+      "id": "long_text08__1",
+      "title": "Paso 5 - Español",
+      "type": "long_text"
+    },
+    {
+      "id": "long_text29__1",
+      "title": "Paso 5 - Inglés",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo36__1",
+      "title": "Paso 6 - Foto",
+      "type": "file"
+    },
+    {
+      "id": "dup__of_paso_5___ingl_s__1",
+      "title": "Paso 6 - Español",
+      "type": "long_text"
+    },
+    {
+      "id": "long_text7__1",
+      "title": "Paso 6 - Inglés",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo0__1",
+      "title": "Paso 7 -Foto",
+      "type": "file"
+    },
+    {
+      "id": "dup__of_paso_6___ingl_s__1",
+      "title": "Paso 7 - Español",
+      "type": "long_text"
+    },
+    {
+      "id": "long_text8__1",
+      "title": "Paso 7 - Inglés",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo9__1",
+      "title": "Paso 8 - Foto",
+      "type": "file"
+    },
+    {
+      "id": "dup__of_paso_7___ingl_s__1",
+      "title": "Paso 8 - Español",
+      "type": "long_text"
+    },
+    {
+      "id": "long_text84__1",
+      "title": "Paso 8 - Inglés",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo91__1",
+      "title": "Paso 9 - Foto",
+      "type": "file"
+    },
+    {
+      "id": "texto_largo7__1",
+      "title": "Paso 9 - Español",
+      "type": "long_text"
+    },
+    {
+      "id": "long_text16__1",
+      "title": "Paso 9 - Inglés",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo77__1",
+      "title": "Paso 10 - Foto",
+      "type": "file"
+    },
+    {
+      "id": "dup__of_paso_9___ingl_s__1",
+      "title": "Paso 10 - Español",
+      "type": "long_text"
+    },
+    {
+      "id": "long_text39__1",
+      "title": "Paso 10 - Inglés",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo6__1",
+      "title": "Paso 11 - Foto",
+      "type": "file"
+    },
+    {
+      "id": "texto_largo4__1",
+      "title": "Paso 11 - Español",
+      "type": "long_text"
+    },
+    {
+      "id": "long_text9__1",
+      "title": "Paso 11 - Inglés",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo4__1",
+      "title": "Paso 12 - Foto",
+      "type": "file"
+    },
+    {
+      "id": "long_text6__1",
+      "title": "Paso 12 - Español",
+      "type": "long_text"
+    },
+    {
+      "id": "long_text4__1",
+      "title": "Paso 12 - Inglés",
+      "type": "long_text"
+    },
+    {
+      "id": "dup__of_paso_12___foto__1",
+      "title": "Paso 13 - Foto",
+      "type": "file"
+    },
+    {
+      "id": "paso_13___espa_ol__1",
+      "title": "Paso 13 - Español",
+      "type": "long_text"
+    },
+    {
+      "id": "paso_13__ingl_s__1",
+      "title": "Paso 13- Inglès",
+      "type": "long_text"
+    },
+    {
+      "id": "dup__of_paso_13___foto__1",
+      "title": "Paso 14 - Foto",
+      "type": "file"
+    },
+    {
+      "id": "long_text48__1",
+      "title": "Paso 14 - Español",
+      "type": "long_text"
+    },
+    {
+      "id": "dup__of_paso_13__ingl_s__1",
+      "title": "Paso 14- Inglès",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo8__1",
+      "title": "Paso 15 - Foto",
+      "type": "file"
+    },
+    {
+      "id": "texto_largo2__1",
+      "title": "Paso 15 - Español",
+      "type": "long_text"
+    },
+    {
+      "id": "long_text88__1",
+      "title": "Paso 15 - Inglès",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo82__1",
+      "title": "Paso 16 - Foto",
+      "type": "file"
+    },
+    {
+      "id": "texto_largo1__1",
+      "title": "Paso 16 - Español",
+      "type": "long_text"
+    },
+    {
+      "id": "long_text07__1",
+      "title": "Paso 16 - Inglès",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo57__1",
+      "title": "Paso 17 - Foto",
+      "type": "file"
+    },
+    {
+      "id": "texto_largo5__1",
+      "title": "Paso 17 - Español",
+      "type": "long_text"
+    },
+    {
+      "id": "dup__of_texto_largo__1",
+      "title": "Paso 17 - Inglès",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo2__1",
+      "title": "Paso 18 - Foto",
+      "type": "file"
+    },
+    {
+      "id": "texto_largo9__1",
+      "title": "Paso 18 - Español",
+      "type": "long_text"
+    },
+    {
+      "id": "dup__of_texto_largo5__1",
+      "title": "Paso 18 - Inglès",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo66__1",
+      "title": "Paso 19 - Foto",
+      "type": "file"
+    },
+    {
+      "id": "texto_largo43__1",
+      "title": "Paso 19 - Español",
+      "type": "long_text"
+    },
+    {
+      "id": "dup__of_texto_largo6__1",
+      "title": "Paso 19 - Inglès",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo88__1",
+      "title": "Paso 20 - Foto",
+      "type": "file"
+    },
+    {
+      "id": "texto_largo74__1",
+      "title": "Paso 20 - Español",
+      "type": "long_text"
+    },
+    {
+      "id": "dup__of_texto_largo0__1",
+      "title": "Paso 20 - Inglès",
+      "type": "long_text"
+    },
+    {
+      "id": "n_meros__1",
+      "title": "WIX ID",
+      "type": "numbers"
+    },
+    {
+      "id": "estado__1",
+      "title": "Estado",
+      "type": "status"
+    },
+    {
+      "id": "link_to_propiedades__1",
+      "title": "link to Propiedades",
+      "type": "board_relation"
+    },
+    {
+      "id": "reflejo__1",
+      "title": "Airbnb ID",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo7__1",
+      "title": "Reflejo",
+      "type": "mirror"
+    },
+    {
+      "id": "pulse_id_mkqa2ewa",
+      "title": "ID de elemento",
+      "type": "item_id"
+    },
+    {
+      "id": "pulse_log_mkqa2a71",
+      "title": "Registro de creación",
+      "type": "creation_log"
+    },
+    {
+      "id": "pulse_updated_mkqacfva",
+      "title": "Última actualización",
+      "type": "last_updated"
+    }
+  ]
+}

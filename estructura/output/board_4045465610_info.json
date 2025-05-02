@@ -1,0 +1,401 @@
+{
+  "id": "4045465610",
+  "name": "🏢 Información General",
+  "columns": [
+    {
+      "id": "name",
+      "title": "Name",
+      "type": "name"
+    },
+    {
+      "id": "subelementos__1",
+      "title": "Subelementos",
+      "type": "subtasks"
+    },
+    {
+      "id": "texto16",
+      "title": "Número de huéspedes",
+      "type": "text"
+    },
+    {
+      "id": "men__desplegable",
+      "title": "Tipo de propiedad",
+      "type": "dropdown"
+    },
+    {
+      "id": "men__desplegable6",
+      "title": "Piso",
+      "type": "dropdown"
+    },
+    {
+      "id": "estado",
+      "title": "Elevador",
+      "type": "status"
+    },
+    {
+      "id": "dup__of_piso",
+      "title": "Total de pisos en el edificio",
+      "type": "dropdown"
+    },
+    {
+      "id": "texto47",
+      "title": "Administración: Nombre y Contacto",
+      "type": "text"
+    },
+    {
+      "id": "archivo3",
+      "title": "Reglamentos del edificio",
+      "type": "file"
+    },
+    {
+      "id": "reflejo",
+      "title": "Método de registro",
+      "type": "mirror"
+    },
+    {
+      "id": "texto10",
+      "title": "Detalles de registro",
+      "type": "text"
+    },
+    {
+      "id": "estado38",
+      "title": "Vigilancia / Recepción",
+      "type": "status"
+    },
+    {
+      "id": "texto5",
+      "title": "Nombres y Contacto",
+      "type": "text"
+    },
+    {
+      "id": "texto259",
+      "title": "Horarios",
+      "type": "text"
+    },
+    {
+      "id": "texto74",
+      "title": "Acceso al edificio",
+      "type": "text"
+    },
+    {
+      "id": "texto69",
+      "title": "Acceso al departamento",
+      "type": "text"
+    },
+    {
+      "id": "text_mkq731zq",
+      "title": "Copia de llaves soporte",
+      "type": "text"
+    },
+    {
+      "id": "men__desplegable1",
+      "title": "Dispositivo de entrada",
+      "type": "dropdown"
+    },
+    {
+      "id": "texto0",
+      "title": "Ubicación Basurero",
+      "type": "text"
+    },
+    {
+      "id": "archivo",
+      "title": "Foto Basurero",
+      "type": "file"
+    },
+    {
+      "id": "n_meros",
+      "title": "Número de baños",
+      "type": "numbers"
+    },
+    {
+      "id": "dup__of_rec_mara_1",
+      "title": "Balcón / Terraza privada",
+      "type": "status"
+    },
+    {
+      "id": "estado_13",
+      "title": "Recámara 1",
+      "type": "status"
+    },
+    {
+      "id": "camas__r1_",
+      "title": "Camas (R1)",
+      "type": "numbers"
+    },
+    {
+      "id": "texto28",
+      "title": "Tamaño (R1)",
+      "type": "text"
+    },
+    {
+      "id": "estado1",
+      "title": "Baño privado (R1)",
+      "type": "status"
+    },
+    {
+      "id": "color",
+      "title": "Recámara 2",
+      "type": "status"
+    },
+    {
+      "id": "camas__r2_",
+      "title": "Camas (R2)",
+      "type": "numbers"
+    },
+    {
+      "id": "texto24",
+      "title": "Tamaño (R2)",
+      "type": "text"
+    },
+    {
+      "id": "estado9",
+      "title": "Baño privado (R2)",
+      "type": "status"
+    },
+    {
+      "id": "color4",
+      "title": "Recámara 3",
+      "type": "status"
+    },
+    {
+      "id": "camas__r3_",
+      "title": "Camas (R3)",
+      "type": "numbers"
+    },
+    {
+      "id": "texto7",
+      "title": "Tamaño (R3)",
+      "type": "text"
+    },
+    {
+      "id": "estado11",
+      "title": "Baño privado",
+      "type": "status"
+    },
+    {
+      "id": "color0",
+      "title": "+ Recámaras",
+      "type": "status"
+    },
+    {
+      "id": "numeric",
+      "title": "# recámaras adicionales",
+      "type": "numbers"
+    },
+    {
+      "id": "numeric5",
+      "title": "Número de camas adicionales +R",
+      "type": "numbers"
+    },
+    {
+      "id": "texto09",
+      "title": "Tamaño de camas adicionales +R",
+      "type": "text"
+    },
+    {
+      "id": "texto44",
+      "title": "Baño privado +R",
+      "type": "text"
+    },
+    {
+      "id": "estado3",
+      "title": "🛋️ Sofacama(s)",
+      "type": "status"
+    },
+    {
+      "id": "texto3",
+      "title": "🛋️ Número y ubicación: Sofacama(s)",
+      "type": "text"
+    },
+    {
+      "id": "texto60",
+      "title": "🛋️ Tamaño y capacidad de huéspedes: Sofacama(s)",
+      "type": "text"
+    },
+    {
+      "id": "texto_largo",
+      "title": "🛋️ Instrucciones sábanas y almohadas",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo6",
+      "title": "🛋️ Foto: Sofacama(s)",
+      "type": "file"
+    },
+    {
+      "id": "texto_largo3",
+      "title": "Notas importantes",
+      "type": "long_text"
+    },
+    {
+      "id": "long_text",
+      "title": "Instrucciones almacén interno",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo35",
+      "title": "Foto del almacén del limpieza",
+      "type": "file"
+    },
+    {
+      "id": "color5",
+      "title": "Escritorio de trabajo",
+      "type": "status"
+    },
+    {
+      "id": "estado20",
+      "title": "Estacionamiento",
+      "type": "status"
+    },
+    {
+      "id": "texto_largo31",
+      "title": "Instrucciones, ubicación y/o notas",
+      "type": "long_text"
+    },
+    {
+      "id": "archivo7",
+      "title": "Foto",
+      "type": "file"
+    },
+    {
+      "id": "estado_1",
+      "title": "Persianas opacas en cuartos",
+      "type": "status"
+    },
+    {
+      "id": "texto36",
+      "title": "Notas Persianas",
+      "type": "text"
+    },
+    {
+      "id": "estado25",
+      "title": "El edificio cuenta con cisterna o reservas de agua",
+      "type": "status"
+    },
+    {
+      "id": "texto_largo58",
+      "title": "Plan de contingencia en caso de falta de agua",
+      "type": "long_text"
+    },
+    {
+      "id": "texto_largo__1",
+      "title": "Condiciones ambientales",
+      "type": "long_text"
+    },
+    {
+      "id": "color46",
+      "title": "Mascotas",
+      "type": "status"
+    },
+    {
+      "id": "reflejo0",
+      "title": "Personal de limpieza",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo6",
+      "title": "Inspección Mantenimiento",
+      "type": "mirror"
+    },
+    {
+      "id": "estado2",
+      "title": "Estado Información General",
+      "type": "status"
+    },
+    {
+      "id": "board_relation4",
+      "title": "Link to Fichas - Propiedades",
+      "type": "board_relation"
+    },
+    {
+      "id": "f_rmula",
+      "title": "Automático - No. de Recámaras",
+      "type": "formula"
+    },
+    {
+      "id": "formula",
+      "title": "Automático - No. de Camas",
+      "type": "formula"
+    },
+    {
+      "id": "pulse_log",
+      "title": "Creación de registro",
+      "type": "creation_log"
+    },
+    {
+      "id": "conectar_tableros7",
+      "title": "Link 🔧 Revisión Mantenimiento",
+      "type": "board_relation"
+    },
+    {
+      "id": "reflejo_mkkcctfd",
+      "title": "🔧 Estado",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo00",
+      "title": "Zona",
+      "type": "mirror"
+    },
+    {
+      "id": "board_relation",
+      "title": "📝 Supervisión de limpiezas",
+      "type": "board_relation"
+    },
+    {
+      "id": "reflejo65",
+      "title": "No modificar -Supervisión últimos 3 meses",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo__1",
+      "title": "Label",
+      "type": "mirror"
+    },
+    {
+      "id": "reflejo7__1",
+      "title": "Link Estado",
+      "type": "mirror"
+    },
+    {
+      "id": "estado_1__1",
+      "title": "Estado",
+      "type": "status"
+    },
+    {
+      "id": "personas_mkkay0ry",
+      "title": "Visibilidad",
+      "type": "people"
+    },
+    {
+      "id": "conectar_tableros_mkkc9qch",
+      "title": "Link 🗳️ Onboarding Operativo",
+      "type": "board_relation"
+    },
+    {
+      "id": "reflejo_mkkccnt8",
+      "title": "🗳️ Estado",
+      "type": "mirror"
+    },
+    {
+      "id": "board_relation_mkkc7vq0",
+      "title": "🫧 Apertura Ama de Llaves",
+      "type": "board_relation"
+    },
+    {
+      "id": "reflejo_mkkcemtk",
+      "title": "🫧 Estado",
+      "type": "mirror"
+    },
+    {
+      "id": "id_de_elemento_mkmr9rw9",
+      "title": "ID de elemento",
+      "type": "item_id"
+    },
+    {
+      "id": "pulse_updated_mkqa1962",
+      "title": "Última actualización",
+      "type": "last_updated"
+    }
+  ]
+}

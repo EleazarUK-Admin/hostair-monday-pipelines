@@ -1,0 +1,276 @@
+{
+  "id": "4045377615",
+  "name": "🏢 Equipos y dispositivos",
+  "columns": [
+    {
+      "id": "name",
+      "title": "Nombre",
+      "type": "name"
+    },
+    {
+      "id": "subelementos",
+      "title": "Subelementos",
+      "type": "subtasks"
+    },
+    {
+      "id": "estado",
+      "title": "TV",
+      "type": "status"
+    },
+    {
+      "id": "n_meros",
+      "title": "Cuántas?",
+      "type": "numbers"
+    },
+    {
+      "id": "texto_1",
+      "title": "Marca, tamaño TV y ubicación",
+      "type": "text"
+    },
+    {
+      "id": "texto72",
+      "title": "Streaming: TV",
+      "type": "text"
+    },
+    {
+      "id": "archivo_1",
+      "title": "TV: Foto",
+      "type": "file"
+    },
+    {
+      "id": "estado1",
+      "title": "Calentador",
+      "type": "status"
+    },
+    {
+      "id": "texto97",
+      "title": "Número y ubicación: Calentador",
+      "type": "text"
+    },
+    {
+      "id": "archivo_16",
+      "title": "Calentador: Fotos",
+      "type": "file"
+    },
+    {
+      "id": "estado5",
+      "title": "Ventilador",
+      "type": "status"
+    },
+    {
+      "id": "texto91",
+      "title": "Número y ubicación: Ventilador",
+      "type": "text"
+    },
+    {
+      "id": "archivo_15",
+      "title": "Ventilador: Fotos",
+      "type": "file"
+    },
+    {
+      "id": "estado15",
+      "title": "Plancha",
+      "type": "status"
+    },
+    {
+      "id": "archivo84",
+      "title": "Foto: Plancha",
+      "type": "file"
+    },
+    {
+      "id": "estado3",
+      "title": "Secadora de pelo",
+      "type": "status"
+    },
+    {
+      "id": "archivo2",
+      "title": "Foto: Secadora de pelo",
+      "type": "file"
+    },
+    {
+      "id": "estado8",
+      "title": "Estufa",
+      "type": "status"
+    },
+    {
+      "id": "texto792",
+      "title": "Marca, número de hornillas y tipo: Estufa",
+      "type": "text"
+    },
+    {
+      "id": "archivo",
+      "title": "Foto: Estufa",
+      "type": "file"
+    },
+    {
+      "id": "estado54",
+      "title": "Refrigerador",
+      "type": "status"
+    },
+    {
+      "id": "texto29",
+      "title": "Marca y modelo: Refrigerador",
+      "type": "text"
+    },
+    {
+      "id": "archivo5",
+      "title": "Foto: Refrigerador",
+      "type": "file"
+    },
+    {
+      "id": "estado0",
+      "title": "Cafetera",
+      "type": "status"
+    },
+    {
+      "id": "archivo31",
+      "title": "Foto: Cafetera",
+      "type": "file"
+    },
+    {
+      "id": "estado17",
+      "title": "Licuadora",
+      "type": "status"
+    },
+    {
+      "id": "archivo96",
+      "title": "Foto: Licuadora",
+      "type": "file"
+    },
+    {
+      "id": "estado03",
+      "title": "Microondas",
+      "type": "status"
+    },
+    {
+      "id": "archivo28",
+      "title": "Foto: Microondas",
+      "type": "file"
+    },
+    {
+      "id": "estado2",
+      "title": "Lavadora",
+      "type": "status"
+    },
+    {
+      "id": "texto58",
+      "title": "Marca y modelo: Lavadora",
+      "type": "text"
+    },
+    {
+      "id": "archivo_14",
+      "title": "Foto: Lavadora",
+      "type": "file"
+    },
+    {
+      "id": "estado9",
+      "title": "Secadora",
+      "type": "status"
+    },
+    {
+      "id": "texto0",
+      "title": "Marca y modelo: Secadora",
+      "type": "text"
+    },
+    {
+      "id": "archivo27",
+      "title": "Foto: Secadora",
+      "type": "file"
+    },
+    {
+      "id": "texto4",
+      "title": "Boiler: Marca, modelo y tipo;",
+      "type": "text"
+    },
+    {
+      "id": "archivo82",
+      "title": "Boiler: Foto",
+      "type": "file"
+    },
+    {
+      "id": "text_mkqed5gj",
+      "title": "Boiler instrucciones",
+      "type": "text"
+    },
+    {
+      "id": "estado6",
+      "title": "Detector Humo/Monóxido",
+      "type": "status"
+    },
+    {
+      "id": "texto79",
+      "title": "Detector tipo",
+      "type": "text"
+    },
+    {
+      "id": "archivo7",
+      "title": "Foto: Detector(es)",
+      "type": "file"
+    },
+    {
+      "id": "estado7",
+      "title": "Filtro de Agua",
+      "type": "status"
+    },
+    {
+      "id": "texto75",
+      "title": "Detalles: Filtro de Agua",
+      "type": "text"
+    },
+    {
+      "id": "archivo51",
+      "title": "Foto: Filtro de Agua",
+      "type": "file"
+    },
+    {
+      "id": "color",
+      "title": "Aire Acondicionado",
+      "type": "status"
+    },
+    {
+      "id": "archivo24",
+      "title": "Pastillas de luz",
+      "type": "file"
+    },
+    {
+      "id": "estado39",
+      "title": "Otros Equipos y Dispositivos",
+      "type": "status"
+    },
+    {
+      "id": "texto5",
+      "title": "Otros Equipos y Dispositivos",
+      "type": "text"
+    },
+    {
+      "id": "archivo04",
+      "title": "Fotos: Otros Equipos y Dispositivos",
+      "type": "file"
+    },
+    {
+      "id": "estado31",
+      "title": "Estado",
+      "type": "status"
+    },
+    {
+      "id": "board_relation3",
+      "title": "Link to Fichas - Propiedades",
+      "type": "board_relation"
+    },
+    {
+      "id": "pulse_id_mkqak00g",
+      "title": "ID de elemento",
+      "type": "item_id"
+    },
+    {
+      "id": "pulse_log_mkqatmxw",
+      "title": "Registro de creación",
+      "type": "creation_log"
+    },
+    {
+      "id": "pulse_updated_mkqae7xe",
+      "title": "Última actualización",
+      "type": "last_updated"
+    }
+  ]
+}
