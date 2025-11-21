@@ -5,6 +5,7 @@ from google.cloud import bigquery, storage
 from datetime import datetime, date, timedelta
 import calendar
 
+
 @functions_framework.http
 def process_event(request):
     # Parsear el payload recibidos 421345245
@@ -14,7 +15,7 @@ def process_event(request):
         print(f"❌ Error parsing JSON: {e}")
         return f"Invalid JSON: {e}", 400
 
-    # Se intenta extraer el campo date para formar el nombre del archivo
+    # Se intenta extraer el campo date para formar el nombre del archivo.
     try:
         date_field = payload.get("date")
         if isinstance(date_field, str):
